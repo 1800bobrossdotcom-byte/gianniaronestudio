@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bio — Gianni Arone Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">Menu</button>
+
+<div class="site">
+  <aside class="sidebar">
+    <div>
+      <div class="logo">
+        <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="45" font-family="Courier New, monospace" font-size="16" letter-spacing="3" fill="#111">GIANNI ARONE</text>
+        </svg>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Work</a></li>
+          <li><a href="collect.html">Collect</a></li>
+          <li><a href="bio.html" class="active">Bio</a></li>
+        </ul>
+      </nav>
+
+      <div class="social">
+        <a href="https://www.instagram.com/gianniarone/" target="_blank" rel="noopener" aria-label="Instagram">&#9679;</a>
+      </div>
+    </div>
+
+    <div style="font-size: 10px; opacity: 0.4; letter-spacing: 0.1em;">
+      &copy; Gianni Arone
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="bio-content">
+      <h1>Bio</h1>
+      <p>Gianni Arone is a multidisciplinary artist working across assemblage, drawing, painting, screen printing, installation, animation, performance, photography, and spoken word.</p>
+      <p><!-- Add your bio text here --></p>
+    </div>
+  </main>
+</div>
+
+<script>
+document.querySelectorAll('.sidebar nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.querySelector('.sidebar').classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>

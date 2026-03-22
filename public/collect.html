@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collect — Gianni Arone Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">Menu</button>
+
+<div class="site">
+  <aside class="sidebar">
+    <div>
+      <div class="logo">
+        <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="45" font-family="Courier New, monospace" font-size="16" letter-spacing="3" fill="#111">GIANNI ARONE</text>
+        </svg>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Work</a></li>
+          <li><a href="collect.html" class="active">Collect</a></li>
+          <li><a href="bio.html">Bio</a></li>
+        </ul>
+      </nav>
+
+      <div class="social">
+        <a href="https://www.instagram.com/gianniarone/" target="_blank" rel="noopener" aria-label="Instagram">&#9679;</a>
+      </div>
+    </div>
+
+    <div style="font-size: 10px; opacity: 0.4; letter-spacing: 0.1em;">
+      &copy; Gianni Arone
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="page-content">
+      <h1>Collect</h1>
+      <p>Work is available through barter, trade, or donation. If something speaks to you, reach out and we can figure it out.</p>
+
+      <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <label>
+          Name
+          <input type="text" name="name" required>
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" required>
+        </label>
+
+        <label>
+          Interested in
+          <select name="interest">
+            <option value="specific-piece">A specific piece</option>
+            <option value="commission">Commission</option>
+            <option value="trade-barter">Trade / Barter</option>
+            <option value="donation">Donation</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+
+        <label>
+          Message
+          <textarea name="message" placeholder="Describe what you're interested in, what you'd like to offer, or just say hello."></textarea>
+        </label>
+
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </main>
+</div>
+
+<script>
+document.querySelectorAll('.sidebar nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.querySelector('.sidebar').classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>

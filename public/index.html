@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gianni Arone Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">Menu</button>
+
+<div class="site">
+  <aside class="sidebar">
+    <div>
+      <!-- Logo: replace with your actual logo file if you have one -->
+      <div class="logo">
+        <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="45" font-family="Courier New, monospace" font-size="16" letter-spacing="3" fill="#111">GIANNI ARONE</text>
+        </svg>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active">Work</a></li>
+          <li><a href="collect.html">Collect</a></li>
+          <li><a href="bio.html">Bio</a></li>
+        </ul>
+      </nav>
+
+      <div class="social">
+        <a href="https://www.instagram.com/gianniarone/" target="_blank" rel="noopener" aria-label="Instagram">&#9679;</a>
+      </div>
+    </div>
+
+    <div style="font-size: 10px; opacity: 0.4; letter-spacing: 0.1em;">
+      &copy; Gianni Arone
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="gallery" id="gallery"></div>
+  </main>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <button class="lightbox-nav prev" onclick="navLightbox(-1)">&#8249;</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lightbox-nav next" onclick="navLightbox(1)">&#8250;</button>
+</div>
+
+<script>
+const images = [
+  "images/01_Screenshot+2024-06-12+170944.jpg",
+  "images/02_IMG_3631.jpg",
+  "images/03_image-asset.jpeg",
+  "images/04_27BE4767-F69F-4577-8624-C9188C2A0C64.JPG",
+  "images/05_IMG_9366_1_.JPG",
+  "images/06_IMG_2980.jpg",
+  "images/07_IMG_0905.jpg",
+  "images/08_IMG_1965.JPG",
+  "images/09_IMG_5287.jpg",
+  "images/10_IMG_3626.jpg",
+  "images/11_IMG_2988.jpg",
+  "images/12_image-asset-2.jpeg",
+  "images/13_IMG_0516.JPG",
+  "images/14_image-asset-3.jpeg",
+  "images/15_image-asset-4.jpeg",
+  "images/16_IMG_4924.jpg",
+  "images/17_33DA581F-5CD7-4153-A3E7-AB80404A61D3.jpg",
+  "images/18_IMG_4633.jpg",
+  "images/19_IMG_9123_1_.JPG",
+  "images/20_IMG_2370.jpg",
+  "images/21_IMG_2344.jpg",
+  "images/22_TimeZoo_Combine_01_Framed.png",
+  "images/23_IMG_2439.JPG",
+  "images/24_IMG_6455.jpg",
+  "images/25_IMG_3767.jpg",
+  "images/26_IMG_2579.JPG",
+  "images/27_66F3A548-7A1A-49FF-A225-D79C6F12B494.jpg",
+  "images/28_533687F6-94CB-45F8-A30E-184C38477C30.JPG",
+  "images/29_IMG_4068_1_.JPG",
+  "images/30_IMG_2534.JPG",
+  "images/31_IMG_2537.JPG",
+  "images/32_IMG_21134.png",
+  "images/33_IMG_2095.jpg",
+  "images/34_B0BBA592-EBB1-4476-B71F-E4FEF15E7B78.JPG",
+  "images/35_IMG_2107.jpg",
+  "images/36_IMG_3683.jpg",
+  "images/37_IMG_2279.JPG",
+  "images/38__9_I+Don't+Believe+In+Fiction+Anymore.jpg",
+  "images/39__8_Cosmic+Common+Prayer.jpg",
+  "images/40_1559544_10152066380734694_646804029_o.jpg",
+  "images/41_Dog+Flag.png",
+  "images/42__4_+_Knightian+Cloaks+And+Cinematic+Probabilities.jpg",
+  "images/43_IMG_2154.JPG",
+  "images/44_IMG_1975.jpg",
+  "images/45_IMG_1896.jpg"
+];
+
+// Build gallery
+const gallery = document.getElementById('gallery');
+images.forEach((src, i) => {
+  const div = document.createElement('div');
+  div.className = 'gallery-item';
+  div.innerHTML = `<img src="${src}" alt="Artwork" loading="lazy">`;
+  div.onclick = () => openLightbox(i);
+  gallery.appendChild(div);
+});
+
+// Lightbox
+let currentIndex = 0;
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+function openLightbox(i) {
+  currentIndex = i;
+  lightboxImg.src = images[i];
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function navLightbox(dir) {
+  currentIndex = (currentIndex + dir + images.length) % images.length;
+  lightboxImg.src = images[currentIndex];
+}
+
+// Close on background click
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) closeLightbox();
+});
+
+// Keyboard nav
+document.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') navLightbox(-1);
+  if (e.key === 'ArrowRight') navLightbox(1);
+});
+
+// Close mobile menu when clicking a nav link
+document.querySelectorAll('.sidebar nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.querySelector('.sidebar').classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>
