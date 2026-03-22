@@ -90,6 +90,11 @@ nav ul li a.active {
   padding: 40px;
 }
 
+.main.full {
+  margin-left: 0;
+  padding: 20px;
+}
+
 /* ── Gallery Grid ── */
 .gallery {
   display: grid;
