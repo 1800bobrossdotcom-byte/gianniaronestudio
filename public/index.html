@@ -2,17 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Gianni Arone Studio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="site">
-  <main class="main full">
-    <div class="gallery" id="gallery"></div>
-  </main>
-</div>
+<div id="canvas"></div>
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
@@ -24,129 +20,134 @@
 
 <script>
 const localImages = [
-  "images/01_Screenshot+2024-06-12+170944.jpg",
-  "images/02_IMG_3631.jpg",
-  "images/03_image-asset.jpeg",
-  "images/04_27BE4767-F69F-4577-8624-C9188C2A0C64.JPG",
-  "images/05_IMG_9366_1_.JPG",
-  "images/06_IMG_2980.jpg",
-  "images/07_IMG_0905.jpg",
-  "images/08_IMG_1965.JPG",
-  "images/09_IMG_5287.jpg",
-  "images/10_IMG_3626.jpg",
-  "images/11_IMG_2988.jpg",
-  "images/12_image-asset-2.jpeg",
-  "images/13_IMG_0516.JPG",
-  "images/14_image-asset-3.jpeg",
-  "images/15_image-asset-4.jpeg",
-  "images/16_IMG_4924.jpg",
-  "images/17_33DA581F-5CD7-4153-A3E7-AB80404A61D3.jpg",
-  "images/18_IMG_4633.jpg",
-  "images/19_IMG_9123_1_.JPG",
-  "images/20_IMG_2370.jpg",
-  "images/21_IMG_2344.jpg",
-  "images/22_TimeZoo_Combine_01_Framed.png",
-  "images/23_IMG_2439.JPG",
-  "images/24_IMG_6455.jpg",
-  "images/25_IMG_3767.jpg",
-  "images/26_IMG_2579.JPG",
-  "images/27_66F3A548-7A1A-49FF-A225-D79C6F12B494.jpg",
-  "images/28_533687F6-94CB-45F8-A30E-184C38477C30.JPG",
-  "images/29_IMG_4068_1_.JPG",
-  "images/30_IMG_2534.JPG",
-  "images/31_IMG_2537.JPG",
-  "images/32_IMG_21134.png",
-  "images/33_IMG_2095.jpg",
-  "images/34_B0BBA592-EBB1-4476-B71F-E4FEF15E7B78.JPG",
-  "images/35_IMG_2107.jpg",
-  "images/36_IMG_3683.jpg",
-  "images/37_IMG_2279.JPG",
-  "images/38__9_I+Don't+Believe+In+Fiction+Anymore.jpg",
-  "images/39__8_Cosmic+Common+Prayer.jpg",
-  "images/40_1559544_10152066380734694_646804029_o.jpg",
-  "images/41_Dog+Flag.png",
-  "images/42__4_+_Knightian+Cloaks+And+Cinematic+Probabilities.jpg",
-  "images/43_IMG_2154.JPG",
-  "images/44_IMG_1975.jpg",
-  "images/45_IMG_1896.jpg",
-  "images/46_IMG_1943.jpg",
-  "images/47_IMG_6442.jpg",
-  "images/48_IMG_6283.jpg",
-  "images/49_10271645_509848415807890_7020833866520112359_n.jpg",
-  "images/50_IMG_0622.JPG",
-  "images/51_1374241_398211450304921_434148266_n.jpg",
-  "images/52_1377300_398194680306598_602822857_n.jpg",
-  "images/53_another.jpg",
-  "images/54_480806_309506589175408_2077601914_n.jpg",
-  "images/55_IMG_2101.jpg",
-  "images/56_IMG_1964.JPG",
-  "images/57_IMG_1984.JPG",
-  "images/58_IMG_1960.jpg",
-  "images/59_IMG_1966.JPG",
-  "images/60_IMG_1969.JPG",
-  "images/61_IMG_1376.JPG",
-  "images/62_IMG_2833.JPG",
-  "images/63_IMG_E4178_1_.JPG",
-  "images/64_IMG_6403.jpg",
-  "images/65_IMG_0085.JPG",
-  "images/66_IMG_E4577_1_.JPG",
-  "images/67_IMG_0051.JPG",
-  "images/68_IMG_E4696_1_.JPG",
-  "images/69_IMG_0059.JPG",
-  "images/70_IMG_9873.JPG",
-  "images/71_IMG_9876.JPG",
-  "images/72_IMG_9931.JPG",
-  "images/73_IMG_4964.JPG",
-  "images/74_IMG_1671.JPG",
-  "images/75_IMG_1570.JPG",
-  "images/76_IMG_1622.JPG",
-  "images/77_IMG_1643.JPG",
-  "images/78_IMG_2840.JPG",
-  "images/79_IMG_2843.JPG",
-  "images/80_IMG_2999.JPG",
-  "images/81_IMG_0173.JPG",
-  "images/82_IMG_5919.JPG",
-  "images/83_33Days_Angel_01.png",
-  "images/84_33Days_Angel_02.png",
-  "images/85_img081.jpg",
-  "images/86_img321.jpg",
-  "images/87_33Days_Angel_03.png",
-  "images/88_img087.jpg",
-  "images/89_img321.jpg",
-  "images/090_img322.jpg",
-  "images/091_unnamed+(1).jpg",
-  "images/092_unnamed+(2).jpg",
-  "images/093_unnamed.jpg",
-  "images/094_MOMEMO_WORLDDREAM.png",
-  "images/095_IMG_6429.JPG",
-  "images/096_Momemo_Japan_2.png",
-  "images/097_FullSizeRender+(2).jpg",
-  "images/098_FullSizeRender.jpg",
-  "images/099_IMG_4598.JPG",
-  "images/100_IMG_3456.JPG",
-  "images/101_IMG_3457.JPG",
-  "images/102_IMG_6936.JPG",
-  "images/103_IMG_6935.JPG",
-  "images/104_IMG_6941.JPG",
-  "images/105_IMG_6592.JPG",
-  "images/106_IMG_6650.JPG",
-  "images/107_IMG_7030.JPG",
-  "images/108_156001_546122818847116_6301349897991458156_n.jpg",
-  "images/109_Seashells_No1_Ocean_Constellation_No1.png",
-  "images/110_Seashells_No1_Ocean_Constellation_No2.png",
-  "images/111_Mid_Chrysalis_Constellation_01.png",
-  "images/112_Leaf_Constellation_01.png",
-  "images/113_Gianni_No1_Gianni_Constellation_No1.png",
-  "images/114_040915_Jason_artist_ICON.png",
-  "images/115_image-asset.png",
-  "images/116_image-asset.png",
-  "images/117_image-asset.png",
-  "images/118_IMG_0368.JPG"
+  "images/779a7b1f.jpg",
+  "images/660edb20.jpg",
+  "images/78981f60.jpeg",
+  "images/8e9d259d.jpg",
+  "images/a699b8c1.jpg",
+  "images/daa2f557.jpg",
+  "images/6431be66.jpg",
+  "images/99627c34.jpg",
+  "images/4a8d8910.jpg",
+  "images/6bd964ce.jpg",
+  "images/5cc33709.jpg",
+  "images/3501d268.jpg",
+  "images/f64cc492.png",
+  "images/bf6a4ab5.jpg",
+  "images/acb960ca.png",
+  "images/b64129e4.jpg",
+  "images/99edbd8b.jpg",
+  "images/16c27253.jpg",
+  "images/27e33d6d.jpg",
+  "images/22597bb3.jpg",
+  "images/2891af5c.jpg",
+  "images/703b6706.jpg",
+  "images/2932b5f4.jpg",
+  "images/ce4b72ba.jpg",
+  "images/5aef2591.jpg",
+  "images/dcaa2711.jpg",
+  "images/52d3cb52.jpg",
+  "images/57fc44e9.jpg",
+  "images/531f27c8.png",
+  "images/1b592c06.jpg",
+  "images/b6d6d690.png",
+  "images/2e1cca13.png",
+  "images/88b152d8.png",
+  "images/438152df.png",
+  "images/09cca9b0.png",
+  "images/aa4c19c5.png",
+  "images/27458cf4.png",
+  "images/3639f041.png",
+  "images/49c681d7.jpg",
+  "images/0e562f6d.jpg",
+  "images/fc8b26f1.jpeg",
+  "images/295f5a68.jpg",
+  "images/291cccc1.jpeg",
+  "images/b18658fb.jpeg",
+  "images/dc1827cf.jpg",
+  "images/0c69cbbc.jpg",
+  "images/e3f84fe7.jpg",
+  "images/6daa9ac7.jpg",
+  "images/06d074f4.jpg",
+  "images/53911184.jpg",
+  "images/b92b80bb.png",
+  "images/618de440.jpg",
+  "images/33e5a0ec.jpg",
+  "images/6f48ba87.jpg",
+  "images/87465ec3.jpg",
+  "images/f8ec2bb8.jpg",
+  "images/2f07432f.jpg",
+  "images/21ae7bfb.jpg",
+  "images/6ba49760.jpg",
+  "images/36b448e1.jpg",
+  "images/9af91ed5.png",
+  "images/4be843ad.jpg",
+  "images/a269553e.jpg",
+  "images/87d5c0af.jpg",
+  "images/bd812ae2.jpg",
+  "images/a5ffb344.jpg",
+  "images/08f3a27b.jpg",
+  "images/32d2dd49.jpg",
+  "images/326ddc26.jpg",
+  "images/8b6e70c0.png",
+  "images/40e24595.jpg",
+  "images/cfaf0753.jpg",
+  "images/4fa9c1d1.jpg",
+  "images/1d3ad749.jpg",
+  "images/0d967bc2.jpg",
+  "images/63c59e29.jpg",
+  "images/c4083f6a.jpg",
+  "images/5e92024e.jpg",
+  "images/5df2439f.jpg",
+  "images/d5f59bbc.jpg",
+  "images/8449a3f7.jpg",
+  "images/7f30b6cc.jpg",
+  "images/454146f3.jpg",
+  "images/a1859301.jpg",
+  "images/692c7fc8.jpg",
+  "images/dce0983d.jpg",
+  "images/38b79208.jpg",
+  "images/81169830.jpg",
+  "images/b6493d24.jpg",
+  "images/6aab2563.jpg",
+  "images/3bff51f0.jpg",
+  "images/16e5fa11.jpg",
+  "images/9c193516.jpg",
+  "images/38b4ea05.jpg",
+  "images/b8f8b070.jpg",
+  "images/607e3de7.jpg",
+  "images/44289568.jpg",
+  "images/a8c9e3a9.jpg",
+  "images/8c469afa.jpg",
+  "images/e60e6db6.jpg",
+  "images/55ee2300.jpg",
+  "images/aab5b965.jpg",
+  "images/636426c6.jpg",
+  "images/72fe8744.jpg",
+  "images/29370f44.jpg",
+  "images/6cdd513b.jpg",
+  "images/daac21a3.jpg",
+  "images/38329993.jpg",
+  "images/553aa451.jpg",
+  "images/5afff8b2.jpg",
+  "images/f7501ed3.jpg",
+  "images/4fd2a264.png",
+  "images/ec7fe1f7.png",
+  "images/30fe4709.jpg",
+  "images/2f8629f7.jpg",
+  "images/2bb555aa.png",
+  "images/fa7525ec.jpg",
+  "images/6d3b0db5.jpg"
 ];
 
-let images = [];
+let allImages = [];
 let currentIndex = 0;
-const gallery = document.getElementById('gallery');
+let scale = 1;
+let particles = [];
+let animId = null;
+const BATCH = 40;
+const THUMB_SIZE = 180;
+const canvas = document.getElementById('canvas');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 
@@ -158,43 +159,154 @@ function shuffle(arr) {
   return arr;
 }
 
-function buildGallery() {
-  gallery.innerHTML = '';
-  images.forEach((src, i) => {
-    const div = document.createElement('div');
-    div.className = 'gallery-item';
-    div.innerHTML = `<img src="${src}" alt="" loading="lazy">`;
-    div.onclick = () => openLightbox(i);
-    gallery.appendChild(div);
-  });
+function rnd(min, max) { return Math.random() * (max - min) + min; }
+
+function createParticle(src, idx) {
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  const size = rnd(THUMB_SIZE * 0.6, THUMB_SIZE * 1.4);
+  return {
+    src, idx, size,
+    x: rnd(-size, w),
+    y: rnd(-size, h),
+    vx: rnd(-0.3, 0.3),
+    vy: rnd(-0.3, 0.3),
+    opacity: 0,
+    targetOpacity: 1,
+    el: null,
+    imgEl: null,
+    loaded: false
+  };
+}
+
+function spawnElement(p) {
+  const div = document.createElement('div');
+  div.className = 'float-item';
+  div.style.width = p.size + 'px';
+  div.style.height = p.size + 'px';
+  div.style.left = p.x + 'px';
+  div.style.top = p.y + 'px';
+  div.style.opacity = 0;
+
+  const img = new Image();
+  img.alt = '';
+  img.decoding = 'async';
+  img.loading = 'lazy';
+  img.onload = () => {
+    p.loaded = true;
+    p.targetOpacity = 1;
+  };
+  img.onerror = () => {
+    div.remove();
+    p.el = null;
+  };
+  img.src = p.src;
+
+  div.appendChild(img);
+  div.addEventListener('click', () => openLightbox(p.idx));
+  canvas.appendChild(div);
+
+  p.el = div;
+  p.imgEl = img;
+}
+
+function animate() {
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+
+  for (const p of particles) {
+    if (!p.el) continue;
+
+    p.x += p.vx;
+    p.y += p.vy;
+
+    // Wrap around edges
+    if (p.x > w + p.size) p.x = -p.size;
+    if (p.x < -p.size * 2) p.x = w;
+    if (p.y > h + p.size) p.y = -p.size;
+    if (p.y < -p.size * 2) p.y = h;
+
+    // Fade in
+    if (p.loaded && p.opacity < p.targetOpacity) {
+      p.opacity = Math.min(p.opacity + 0.01, p.targetOpacity);
+    }
+
+    p.el.style.transform = `translate(${p.x}px, ${p.y}px) scale(${scale})`;
+    p.el.style.opacity = p.opacity;
+  }
+
+  animId = requestAnimationFrame(animate);
+}
+
+function loadBatch(imgs, startIdx) {
+  const end = Math.min(startIdx + BATCH, imgs.length);
+  for (let i = startIdx; i < end; i++) {
+    const p = createParticle(imgs[i], i);
+    particles.push(p);
+    spawnElement(p);
+  }
+  if (end < imgs.length) {
+    setTimeout(() => loadBatch(imgs, end), 2000);
+  }
 }
 
 async function init() {
   try {
     const r = await fetch('deca_images.json');
     const nftImages = await r.json();
-    images = shuffle(localImages.concat(nftImages));
+    allImages = shuffle(localImages.concat(nftImages));
   } catch {
-    images = shuffle([...localImages]);
+    allImages = shuffle([...localImages]);
   }
-  buildGallery();
+
+  loadBatch(allImages, 0);
+  animate();
 }
 
+// Zoom with mouse wheel / trackpad
+canvas.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  const delta = e.deltaY > 0 ? -0.05 : 0.05;
+  scale = Math.max(0.2, Math.min(3, scale + delta));
+}, { passive: false });
+
+// Zoom with pinch gesture
+let lastPinchDist = 0;
+canvas.addEventListener('touchstart', (e) => {
+  if (e.touches.length === 2) {
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    lastPinchDist = Math.hypot(dx, dy);
+  }
+}, { passive: true });
+
+canvas.addEventListener('touchmove', (e) => {
+  if (e.touches.length === 2) {
+    e.preventDefault();
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    const dist = Math.hypot(dx, dy);
+    const delta = (dist - lastPinchDist) * 0.005;
+    scale = Math.max(0.2, Math.min(3, scale + delta));
+    lastPinchDist = dist;
+  }
+}, { passive: false });
+
+// Lightbox
 function openLightbox(i) {
   currentIndex = i;
-  lightboxImg.src = images[i];
+  lightboxImg.src = allImages[i];
   lightbox.classList.add('open');
-  document.body.style.overflow = 'hidden';
 }
 
 function closeLightbox() {
   lightbox.classList.remove('open');
-  document.body.style.overflow = '';
+  lightboxImg.src = '';
 }
 
 function navLightbox(dir) {
-  currentIndex = (currentIndex + dir + images.length) % images.length;
-  lightboxImg.src = images[currentIndex];
+  currentIndex = (currentIndex + dir + allImages.length) % allImages.length;
+  lightboxImg.src = allImages[currentIndex];
 }
 
 lightbox.addEventListener('click', (e) => {
