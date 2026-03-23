@@ -1937,9 +1937,18 @@ async function init() {
   loadBatch(0);
   // Start sliding after initial images load
   setTimeout(function() {
-    setInterval(slideRandom, 400);
-    setInterval(slideRandom, 700);
-    setInterval(slideRandom, 1100);
+    setInterval(slideRandom, 200);
+    setInterval(slideRandom, 350);
+    setInterval(slideRandom, 500);
+    setInterval(slideRandom, 650);
+    setInterval(slideRandom, 800);
+    setInterval(slideRandom, 1000);
+    // Burst swaps: cascade 5 swaps rapidly every 2s
+    setInterval(function() {
+      for (var b = 0; b < 5; b++) {
+        setTimeout(slideRandom, b * 80);
+      }
+    }, 2000);
   }, 3000);
 }
 
