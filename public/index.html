@@ -23,7 +23,7 @@
 </div>
 
 <script>
-const images = [
+const localImages = [
   "images/01_Screenshot+2024-06-12+170944.jpg",
   "images/02_IMG_3631.jpg",
   "images/03_image-asset.jpeg",
@@ -144,26 +144,41 @@ const images = [
   "images/118_IMG_0368.JPG"
 ];
 
-// Shuffle images
-for (let i = images.length - 1; i > 0; i--) {
-  const j = Math.floor(Math.random() * (i + 1));
-  [images[i], images[j]] = [images[j], images[i]];
-}
-
-// Build gallery
-const gallery = document.getElementById('gallery');
-images.forEach((src, i) => {
-  const div = document.createElement('div');
-  div.className = 'gallery-item';
-  div.innerHTML = `<img src="${src}" alt="" loading="lazy">`;
-  div.onclick = () => openLightbox(i);
-  gallery.appendChild(div);
-});
-
-// Lightbox
+let images = [];
 let currentIndex = 0;
+const gallery = document.getElementById('gallery');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function buildGallery() {
+  gallery.innerHTML = '';
+  images.forEach((src, i) => {
+    const div = document.createElement('div');
+    div.className = 'gallery-item';
+    div.innerHTML = `<img src="${src}" alt="" loading="lazy">`;
+    div.onclick = () => openLightbox(i);
+    gallery.appendChild(div);
+  });
+}
+
+async function init() {
+  try {
+    const r = await fetch('deca_images.json');
+    const nftImages = await r.json();
+    images = shuffle(localImages.concat(nftImages));
+  } catch {
+    images = shuffle([...localImages]);
+  }
+  buildGallery();
+}
 
 function openLightbox(i) {
   currentIndex = i;
@@ -182,12 +197,10 @@ function navLightbox(dir) {
   lightboxImg.src = images[currentIndex];
 }
 
-// Close on background click
 lightbox.addEventListener('click', (e) => {
   if (e.target === lightbox) closeLightbox();
 });
 
-// Keyboard nav
 document.addEventListener('keydown', (e) => {
   if (!lightbox.classList.contains('open')) return;
   if (e.key === 'Escape') closeLightbox();
@@ -195,12 +208,7 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight') navLightbox(1);
 });
 
-// Close mobile menu when clicking a nav link
-document.querySelectorAll('.sidebar nav a').forEach(a => {
-  a.addEventListener('click', () => {
-    document.querySelector('.sidebar').classList.remove('open');
-  });
-});
+init();
 </script>
 
 </body>
