@@ -149,7 +149,7 @@ const gallery = document.getElementById('gallery');
 images.forEach((src, i) => {
   const div = document.createElement('div');
   div.className = 'gallery-item';
-  div.innerHTML = `<img src="${src}" alt="Artwork" loading="lazy">`;
+  div.innerHTML = `<img src="${src}" alt="" loading="lazy">`;
   div.onclick = () => openLightbox(i);
   gallery.appendChild(div);
 });
