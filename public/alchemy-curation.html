@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alchemy Curation - LOVEBEING Collection</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      color: #ccc;
+      font-family: monospace;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .curation-header {
+      max-width: 1200px;
+      margin: 0 auto 30px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 20px;
+    }
+
+    .curation-header h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      font-weight: normal;
+      letter-spacing: 2px;
+    }
+
+    .curation-header p {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .controls-panel {
+      max-width: 1200px;
+      margin: 0 auto 30px;
+      background: #111;
+      border: 1px solid #333;
+      padding: 20px;
+      border-radius: 4px;
+    }
+
+    .control-group {
+      margin-bottom: 20px;
+    }
+
+    .control-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .control-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      background: #222;
+      border: 1px solid #444;
+      color: #ccc;
+      cursor: pointer;
+      font-family: monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+      border-radius: 3px;
+    }
+
+    .filter-btn:hover {
+      background: #333;
+      border-color: #555;
+    }
+
+    .filter-btn.active {
+      background: #0a7;
+      border-color: #0a7;
+      color: #000;
+    }
+
+    .filter-btn.excluded {
+      background: #a00;
+      border-color: #a00;
+      color: #fff;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .action-btn {
+      flex: 1;
+      max-width: 200px;
+      padding: 10px 16px;
+      background: #0a7;
+      border: 1px solid #0a7;
+      color: #000;
+      cursor: pointer;
+      font-family: monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: bold;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+
+    .action-btn:hover:not(:disabled) {
+      background: #0c9;
+      border-color: #0c9;
+    }
+
+    .action-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .action-btn.secondary {
+      background: #333;
+      border-color: #555;
+      color: #ccc;
+    }
+
+    .action-btn.secondary:hover:not(:disabled) {
+      background: #444;
+      border-color: #666;
+    }
+
+    .status-bar {
+      margin-top: 10px;
+      padding: 10px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 3px;
+      font-size: 11px;
+      color: #999;
+    }
+
+    .gallery-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+    }
+
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1;
+      cursor: pointer;
+      border: 2px solid transparent;
+      border-radius: 2px;
+      overflow: hidden;
+      transition: all 0.2s;
+      background: #222;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-item .checkbox {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 20px;
+      height: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 2px solid #999;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #0a7;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .gallery-item:hover {
+      border-color: #0a7;
+    }
+
+    .gallery-item:hover .checkbox {
+      opacity: 1;
+    }
+
+    .gallery-item.selected {
+      border-color: #0a7;
+      box-shadow: 0 0 10px rgba(0, 170, 119, 0.5);
+    }
+
+    .gallery-item.selected .checkbox {
+      opacity: 1;
+      background: rgba(0, 170, 119, 0.9);
+      color: #000;
+    }
+
+    .gallery-item .title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 4px 6px;
+      font-size: 9px;
+      color: #999;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-height: 20px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .gallery-item:hover .title {
+      opacity: 1;
+    }
+
+    .gallery-item .category-badge {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 2px 6px;
+      font-size: 8px;
+      color: #999;
+      border-radius: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 14px;
+      color: #999;
+    }
+
+    .error {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #3a0000;
+      border: 1px solid #7a0000;
+      padding: 20px;
+      border-radius: 4px;
+      color: #ffaaaa;
+    }
+
+    .empty-state {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+<div class="curation-header">
+  <h1>Alchemy Curation</h1>
+  <p>Select images from LOVEBEING collection (excludes DARPA, ERC1155, ADVERTISEMENTS)</p>
+</div>
+
+<div class="controls-panel">
+  <div class="control-group">
+    <label class="control-label">Category Filters</label>
+    <div class="filter-buttons">
+      <button class="filter-btn excluded" data-category="DARPA" title="Auto-excluded">DARPA</button>
+      <button class="filter-btn excluded" data-category="ERC1155" title="Auto-excluded">ERC1155</button>
+      <button class="filter-btn excluded" data-category="ADVERTISEMENTS" title="Auto-excluded">ADVERTISEMENTS</button>
+      <div style="flex: 1;"></div>
+      <button class="filter-btn active" data-filter="select-all"> ✓ Select All</button>
+      <button class="filter-btn" data-filter="clear-all">Clear All</button>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Actions</label>
+    <div class="action-buttons">
+      <button class="action-btn secondary" id="fetch-btn">Fetch from LOVEBEING</button>
+      <button class="action-btn" id="apply-btn" disabled>Apply Selection to Gallery</button>
+      <button class="action-btn secondary" id="export-btn" disabled>Export JSON</button>
+    </div>
+    <div class="status-bar">
+      <span id="status">Ready to fetch Alchemy images from deca.art/LOVEBEING...</span>
+    </div>
+  </div>
+</div>
+
+<div id="gallery" class="gallery-grid"></div>
+
+<script>
+  const EXCLUDED_CATEGORIES = ['DARPA', 'ERC1155', 'ADVERTISEMENTS'];
+  const DECA_API_URL = 'https://deca.art/LOVEBEING';
+  const MEDIA_CDN = 'https://media-cdn.deca.art';
+
+  let items = [];
+  let selected = new Set();
+
+  const elements = {
+    gallery: document.getElementById('gallery'),
+    fetchBtn: document.getElementById('fetch-btn'),
+    applyBtn: document.getElementById('apply-btn'),
+    exportBtn: document.getElementById('export-btn'),
+    statusBar: document.getElementById('status'),
+  };
+
+  function updateStatus(msg, isError = false) {
+    elements.statusBar.textContent = msg;
+    elements.statusBar.style.color = isError ? '#ffaaaa' : '#999';
+  }
+
+  function toggleItem(id) {
+    if (selected.has(id)) {
+      selected.delete(id);
+    } else {
+      selected.add(id);
+    }
+    renderGallery();
+  }
+
+  function selectAll() {
+    selected.clear();
+    items.forEach(item => selected.add(item.id));
+    renderGallery();
+  }
+
+  function clearAll() {
+    selected.clear();
+    renderGallery();
+  }
+
+  function renderGallery() {
+    if (items.length === 0) {
+      elements.gallery.innerHTML = '<div class="empty-state" style="grid-column: 1/-1;">No items loaded. Click "Fetch from LOVEBEING" to load images.</div>';
+      return;
+    }
+
+    elements.gallery.innerHTML = items.map(item => `
+      <div class="gallery-item ${selected.has(item.id) ? 'selected' : ''}" onclick="toggleItem('${item.id}')">
+        <img src="${item.image}" alt="${item.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22%3E%3Crect fill=%22%23333%22 width=%22100%25%22 height=%22100%25%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22 font-size=%2212%22%3E[error]%3C/text%3E%3C/svg%3E'" />
+        <div class="category-badge">${item.category}</div>
+        <div class="checkbox">${selected.has(item.id) ? '✓' : ''}</div>
+        <div class="title">${item.title}</div>
+      </div>
+    `).join('');
+
+    const selectedCount = selected.size;
+    const totalCount = items.length;
+    updateStatus(`Selected: ${selectedCount} / ${totalCount} items`);
+  }
+
+  async function fetchAlchemy() {
+    try {
+      elements.fetchBtn.disabled = true;
+      updateStatus('Fetching from deca.art/LOVEBEING...');
+
+      const html = await (await fetch(DECA_API_URL)).text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+
+      items = [];
+      const processed = new Set();
+
+      // Extract images from HTML using media-cdn links
+      const imgElements = doc.querySelectorAll('img[src*="media-cdn.deca.art"]');
+
+      imgElements.forEach(img => {
+        const src = img.src;
+        if (src && !processed.has(src)) {
+          processed.add(src);
+
+          // Extract metadata from surrounding HTML context
+          const altText = img.alt || '';
+          const parentSection = img.closest('section') || img.closest('[class*="collection"]') || img.parentElement;
+          const categoryEl = parentSection?.querySelector('h2, h3, .category, [class*="category"]');
+          let category = categoryEl?.textContent?.trim() || 'UNCATEGORIZED';
+
+          // Clean up category names
+          category = category.replace(/\s*\(\d+\)/, '').trim();
+          category = category.replace(/[^\w\s]/g, '').trim(); // Remove special chars
+          category = category.substring(0, 50); // Truncate long names
+
+          // Check exclusions
+          if (EXCLUDED_CATEGORIES.some(exc => category.toUpperCase().includes(exc.toUpperCase()))) {
+            return; // Skip excluded categories
+          }
+
+          items.push({
+            id: `img_${processed.size}`,
+            image: src,
+            title: altText.substring(0, 60),
+            category: category || 'OTHER'
+          });
+        }
+      });
+
+      updateStatus(`Loaded ${items.length} images from LOVEBEING collection`);
+      renderGallery();
+      elements.applyBtn.disabled = false;
+      elements.exportBtn.disabled = false;
+
+    } catch (err) {
+      updateStatus(`Error: ${err.message}`, true);
+    } finally {
+      elements.fetchBtn.disabled = false;
+    }
+  }
+
+  function applySelection() {
+    if (selected.size === 0) {
+      updateStatus('No items selected!', true);
+      return;
+    }
+
+    const selectedItems = items.filter(item => selected.has(item.id));
+    const imageUrls = selectedItems.map(item => item.image);
+
+    // Store in localStorage for persistence
+    localStorage.setItem('alchemySelection', JSON.stringify({
+      timestamp: new Date().toISOString(),
+      count: imageUrls.length,
+      urls: imageUrls
+    }));
+
+    updateStatus(`Saved ${imageUrls.length} images to gallery (stored in localStorage)`);
+    
+    // Also log for manual integration
+    console.log('Alchemy Selection:', {
+      count: imageUrls.length,
+      urls: imageUrls.slice(0, 5) + (imageUrls.length > 5 ? `... (${imageUrls.length - 5} more)` : '')
+    });
+  }
+
+  function exportJSON() {
+    const selectedItems = items.filter(item => selected.has(item.id));
+    const data = {
+      timestamp: new Date().toISOString(),
+      totalItems: items.length,
+      selectedItems: selectedItems.length,
+      excludedCategories: EXCLUDED_CATEGORIES,
+      selection: selectedItems
+    };
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `alchemy-selection-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  // Event listeners
+  elements.fetchBtn.addEventListener('click', fetchAlchemy);
+  elements.applyBtn.addEventListener('click', applySelection);
+  elements.exportBtn.addEventListener('click', exportJSON);
+
+  document.querySelectorAll('[data-filter]').forEach(btn => {
+    btn.addEventListener('click', function() {
+      if (this.dataset.filter === 'select-all') {
+        selectAll();
+      } else if (this.dataset.filter === 'clear-all') {
+        clearAll();
+      }
+    });
+  });
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey || e.metaKey) {
+      if (e.key === 'a') {
+        e.preventDefault();
+        selectAll();
+      }
+    }
+  });
+
+  updateStatus('Ready. Click "Fetch from LOVEBEING" to load images.');
+</script>
+
+</body>
+</html>
