@@ -287,6 +287,101 @@
       border-color: #5a2a2a;
     }
 
+    .admin-btn-danger {
+      background: #3a1a1a !important;
+      border-color: #f44 !important;
+      color: #f44 !important;
+    }
+
+    .admin-btn-danger:hover {
+      background: #5a2a2a !important;
+    }
+
+    .admin-btn-active {
+      background: #1a2a3a !important;
+      border-color: #4af !important;
+      color: #4af !important;
+    }
+
+    .upload-zone {
+      border: 2px dashed #444;
+      border-radius: 4px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 8px;
+      font-size: 11px;
+      color: #777;
+    }
+
+    .upload-zone:hover, .upload-zone.drag-over {
+      border-color: #4af;
+      background: #0a1a2a;
+      color: #4af;
+    }
+
+    .upload-progress {
+      margin-bottom: 8px;
+    }
+
+    .upload-bar-track {
+      width: 100%;
+      height: 4px;
+      background: #222;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+
+    .upload-bar {
+      height: 100%;
+      background: #4af;
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    .upload-count {
+      font-size: 10px;
+      color: #777;
+    }
+
+    .grid-cell.selectable {
+      cursor: crosshair !important;
+    }
+
+    .grid-cell .select-check {
+      display: none;
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 22px;
+      height: 22px;
+      background: rgba(0,0,0,0.6);
+      border: 2px solid #fff;
+      border-radius: 50%;
+      z-index: 5;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #fff;
+      pointer-events: none;
+    }
+
+    .grid-cell.selectable .select-check {
+      display: flex;
+    }
+
+    .grid-cell.selected .select-check {
+      background: #4af;
+      border-color: #4af;
+    }
+
+    .grid-cell.selected {
+      outline: 2px solid #4af;
+      outline-offset: -2px;
+    }
+
     /* Gallery Grid - Sliding Puzzle */
     #grid {
       position: relative;
@@ -453,7 +548,26 @@
     </div>
 
     <div class="admin-section">
-      <h4>Gallery Management</h4>
+      <h4>Upload Images</h4>
+      <div id="upload-zone" class="upload-zone">
+        Drop files here or click to browse<br>
+        <small>JPG, PNG, GIF, WebP</small>
+      </div>
+      <input type="file" id="upload-input" multiple accept=".jpg,.jpeg,.png,.gif,.webp" hidden>
+      <div id="upload-progress" class="upload-progress" style="display:none">
+        <div class="upload-bar-track"><div id="upload-bar" class="upload-bar"></div></div>
+        <span id="upload-count" class="upload-count"></span>
+      </div>
+    </div>
+
+    <div class="admin-section">
+      <h4>Manage Images</h4>
+      <button class="admin-btn" id="select-mode-btn" onclick="toggleSelectMode()">Select Images</button>
+      <button class="admin-btn admin-btn-danger" id="delete-selected-btn" onclick="deleteSelected()" style="display:none">Delete Selected (0)</button>
+    </div>
+
+    <div class="admin-section">
+      <h4>Gallery</h4>
       <button class="admin-btn" onclick="regenerateList()">Refresh Image List</button>
     </div>
 
@@ -617,7 +731,10 @@ async function regenerateList() {
 
 // ===== GALLERY =====
 let localImages = [];
+let imageMetadata = [];
 let currentIndex = 0;
+let selectMode = false;
+let selectedUrls = new Set();
 const gridEl = document.getElementById('grid');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
@@ -656,11 +773,18 @@ function loadBatch(start) {
     var col = i % cols;
 
     var div = document.createElement('div');
-    div.className = 'grid-cell';
+    div.className = 'grid-cell' + (selectMode ? ' selectable' : '');
     div.style.width = (CELL - 5) + 'px';
     div.style.height = (CELL - 5) + 'px';
+    div.style.position = 'absolute';
     div.style.transform = 'translate(' + (offsetX + col * CELL) + 'px,' + (row * CELL) + 'px)';
     div.style.cursor = 'pointer';
+    div.dataset.imgUrl = localImages[i];
+
+    var check = document.createElement('div');
+    check.className = 'select-check';
+    check.textContent = '✓';
+    div.appendChild(check);
 
     var img = new Image();
     img.alt = '';
@@ -676,17 +800,22 @@ function loadBatch(start) {
         d.style.display = 'none'; 
       }; 
     })(div);
-    img.src = 'images/' + localImages[i];
+    img.src = localImages[i];
     div.appendChild(img);
 
-    var ci = cells.length;
-    div.addEventListener('click', (function(index) {
-      return function() { openLightbox(index); };
-    })(i));
+    div.addEventListener('click', (function(index, url, el) {
+      return function() {
+        if (selectMode) {
+          toggleImageSelection(url, el);
+        } else {
+          openLightbox(index);
+        }
+      };
+    })(i, localImages[i], div));
 
     gridEl.appendChild(div);
     cells.push({ el: div, row: row, col: col, imgIdx: i });
-    gridMap[posKey(row, col)] = ci;
+    gridMap[posKey(row, col)] = cells.length - 1;
   }
   if (end < localImages.length) {
     setTimeout(function() { loadBatch(end); }, 1500);
@@ -694,6 +823,7 @@ function loadBatch(start) {
 }
 
 function slideRandom() {
+  if (selectMode) return;
   if (cells.length < 2) return;
   var idx = Math.floor(Math.random() * cells.length);
   var cell = cells[idx];
@@ -726,24 +856,31 @@ function slideRandom() {
 
 async function loadImageList() {
   try {
-    console.log('Loading image list...');
-    const res = await fetch('image-list.json');
+    console.log('Loading image list from blob storage...');
+    const res = await fetch('/api/images');
     
-    if (!res.ok) {
-      throw new Error(`HTTP ${res.status}`);
-    }
+    if (!res.ok) throw new Error('API ' + res.status);
     
-    localImages = await res.json();
-    console.log('Loaded', localImages.length, 'images');
-    
-    if (!Array.isArray(localImages)) {
-      throw new Error('Invalid image list format');
-    }
-    
+    const images = await res.json();
+    imageMetadata = images;
+    localImages = images.map(function(img) { return img.url; });
+    console.log('Loaded', localImages.length, 'images from blob');
     renderGallery();
   } catch (err) {
-    console.error('Failed to load image list:', err);
-    gridEl.innerHTML = '<p style="padding: 40px; text-align: center; color: #f44; font-family: monospace;">Error: ' + err.message + '</p>';
+    console.log('Blob API unavailable, falling back to image-list.json');
+    try {
+      const res = await fetch('image-list.json');
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const filenames = await res.json();
+      if (!Array.isArray(filenames)) throw new Error('Invalid format');
+      localImages = filenames.map(function(f) { return 'images/' + f; });
+      imageMetadata = filenames.map(function(f) { return { url: 'images/' + f, pathname: f }; });
+      console.log('Loaded', localImages.length, 'images from file list');
+      renderGallery();
+    } catch (err2) {
+      console.error('Failed to load images:', err2);
+      gridEl.innerHTML = '<p style="padding: 40px; text-align: center; color: #f44; font-family: monospace;">Error: ' + err2.message + '</p>';
+    }
   }
 }
 
@@ -769,7 +906,7 @@ function renderGallery() {
 
 function openLightbox(idx) {
   currentIndex = idx;
-  lightboxImg.src = 'images/' + localImages[idx];
+  lightboxImg.src = localImages[idx];
   lightbox.classList.add('open');
 }
 
@@ -780,7 +917,7 @@ function closeLightbox() {
 
 function navLightbox(dir) {
   currentIndex = (currentIndex + dir + localImages.length) % localImages.length;
-  lightboxImg.src = 'images/' + localImages[currentIndex];
+  lightboxImg.src = localImages[currentIndex];
 }
 
 lightbox.addEventListener('click', function(e) {
@@ -793,6 +930,172 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'ArrowLeft') navLightbox(-1);
   if (e.key === 'ArrowRight') navLightbox(1);
 });
+
+// ===== UPLOAD =====
+var uploadZone = document.getElementById('upload-zone');
+var uploadInput = document.getElementById('upload-input');
+
+uploadZone.addEventListener('click', function() {
+  uploadInput.click();
+});
+
+uploadZone.addEventListener('dragover', function(e) {
+  e.preventDefault();
+  uploadZone.classList.add('drag-over');
+});
+
+uploadZone.addEventListener('dragleave', function() {
+  uploadZone.classList.remove('drag-over');
+});
+
+uploadZone.addEventListener('drop', function(e) {
+  e.preventDefault();
+  uploadZone.classList.remove('drag-over');
+  if (e.dataTransfer.files.length > 0) {
+    uploadFiles(e.dataTransfer.files);
+  }
+});
+
+uploadInput.addEventListener('change', function() {
+  if (uploadInput.files.length > 0) {
+    uploadFiles(uploadInput.files);
+  }
+});
+
+async function uploadFiles(files) {
+  if (sessionStorage.getItem('admin_auth') !== '1') {
+    setAdminStatus('Not authenticated', 'error');
+    return;
+  }
+
+  var token = sessionStorage.getItem('admin_token');
+  var total = files.length;
+  var done = 0;
+  var failed = 0;
+
+  document.getElementById('upload-progress').style.display = 'block';
+  document.getElementById('upload-bar').style.width = '0%';
+  document.getElementById('upload-count').textContent = '0/' + total;
+  setAdminStatus('Uploading ' + total + ' file(s)...');
+
+  for (var i = 0; i < files.length; i++) {
+    var file = files[i];
+    try {
+      var res = await fetch('/api/upload?filename=' + encodeURIComponent(file.name), {
+        method: 'POST',
+        headers: { 'x-admin-token': token },
+        body: file,
+      });
+      if (!res.ok) {
+        var err = await res.json();
+        throw new Error(err.error || 'HTTP ' + res.status);
+      }
+      done++;
+    } catch (e) {
+      console.error('Upload failed for', file.name, e);
+      failed++;
+      done++;
+    }
+    document.getElementById('upload-bar').style.width = Math.round(done / total * 100) + '%';
+    document.getElementById('upload-count').textContent = done + '/' + total;
+  }
+
+  uploadInput.value = '';
+  
+  if (failed > 0) {
+    setAdminStatus('Uploaded ' + (total - failed) + '/' + total + ' (' + failed + ' failed)', 'error');
+  } else {
+    setAdminStatus('Uploaded ' + total + ' file(s)', 'success');
+  }
+
+  setTimeout(function() {
+    document.getElementById('upload-progress').style.display = 'none';
+  }, 2000);
+
+  loadImageList();
+}
+
+// ===== SELECT & DELETE =====
+function toggleSelectMode() {
+  selectMode = !selectMode;
+  selectedUrls.clear();
+  
+  var btn = document.getElementById('select-mode-btn');
+  var delBtn = document.getElementById('delete-selected-btn');
+  
+  if (selectMode) {
+    btn.textContent = 'Cancel Selection';
+    btn.classList.add('admin-btn-active');
+    delBtn.style.display = 'block';
+    updateDeleteCount();
+    cells.forEach(function(c) { c.el.classList.add('selectable'); });
+  } else {
+    btn.textContent = 'Select Images';
+    btn.classList.remove('admin-btn-active');
+    delBtn.style.display = 'none';
+    cells.forEach(function(c) {
+      c.el.classList.remove('selectable', 'selected');
+    });
+  }
+}
+
+function toggleImageSelection(url, el) {
+  if (selectedUrls.has(url)) {
+    selectedUrls.delete(url);
+    el.classList.remove('selected');
+  } else {
+    selectedUrls.add(url);
+    el.classList.add('selected');
+  }
+  updateDeleteCount();
+}
+
+function updateDeleteCount() {
+  document.getElementById('delete-selected-btn').textContent = 'Delete Selected (' + selectedUrls.size + ')';
+}
+
+async function deleteSelected() {
+  if (selectedUrls.size === 0) {
+    setAdminStatus('No images selected', 'error');
+    return;
+  }
+
+  if (!confirm('Delete ' + selectedUrls.size + ' image(s)? This cannot be undone.')) {
+    return;
+  }
+
+  if (sessionStorage.getItem('admin_auth') !== '1') {
+    setAdminStatus('Not authenticated', 'error');
+    return;
+  }
+
+  var token = sessionStorage.getItem('admin_token');
+  var urls = Array.from(selectedUrls);
+  setAdminStatus('Deleting ' + urls.length + ' image(s)...');
+
+  try {
+    var res = await fetch('/api/delete-image', {
+      method: 'POST',
+      headers: {
+        'x-admin-token': token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ urls: urls })
+    });
+
+    if (!res.ok) {
+      var err = await res.json();
+      throw new Error(err.error || 'HTTP ' + res.status);
+    }
+
+    var data = await res.json();
+    setAdminStatus('Deleted ' + data.deleted + ' image(s)', 'success');
+    toggleSelectMode();
+    loadImageList();
+  } catch (e) {
+    setAdminStatus('Delete error: ' + e.message, 'error');
+  }
+}
 
 loadImageList();
 </script>
