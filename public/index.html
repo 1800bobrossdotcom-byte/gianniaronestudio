@@ -20,83 +20,6 @@
       min-height: 100vh;
     }
 
-    /* Password Gate */
-    #pw-gate {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      z-index: 99999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    #pw-gate.hidden {
-      display: none;
-    }
-
-    .pw-container {
-      text-align: center;
-    }
-
-    .pw-container h2 {
-      margin-bottom: 20px;
-      font-weight: normal;
-      letter-spacing: 2px;
-      font-size: 18px;
-    }
-
-    #pw-input {
-      padding: 10px 16px;
-      font-size: 16px;
-      background: #111;
-      border: 1px solid #333;
-      color: #fff;
-      font-family: monospace;
-      width: 240px;
-      text-align: center;
-    }
-
-    #pw-btn {
-      margin-top: 12px;
-      padding: 8px 24px;
-      background: #222;
-      border: 1px solid #444;
-      color: #ccc;
-      font-family: monospace;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    #pw-btn:hover {
-      background: #333;
-      border-color: #555;
-    }
-
-    #pw-err {
-      color: #f44;
-      margin-top: 10px;
-      font-size: 13px;
-      visibility: hidden;
-    }
-
-    .pw-links {
-      margin-top: 20px;
-      font-size: 12px;
-    }
-
-    .pw-links a {
-      color: #66f;
-      cursor: pointer;
-      text-decoration: underline;
-      margin: 0 10px;
-    }
-
     /* Admin Login */
     #admin-gate {
       position: fixed;
@@ -505,20 +428,6 @@
 </head>
 <body>
 
-<!-- Password Gate -->
-<div id="pw-gate">
-  <div class="pw-container">
-    <h2>Gianni Arone Studio</h2>
-    <input id="pw-input" type="password" placeholder="Password" autofocus>
-    <br>
-    <button id="pw-btn">Enter</button>
-    <p id="pw-err">Incorrect password</p>
-    <div class="pw-links">
-      <a onclick="openAdminLogin()">Admin Login</a>
-    </div>
-  </div>
-</div>
-
 <!-- Admin Login -->
 <div id="admin-gate">
   <div class="admin-container">
@@ -593,8 +502,6 @@
 <button class="admin-toggle" onclick="toggleAdminPanel()" title="Admin">⚙️</button>
 
 <script>
-// ===== PASSWORD GATE =====
-const GALLERY_PW_HASH = -1665413526;
 const ADMIN_PW_HASH = -2057484341;
 
 function hashPassword(str) {
@@ -606,41 +513,14 @@ function hashPassword(str) {
   return h;
 }
 
-function checkPassword() {
-  const input = document.getElementById('pw-input').value;
-  const hash = hashPassword(input);
-  
-  if (hash === GALLERY_PW_HASH) {
-    sessionStorage.setItem('ga_auth', '1');
-    document.getElementById('pw-gate').classList.add('hidden');
-  } else {
-    document.getElementById('pw-err').style.visibility = 'visible';
-    document.getElementById('pw-input').value = '';
-  }
-}
-
-document.getElementById('pw-btn').addEventListener('click', checkPassword);
-document.getElementById('pw-input').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') checkPassword();
-});
-
-if (sessionStorage.getItem('ga_auth') === '1') {
-  document.getElementById('pw-gate').classList.add('hidden');
-}
-
 // ===== ADMIN LOGIN =====
 function openAdminLogin() {
-  document.getElementById('pw-gate').classList.add('hidden');
   document.getElementById('admin-gate').classList.add('open');
 }
 
 function closeAdminLogin() {
   document.getElementById('admin-gate').classList.remove('open');
   document.getElementById('admin-err').style.visibility = 'hidden';
-  // Restore pw-gate if not site-authenticated
-  if (sessionStorage.getItem('ga_auth') !== '1') {
-    document.getElementById('pw-gate').classList.remove('hidden');
-  }
 }
 
 function adminLogin() {
