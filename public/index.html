@@ -305,6 +305,53 @@
       outline-offset: -2px;
     }
 
+    /* Tag Filter Nav */
+    #tag-nav {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      padding: 15px 10px 10px;
+      background: #000;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-wrap: wrap;
+    }
+
+    .tag-btn {
+      padding: 6px 16px;
+      font-size: 11px;
+      font-family: monospace;
+      background: transparent;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .tag-btn:hover {
+      color: #ccc;
+    }
+
+    .tag-btn.active {
+      color: #fff;
+      border-bottom: 1px solid #fff;
+    }
+
+    .tag-select {
+      width: 100%;
+      padding: 8px;
+      font-size: 12px;
+      background: #222;
+      border: 1px solid #444;
+      color: #fff;
+      font-family: monospace;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
     /* Gallery Grid - Sliding Puzzle */
     #grid {
       position: relative;
@@ -458,6 +505,13 @@
 
     <div class="admin-section">
       <h4>Upload Images</h4>
+      <select id="upload-tag" class="tag-select">
+        <option value="physical">Physical</option>
+        <option value="digital">Digital</option>
+        <option value="music">Music</option>
+        <option value="written">Written</option>
+        <option value="photography">Photography</option>
+      </select>
       <div id="upload-zone" class="upload-zone">
         Drop files here or click to browse<br>
         <small>JPG, PNG, GIF, WebP</small>
@@ -472,7 +526,17 @@
     <div class="admin-section">
       <h4>Manage Images</h4>
       <button class="admin-btn" id="select-mode-btn" onclick="toggleSelectMode()">Select Images</button>
-      <button class="admin-btn admin-btn-danger" id="delete-selected-btn" onclick="deleteSelected()" style="display:none">Delete Selected (0)</button>
+      <div id="select-actions" style="display:none">
+        <select id="retag-select" class="tag-select">
+          <option value="physical">Physical</option>
+          <option value="digital">Digital</option>
+          <option value="music">Music</option>
+          <option value="written">Written</option>
+          <option value="photography">Photography</option>
+        </select>
+        <button class="admin-btn" id="retag-btn" onclick="retagSelected()">Re-tag Selected (0)</button>
+        <button class="admin-btn admin-btn-danger" id="delete-selected-btn" onclick="deleteSelected()">Delete Selected (0)</button>
+      </div>
     </div>
 
     <div class="admin-section">
@@ -486,6 +550,16 @@
     </div>
   </div>
 </div>
+
+<!-- Tag Navigation -->
+<nav id="tag-nav">
+  <button class="tag-btn active" onclick="filterByTag('all')">All</button>
+  <button class="tag-btn" onclick="filterByTag('physical')">Physical</button>
+  <button class="tag-btn" onclick="filterByTag('digital')">Digital</button>
+  <button class="tag-btn" onclick="filterByTag('music')">Music</button>
+  <button class="tag-btn" onclick="filterByTag('written')">Written</button>
+  <button class="tag-btn" onclick="filterByTag('photography')">Photography</button>
+</nav>
 
 <!-- Gallery Grid -->
 <div id="grid"></div>
@@ -612,6 +686,8 @@ async function regenerateList() {
 // ===== GALLERY =====
 let localImages = [];
 let imageMetadata = [];
+let allImageMetadata = [];
+let activeTag = 'all';
 let currentIndex = 0;
 let selectMode = false;
 let selectedUrls = new Set();
@@ -626,6 +702,7 @@ let offsetX = 0;
 let totalRows = 1;
 let cells = [];
 let gridMap = {};
+let slideIntervals = [];
 
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
@@ -742,10 +819,9 @@ async function loadImageList() {
     if (!res.ok) throw new Error('API ' + res.status);
     
     const images = await res.json();
-    imageMetadata = images;
-    localImages = images.map(function(img) { return img.url; });
-    console.log('Loaded', localImages.length, 'images from blob');
-    renderGallery();
+    allImageMetadata = images;
+    console.log('Loaded', allImageMetadata.length, 'images from blob');
+    filterByTag(activeTag);
   } catch (err) {
     console.log('Blob API unavailable, falling back to image-list.json');
     try {
@@ -753,10 +829,9 @@ async function loadImageList() {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const filenames = await res.json();
       if (!Array.isArray(filenames)) throw new Error('Invalid format');
-      localImages = filenames.map(function(f) { return 'images/' + f; });
-      imageMetadata = filenames.map(function(f) { return { url: 'images/' + f, pathname: f }; });
-      console.log('Loaded', localImages.length, 'images from file list');
-      renderGallery();
+      allImageMetadata = filenames.map(function(f) { return { url: 'images/' + f, pathname: f, tag: 'physical' }; });
+      console.log('Loaded', allImageMetadata.length, 'images from file list');
+      filterByTag(activeTag);
     } catch (err2) {
       console.error('Failed to load images:', err2);
       gridEl.innerHTML = '<p style="padding: 40px; text-align: center; color: #f44; font-family: monospace;">Error: ' + err2.message + '</p>';
@@ -764,7 +839,48 @@ async function loadImageList() {
   }
 }
 
+function filterByTag(tag) {
+  activeTag = tag;
+  
+  // Update active button
+  document.querySelectorAll('#tag-nav .tag-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.textContent.toLowerCase().replace(/\s*\(\d+\)/, '') === tag || (tag === 'all' && btn.textContent.toLowerCase().startsWith('all')));
+  });
+  
+  // Filter images
+  if (tag === 'all') {
+    imageMetadata = allImageMetadata.slice();
+  } else {
+    imageMetadata = allImageMetadata.filter(function(img) { return (img.tag || 'physical') === tag; });
+  }
+  localImages = imageMetadata.map(function(img) { return img.url; });
+  
+  // Update tag counts in nav buttons
+  var counts = { all: allImageMetadata.length };
+  allImageMetadata.forEach(function(img) {
+    var t = img.tag || 'physical';
+    counts[t] = (counts[t] || 0) + 1;
+  });
+  document.querySelectorAll('#tag-nav .tag-btn').forEach(function(btn) {
+    var btnTag = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
+    var count = counts[btnTag] || 0;
+    var label = btnTag.charAt(0).toUpperCase() + btnTag.slice(1);
+    if (btnTag === 'all') label = 'All';
+    btn.textContent = label + ' (' + count + ')';
+    btn.classList.toggle('active', btnTag === activeTag);
+  });
+  
+  // Exit select mode if active
+  if (selectMode) toggleSelectMode();
+  
+  renderGallery();
+}
+
 function renderGallery() {
+  // Clear previous slide intervals
+  slideIntervals.forEach(function(id) { clearInterval(id); });
+  slideIntervals = [];
+  
   gridEl.innerHTML = '';
   cells = [];
   gridMap = {};
@@ -778,9 +894,9 @@ function renderGallery() {
   loadBatch(0);
   
   setTimeout(function() {
-    setInterval(slideRandom, 400);
-    setInterval(slideRandom, 700);
-    setInterval(slideRandom, 1100);
+    slideIntervals.push(setInterval(slideRandom, 400));
+    slideIntervals.push(setInterval(slideRandom, 700));
+    slideIntervals.push(setInterval(slideRandom, 1100));
   }, 3000);
 }
 
@@ -861,7 +977,7 @@ async function uploadFiles(files) {
   for (var i = 0; i < files.length; i++) {
     var file = files[i];
     try {
-      var res = await fetch('/api/upload?filename=' + encodeURIComponent(file.name), {
+      var res = await fetch('/api/upload?filename=' + encodeURIComponent(file.name) + '&tag=' + encodeURIComponent(document.getElementById('upload-tag').value), {
         method: 'POST',
         headers: { 'x-admin-token': token },
         body: file,
@@ -895,24 +1011,24 @@ async function uploadFiles(files) {
   loadImageList();
 }
 
-// ===== SELECT & DELETE =====
+// ===== SELECT, DELETE & RETAG =====
 function toggleSelectMode() {
   selectMode = !selectMode;
   selectedUrls.clear();
   
   var btn = document.getElementById('select-mode-btn');
-  var delBtn = document.getElementById('delete-selected-btn');
+  var actions = document.getElementById('select-actions');
   
   if (selectMode) {
     btn.textContent = 'Cancel Selection';
     btn.classList.add('admin-btn-active');
-    delBtn.style.display = 'block';
+    actions.style.display = 'block';
     updateDeleteCount();
     cells.forEach(function(c) { c.el.classList.add('selectable'); });
   } else {
     btn.textContent = 'Select Images';
     btn.classList.remove('admin-btn-active');
-    delBtn.style.display = 'none';
+    actions.style.display = 'none';
     cells.forEach(function(c) {
       c.el.classList.remove('selectable', 'selected');
     });
@@ -932,6 +1048,52 @@ function toggleImageSelection(url, el) {
 
 function updateDeleteCount() {
   document.getElementById('delete-selected-btn').textContent = 'Delete Selected (' + selectedUrls.size + ')';
+  document.getElementById('retag-btn').textContent = 'Re-tag Selected (' + selectedUrls.size + ')';
+}
+
+async function retagSelected() {
+  if (selectedUrls.size === 0) {
+    setAdminStatus('No images selected', 'error');
+    return;
+  }
+  
+  var newTag = document.getElementById('retag-select').value;
+  if (!newTag) {
+    setAdminStatus('Select a tag first', 'error');
+    return;
+  }
+  
+  if (sessionStorage.getItem('admin_auth') !== '1') {
+    setAdminStatus('Not authenticated', 'error');
+    return;
+  }
+  
+  var token = sessionStorage.getItem('admin_token');
+  var urls = Array.from(selectedUrls);
+  setAdminStatus('Re-tagging ' + urls.length + ' image(s)...');
+  
+  try {
+    var res = await fetch('/api/tag-images', {
+      method: 'POST',
+      headers: {
+        'x-admin-token': token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ urls: urls, tag: newTag })
+    });
+    
+    if (!res.ok) {
+      var err = await res.json();
+      throw new Error(err.error || 'HTTP ' + res.status);
+    }
+    
+    var data = await res.json();
+    setAdminStatus('Re-tagged ' + data.updated + ' image(s) to ' + newTag, 'success');
+    toggleSelectMode();
+    loadImageList();
+  } catch (e) {
+    setAdminStatus('Re-tag error: ' + e.message, 'error');
+  }
 }
 
 async function deleteSelected() {

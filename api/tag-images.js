@@ -1,13 +1,5 @@
 import { put, list } from '@vercel/blob';
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-const VALID_TAGS = ['physical', 'digital', 'music', 'written', 'photography'];
-
 function hashPassword(str) {
   let h = 0;
   for (let i = 0; i < str.length; i++) {
@@ -16,6 +8,8 @@ function hashPassword(str) {
   }
   return h;
 }
+
+const VALID_TAGS = ['physical', 'digital', 'music', 'written', 'photography'];
 
 async function loadTagsDb() {
   try {
@@ -48,39 +42,40 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  const filename = req.query.filename;
-  const tag = req.query.tag || 'physical';
-  
-  if (!filename) {
-    return res.status(400).json({ error: 'Missing filename' });
+  let body = '';
+  await new Promise((resolve) => {
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', resolve);
+  });
+
+  let urls, tag;
+  try {
+    const parsed = JSON.parse(body);
+    urls = parsed.urls;
+    tag = parsed.tag;
+  } catch (e) {
+    return res.status(400).json({ error: 'Invalid JSON body' });
+  }
+
+  if (!Array.isArray(urls) || urls.length === 0) {
+    return res.status(400).json({ error: 'Missing urls array' });
   }
 
   if (!VALID_TAGS.includes(tag)) {
     return res.status(400).json({ error: 'Invalid tag. Allowed: ' + VALID_TAGS.join(', ') });
   }
 
-  // Sanitize filename - only allow alphanumeric, dash, underscore, dot
-  const sanitized = filename.replace(/[^a-zA-Z0-9._-]/g, '_');
-  const ext = sanitized.split('.').pop().toLowerCase();
-  const allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-  if (!allowed.includes(ext)) {
-    return res.status(400).json({ error: 'Invalid file type. Allowed: ' + allowed.join(', ') });
-  }
-
   try {
-    const blob = await put(sanitized, req, {
-      access: 'public',
-      addRandomSuffix: true,
-    });
-
-    // Save tag to metadata db
     const db = await loadTagsDb();
-    db[blob.url] = tag;
+    for (const url of urls) {
+      if (typeof url === 'string') {
+        db[url] = tag;
+      }
+    }
     await saveTagsDb(db);
-
-    return res.status(200).json({ url: blob.url, pathname: blob.pathname, tag: tag });
+    return res.status(200).json({ success: true, updated: urls.length, tag: tag });
   } catch (err) {
-    console.error('Upload error:', err);
+    console.error('Tag error:', err);
     return res.status(500).json({ error: err.message });
   }
 }

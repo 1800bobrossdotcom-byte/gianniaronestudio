@@ -1,4 +1,4 @@
-import { del } from '@vercel/blob';
+import { del, put, list } from '@vercel/blob';
 
 function hashPassword(str) {
   let h = 0;
@@ -7,6 +7,26 @@ function hashPassword(str) {
     h = h | 0;
   }
   return h;
+}
+
+async function loadTagsDb() {
+  try {
+    const result = await list({ prefix: '_meta/' });
+    const meta = result.blobs.find(b => b.pathname === '_meta/tags.json');
+    if (meta) {
+      const res = await fetch(meta.url);
+      return await res.json();
+    }
+  } catch (e) {}
+  return {};
+}
+
+async function saveTagsDb(db) {
+  await put('_meta/tags.json', JSON.stringify(db), {
+    access: 'public',
+    addRandomSuffix: false,
+    contentType: 'application/json',
+  });
 }
 
 export default async function handler(req, res) {
@@ -48,6 +68,15 @@ export default async function handler(req, res) {
 
   try {
     await del(urls);
+
+    // Clean up tags
+    const db = await loadTagsDb();
+    let changed = false;
+    for (const url of urls) {
+      if (db[url]) { delete db[url]; changed = true; }
+    }
+    if (changed) await saveTagsDb(db);
+
     return res.status(200).json({ success: true, deleted: urls.length });
   } catch (err) {
     console.error('Delete error:', err);
