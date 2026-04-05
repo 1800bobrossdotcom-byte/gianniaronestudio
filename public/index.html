@@ -100,6 +100,61 @@
       visibility: hidden;
     }
 
+    /* Visitor Gate */
+    #visitor-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 100000;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    #visitor-gate.hidden { display: none; }
+    .gate-container {
+      text-align: center;
+      max-width: 350px;
+      width: 100%;
+      padding: 0 20px;
+    }
+    .gate-container h1 {
+      font-size: 14px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 8px;
+      font-weight: normal;
+    }
+    .gate-container .gate-sub {
+      font-size: 11px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    .gate-container input {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      background: #111;
+      border: 1px solid #333;
+      color: #fff;
+      font-family: monospace;
+      text-align: center;
+      outline: none;
+    }
+    .gate-container input:focus { border-color: #555; }
+    .gate-container .gate-err {
+      color: #f44;
+      font-size: 12px;
+      margin-top: 10px;
+      visibility: hidden;
+    }
+    .gate-container .gate-copy {
+      color: #333;
+      font-size: 10px;
+      margin-top: 40px;
+    }
+
     /* Admin Panel */
     #admin-panel {
       position: fixed;
@@ -474,6 +529,42 @@
   </style>
 </head>
 <body>
+
+<!-- Visitor Gate -->
+<div id="visitor-gate">
+  <div class="gate-container">
+    <h1>Gianni Arone Studio</h1>
+    <p class="gate-sub">Coming Soon</p>
+    <form onsubmit="return visitorLogin()">
+      <input id="visitor-pw" type="password" placeholder="Password" autofocus>
+      <p id="visitor-err" class="gate-err">Wrong password</p>
+    </form>
+    <p class="gate-copy">&copy; 2026</p>
+  </div>
+</div>
+<script>
+(function() {
+  if (sessionStorage.getItem('visitor_auth') === '1') {
+    document.getElementById('visitor-gate').classList.add('hidden');
+  }
+})();
+function visitorLogin() {
+  var pw = document.getElementById('visitor-pw').value;
+  var h = 0;
+  for (var i = 0; i < pw.length; i++) {
+    h = ((h << 5) - h) + pw.charCodeAt(i);
+    h = h | 0;
+  }
+  if (h === -2057484341) {
+    sessionStorage.setItem('visitor_auth', '1');
+    document.getElementById('visitor-gate').classList.add('hidden');
+  } else {
+    document.getElementById('visitor-err').style.visibility = 'visible';
+    document.getElementById('visitor-pw').value = '';
+  }
+  return false;
+}
+</script>
 
 <!-- Admin Login -->
 <div id="admin-gate">
