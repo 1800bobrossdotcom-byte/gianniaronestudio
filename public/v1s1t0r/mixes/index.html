@@ -32,31 +32,38 @@ h1{font-size:28px;letter-spacing:8px;color:#fff;margin:32px 0 8px;font-weight:40
   <div class="sub">mixes</div>
 
   <div class="mix">
-    <div class="mix-title">nu33</div>
-    <div class="mix-info">2026</div>
-    <video controls preload="metadata" id="vidNu33"></video>
-    <a class="mix-dl" id="dlNu33" href="#" download="nu33.mp4">&#11015; download mp4</a>
+    <div class="mix-title">psalmsofpalms practice</div>
+    <div class="mix-info">04.11.2026</div>
+    <audio controls preload="metadata" id="audPop"></audio>
+    <a class="mix-dl" id="dlPop" href="#" download="v1s1t0r_psalmsofpalms_practice_04112026.wav">&#11015; download wav</a>
+  </div>
+
+  <div class="mix">
+    <div class="mix-title">quickwidd practice</div>
+    <div class="mix-info">04.11.2026</div>
+    <audio controls preload="metadata" id="audQw"></audio>
+    <a class="mix-dl" id="dlQw" href="#" download="v1s1t0r_quickwidd_practice_04112026.wav">&#11015; download wav</a>
   </div>
 
   <div class="mix">
     <div class="mix-title">what is this_madnessclarity</div>
-    <div class="mix-info">april 2026</div>
+    <div class="mix-info">04.11.2026</div>
     <audio controls preload="metadata" id="audWit"></audio>
     <a class="mix-dl" id="dlWit" href="#" download="v1s1t0r_what-is-this_madnessclarity_04112026.wav">&#11015; download wav</a>
   </div>
 
   <div class="mix">
     <div class="mix-title">realmjunkies practice mix</div>
-    <div class="mix-info">april 2026</div>
+    <div class="mix-info">04.06.2026</div>
     <audio controls preload="metadata" id="audRjm"></audio>
     <a class="mix-dl" id="dlRjm" href="#" download="v1s1t0r-realmjunkies_practice_mix_04062026.mp3">&#11015; download mp3</a>
   </div>
 
   <div class="mix">
-    <div class="mix-title">quickwidd practice</div>
-    <div class="mix-info">april 2026</div>
-    <audio controls preload="metadata" id="audQw"></audio>
-    <a class="mix-dl" id="dlQw" href="#" download="v1s1t0r_quickwidd_practice_04112026.wav">&#11015; download wav</a>
+    <div class="mix-title">nu33</div>
+    <div class="mix-info">2026</div>
+    <video controls preload="metadata" id="vidNu33"></video>
+    <a class="mix-dl" id="dlNu33" href="#" download="nu33.mp4">&#11015; download mp4</a>
   </div>
 
 </div>
@@ -66,10 +73,11 @@ function loadBlob(file, elId, dlId) {
     if(d.url){document.getElementById(elId).src=d.url;document.getElementById(dlId).href=d.url;}
   }).catch(function(){});
 }
-loadBlob('nu33.mp4', 'vidNu33', 'dlNu33');
+loadBlob('v1s1t0r_psalmsofpalms_practice_04112026.wav', 'audPop', 'dlPop');
+loadBlob('v1s1t0r_quickwidd_practice_04112026.wav', 'audQw', 'dlQw');
 loadBlob('v1s1t0r_what-is-this_madnessclarity_04112026.wav', 'audWit', 'dlWit');
 loadBlob('v1s1t0r-realmjunkies_practice_mix_04062026.mp3', 'audRjm', 'dlRjm');
-loadBlob('v1s1t0r_quickwidd_practice_04112026.wav', 'audQw', 'dlQw');
+loadBlob('nu33.mp4', 'vidNu33', 'dlNu33');
 </script>
 </body>
 </html>
