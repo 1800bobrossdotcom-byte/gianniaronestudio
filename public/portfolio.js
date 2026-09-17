@@ -185,7 +185,22 @@
       micro.classList.add('open'); lockScroll(true);
       sheet.scrollTop = 0;
       var scroller = micro.querySelector('.browser .scroller');
-      if (scroller) scroller.addEventListener('scroll', function () { scroller.parentNode.classList.add('scrolled'); }, { once: true, passive: true });
+      if (scroller) {
+        var drifting = true, raf = 0, dir = 1, lastT = null, pos = 0;
+        function stop() { drifting = false; scroller.parentNode.classList.add('scrolled'); cancelAnimationFrame(raf); }
+        ['wheel', 'touchstart', 'pointerdown', 'mouseenter'].forEach(function (ev) { scroller.addEventListener(ev, stop, { passive: true, once: true }); });
+        function drift(t) {
+          if (!drifting || !micro.classList.contains('open')) return;
+          raf = requestAnimationFrame(drift);
+          if (lastT === null) { lastT = t; return; }
+          var dt = Math.min(64, t - lastT); lastT = t;
+          var max = scroller.scrollHeight - scroller.clientHeight; if (max <= 0) return;
+          pos = Math.max(0, Math.min(max, pos + dir * 28 * dt / 1000));
+          scroller.scrollTop = pos;
+          if (pos >= max - 1) dir = -1; if (pos <= 0) dir = 1;
+        }
+        setTimeout(function () { if (drifting) raf = requestAnimationFrame(drift); }, 1400);
+      }
       if (history.replaceState) history.replaceState(null, '', '#site=' + id);
     });
   }
@@ -280,6 +295,31 @@
     loadArt: loadArt, openLb: openLb, loopHTML: loopHTML, giphyMp4: giphyMp4, giphyStill: giphyStill, giphyWebp: giphyWebp, giphyImg: giphyImg, marqueeFill: marqueeFill, startMarquee: startMarquee,
     observeReveals: observeReveals, observeLazy: observeLazy, bindPlayers: bindPlayers, el: el
   };
+
+  // ── Hero parallax: the collage leans a few pixels toward the pointer ──
+  (function () {
+    var hero = document.querySelector('.hero'), col = document.querySelector('.hero .collage');
+    if (!hero || !col || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    hero.addEventListener('mousemove', function (e) {
+      var r = hero.getBoundingClientRect(), dx = (e.clientX - r.left) / r.width - .5, dy = (e.clientY - r.top) / r.height - .5;
+      col.style.transform = 'translate3d(' + (dx * -14).toFixed(1) + 'px,' + (dy * -10).toFixed(1) + 'px,0)';
+    });
+    hero.addEventListener('mouseleave', function () { col.style.transform = ''; });
+  })();
+
+  // ── 3D tilt on art tiles (pointer devices only) ──
+  function bindTilt(root) {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    (root || document).querySelectorAll('.masonry .tile, #artpick .tile, .cards5 .tile, .agrid .tile').forEach(function (t) {
+      if (t.dataset.tilt) return; t.dataset.tilt = '1'; t.classList.add('tilt');
+      t.addEventListener('mousemove', function (e) {
+        var r = t.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        t.style.transform = 'perspective(900px) rotateX(' + (-y * 7).toFixed(2) + 'deg) rotateY(' + (x * 7).toFixed(2) + 'deg) translateY(-3px) scale(1.012)';
+      });
+      t.addEventListener('mouseleave', function () { t.style.transform = ''; });
+    });
+  }
+  window.GA.bindTilt = bindTilt;
 
   bindPlayers(); observeReveals(); observeLazy();
   // Safety net: anything already on screen (or if the observer never fires) becomes visible.

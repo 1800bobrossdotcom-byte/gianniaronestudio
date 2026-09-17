@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gianni Arone — Motion Designer, Editor, Web Builder, Artist</title>
-  <meta name="description" content="Gianni Arone: twenty years in digital media. Director of Digital Operations at Evolution24 Properties, senior motion designer and editor for Disney, Marvel, Sony and AMC, builder of live web products, artist and musician as visitor. Rochester, NY.">
+  <meta name="description" content="Gianni Arone: twenty years in digital media. Director of Digital Operations at Evolution24 Properties, senior motion designer and editor for Disney, Marvel, Sony and AMC, builder of live web products, artist and musician. Rochester, NY.">
   <meta property="og:title" content="Gianni Arone — Portfolio">
   <meta property="og:description" content="Motion design, video, websites, art and music. Rochester, NY.">
   <meta property="og:image" content="https://gianniarone.com/img/video/1071685172.jpg">
@@ -38,7 +38,7 @@
     <div class="wrap">
       <div>
         <div class="roles"><span>Director of Digital Operations</span><span>Sr. Motion Designer</span><span>Editor</span><span>Product Builder</span></div>
-        <p class="lede">Twenty years making things move on screens. Seven of them cutting and animating daily social for <b>Disney, Marvel, Sony and AMC</b>. A Webby, a Bronze Clio, two Shortys, and over a <b>billion GIPHY views</b>. Now I also design, code and ship whole websites, and I make art and music under the name <b>visitor</b>.</p>
+        <p class="lede">Twenty years making things move on screens. Seven of them cutting and animating daily social for <b>Disney, Marvel, Sony and AMC</b>. A Webby, a Bronze Clio, two Shortys, and over a <b>billion GIPHY views</b>. Now I also design, code and ship whole websites, and I make art and music. It has gone out under a few monikers over the years (LOVEBEING, visitor, others), but I go by my name: <b>Gianni Arone</b>.</p>
         <div class="cta-row">
           <a class="btn primary" href="/video/">▶ Watch the reel</a>
           <a class="btn pink" href="/art/">See the art</a>
@@ -105,13 +105,13 @@
   <section class="tint-lime">
     <div class="wrap">
       <div class="sec-head reveal">
-        <div><span class="eyebrow lime">Music · visitor</span><h2>Original <span class="mark orange">sounds.</span></h2><p>Electronic, folk, jungle remixes and spoken word, released as visitor on SoundCloud.</p></div>
+        <div><span class="eyebrow lime">Music</span><h2>Original <span class="mark orange">sounds.</span></h2><p>Electronic, folk, jungle remixes and spoken word. On SoundCloud under the handle visitor.</p></div>
         <a class="btn more" href="/music/">All tracks →</a>
       </div>
       <div class="tile album reveal">
         <div class="media"><img src="/img/music/CzurXhgOy6Uwu5Fd-aivYMQ.jpg" alt="prayers for old cowboys with indian hearts"></div>
         <div class="body">
-          <div class="meta">Album · 19 tracks · 2026</div>
+          <div class="meta">Album · 19 tracks · 2026 · Gianni Arone</div>
           <h3>prayers for old cowboys with indian hearts</h3>
           <iframe loading="lazy" title="SoundCloud player" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F2229786866&color=%23ff3f8e&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false"></iframe>
           <div><a class="btn sm" href="https://soundcloud.com/v-i-s-i-t-o-r/sets/prayers-for-old-cowboys-with-indian-hearts" target="_blank" rel="noopener">Open on SoundCloud ↗</a></div>
@@ -162,7 +162,7 @@
 <script>
 (function () {
   var tm = document.getElementById('tm');
-  var words = ['Motion design', 'Video editing', 'Web design + code', 'Illustration', 'GIF art', 'Music as visitor', 'Photography', 'Drone', 'Rochester, NY'];
+  var words = ['Motion design', 'Video editing', 'Web design + code', 'Illustration', 'GIF art', 'Music', 'Photography', 'Drone', 'Rochester, NY'];
   tm.innerHTML = words.map(function (w) { return '<span>' + w + '</span>'; }).join('');
   GA.startMarquee(tm, 90);
 
@@ -192,7 +192,7 @@
       t.addEventListener('click', function (e) { e.preventDefault(); GA.openLb(items, i); });
       el.appendChild(t);
     });
-    GA.observeLazy(el); GA.observeReveals(el);
+    GA.observeLazy(el); GA.observeReveals(el); GA.bindTilt(el);
   });
 
   GA.loadSites().then(function (sites) {
