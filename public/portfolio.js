@@ -172,7 +172,10 @@
         '<p class="desc">' + esc(s.description) + '</p>' +
         '<div class="chips">' + s.tags.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>' +
         '<div class="actions"><a class="btn primary" href="' + esc(s.url) + '" target="_blank" rel="noopener">Visit ' + esc(s.domain) + ' ↗</a>' +
-        (s.pendingDomain ? '<span class="btn sm yellow">Custom domain coming soon</span>' : '') + '</div>';
+        (s.pendingDomain ? '<span class="btn sm yellow">Custom domain coming soon</span>' : '') + '</div>' +
+        '<div class="actions m-nav"><button class="btn sm" data-step="-1">← Prev site</button><button class="btn sm" data-step="1">Next site →</button>' +
+        '<span class="meta" style="align-self:center">' + (sites.indexOf(s) + 1) + ' / ' + sites.length + '</span></div>';
+      micro.querySelectorAll('.info [data-step]').forEach(function (b) { b.addEventListener('click', function () { stepSite(+b.dataset.step); }); });
       micro.querySelector('.stage').innerHTML =
         '<div class="browser"><div class="bar"><i></i><i></i><i></i><span class="url">' + esc(s.domain) + '</span></div>' +
         '<div class="scroller"><img src="' + esc(s.full || s.shot) + '" alt="' + esc(s.name) + ' full page"></div></div>' +

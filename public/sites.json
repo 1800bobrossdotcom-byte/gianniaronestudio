@@ -10,9 +10,15 @@
    "role": "Design · Build · SEO",
    "client": "Evolution24 Properties",
    "year": "2026",
-   "accent": "#b3261e",
+   "accent": "#8c2b1f",
    "description": "Leasing site for a new luxury apartment building at 50 Charlotte Street in Rochester's East End. Residences and floor plans, amenities, neighborhood, tour scheduling and resident login, with the structured data, canonicals and lead-capture plumbing that make a property site rank and convert. Moving to its own domain shortly.",
-   "tags": ["Marketing site", "Technical SEO", "Lead capture", "Structured data", "Vercel"],
+   "tags": [
+    "Marketing site",
+    "Technical SEO",
+    "Lead capture",
+    "Structured data",
+    "Vercel"
+   ],
    "shot": "/img/sites/charlotte-square.jpg",
    "full": "/img/sites/full/charlotte-square.jpg",
    "mobile": "/img/sites/full/charlotte-square-mobile.jpg"
@@ -25,9 +31,16 @@
    "domain": "caliper.solutions",
    "role": "Founder · Product",
    "year": "2025 –",
-   "accent": "#ff7a2f",
+   "accent": "#ae5e1f",
    "description": "Property maintenance and portfolio software, built out of my own time in the field. An owner-facing portfolio view plus a crew operations app, with true job costing, warranty catching, and offline photo and receipt capture for techs with no signal in a basement. Every hour, receipt and door reconciled into one encrypted ledger.",
-   "tags": ["React", "Vite PWA", "Postgres", "Row-level security", "AES-256-GCM", "Vercel"],
+   "tags": [
+    "React",
+    "Vite PWA",
+    "Postgres",
+    "Row-level security",
+    "AES-256-GCM",
+    "Vercel"
+   ],
    "shot": "/img/sites/caliper.jpg",
    "full": "/img/sites/full/caliper.jpg",
    "mobile": "/img/sites/full/caliper-mobile.jpg"
@@ -40,9 +53,15 @@
    "domain": "cbuy.ing",
    "role": "Founder · Product",
    "year": "2025 –",
-   "accent": "#33d6ff",
+   "accent": "#356f81",
    "description": "Peer-to-peer marketplace for physical goods, settled in stablecoins. Escrow releases on carrier delivery confirmation. Encrypted messaging, image verification, an AI price checker, barter, and a crypto sticker marketplace with an AI sticker maker. Flat 4.2069% fee, promised never to rise.",
-   "tags": ["Multisig escrow", "EVM / Solana", "Shippo webhooks", "Encrypted messaging", "PWA"],
+   "tags": [
+    "Multisig escrow",
+    "EVM / Solana",
+    "Shippo webhooks",
+    "Encrypted messaging",
+    "PWA"
+   ],
    "shot": "/img/sites/cbuy.jpg",
    "full": "/img/sites/full/cbuy.jpg",
    "mobile": "/img/sites/full/cbuy-mobile.jpg"
@@ -55,9 +74,16 @@
    "domain": "faraday.cam",
    "role": "Founder · Product · Google Play",
    "year": "2025 –",
-   "accent": "#b8f542",
+   "accent": "#5c6a2b",
    "description": "Anonymous encrypted video calling. A WebGL2 shader destroys your face and on-device DSP your voice before a byte leaves the browser. No accounts, no logs, no trackers. Relay-only TURN with ephemeral credentials, so your IP never reaches the peer. One-time fee, same code on every device.",
-   "tags": ["WebRTC", "DTLS-SRTP", "WebGL2", "WebAudio", "Self-hosted TURN", "Next.js"],
+   "tags": [
+    "WebRTC",
+    "DTLS-SRTP",
+    "WebGL2",
+    "WebAudio",
+    "Self-hosted TURN",
+    "Next.js"
+   ],
    "shot": "/img/sites/faraday.jpg",
    "full": "/img/sites/full/faraday.jpg",
    "mobile": "/img/sites/full/faraday-mobile.jpg"
@@ -70,9 +96,16 @@
    "domain": "glitchpixelstudio.app",
    "role": "Founder · Product · Android",
    "year": "2025 –",
-   "accent": "#3b6cff",
+   "accent": "#1f5069",
    "description": "A real-time WebGL glitch and AI camera FX studio for Android. True CPU Asendorf pixel sort, GPU datamosh, kaleido and radial UV warps, 40+ generators, on-device MediaPipe face FX, MIDI and audio-reactive control, projector mode for VJ sets. The site itself runs a live shader kit you can play with.",
-   "tags": ["WebGL", "Shaders", "MediaPipe", "MIDI", "Audio-reactive", "Google Play Billing"],
+   "tags": [
+    "WebGL",
+    "Shaders",
+    "MediaPipe",
+    "MIDI",
+    "Audio-reactive",
+    "Google Play Billing"
+   ],
    "shot": "/img/sites/glitchpixelstudio.jpg",
    "full": "/img/sites/full/glitchpixelstudio.jpg",
    "mobile": "/img/sites/full/glitchpixelstudio-mobile.jpg"
@@ -85,9 +118,15 @@
    "domain": "thisisanartgallery.com",
    "role": "Founder · Product",
    "year": "2025 –",
-   "accent": "#8a4dff",
+   "accent": "#3b4372",
    "description": "An open, anonymous art gallery and minting platform on Base, curated in seasons by rotating directors. No artist names, no collector names: remove the name and the work has to stand on its own. Single 1/1 works with reserve auctions, a commissions program, a zine printed each season, and an open application flow.",
-   "tags": ["Next.js", "Base", "On-chain minting", "Wallet auth", "Seasonal CMS"],
+   "tags": [
+    "Next.js",
+    "Base",
+    "On-chain minting",
+    "Wallet auth",
+    "Seasonal CMS"
+   ],
    "shot": "/img/sites/thisisanartgallery.jpg",
    "full": "/img/sites/full/thisisanartgallery.jpg",
    "mobile": "/img/sites/full/thisisanartgallery-mobile.jpg"
@@ -100,9 +139,14 @@
    "domain": "b0b.dev",
    "role": "Personal · Research",
    "year": "2025 –",
-   "accent": "#8a4dff",
+   "accent": "#2c2f36",
    "description": "Independent OSINT research: sourced reporting on surveillance infrastructure and control networks, an interactive map, and open audio tools, all behind a video gate. Served with a strict content security policy and a crawler allowlist.",
-   "tags": ["Research", "Interactive map", "Audio tools", "Strict CSP"],
+   "tags": [
+    "Research",
+    "Interactive map",
+    "Audio tools",
+    "Strict CSP"
+   ],
    "shot": "/img/sites/b0b.jpg",
    "full": "/img/sites/b0b.jpg",
    "mobile": null
@@ -115,9 +159,14 @@
    "domain": "dottrader.app",
    "role": "Personal · Live dashboard",
    "year": "2026",
-   "accent": "#ff3f8e",
+   "accent": "#a83a26",
    "description": "A swarm of small trading agents with one instruction: end every cycle holding more $DOT than it started with. Every fill, win and loss is posted in public, measured against the day it began. Live on Base, with an open journal and a source link.",
-   "tags": ["Trading agents", "Base", "Live data", "Open journal"],
+   "tags": [
+    "Trading agents",
+    "Base",
+    "Live data",
+    "Open journal"
+   ],
    "shot": "/img/sites/dottrader.jpg",
    "full": "/img/sites/full/dottrader.jpg",
    "mobile": "/img/sites/full/dottrader-mobile.jpg"
@@ -130,9 +179,13 @@
    "domain": "irl.ing",
    "role": "Personal · One page",
    "year": "2026",
-   "accent": "#ffd23f",
+   "accent": "#c79433",
    "description": "A single page: two lines of text over a generative canvas of rain and light. Nothing to click, nothing to buy.",
-   "tags": ["Canvas", "Generative", "Zero dependencies"],
+   "tags": [
+    "Canvas",
+    "Generative",
+    "Zero dependencies"
+   ],
    "shot": "/img/sites/irl.jpg",
    "full": "/img/sites/full/irl.jpg",
    "mobile": "/img/sites/full/irl-mobile.jpg"
