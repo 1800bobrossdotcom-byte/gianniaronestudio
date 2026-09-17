@@ -240,9 +240,10 @@
   // A CSS transform animation lands content on fractional pixels every frame, and thin
   // high-contrast edges shimmer there on desktop GPUs. Here the offset is rounded to the
   // device pixel grid, the track is looped by exact width, and it pauses when hidden.
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Runs regardless of the OS "reduce motion" flag by the owner's choice: the bands are the
+  // site's signature and they move slowly. Hover pauses them.
   function startMarquee(track, speed) {
-    if (reduceMotion || !track) return;
+    if (!track) return;
     var base = track.innerHTML;
     // Repeat the base until it covers two viewport widths, then double it for the seamless wrap.
     var guard = 0;
