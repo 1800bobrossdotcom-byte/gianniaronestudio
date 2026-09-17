@@ -170,7 +170,7 @@
     // GIF wall (hotlinked from GIPHY, lazy)
     var gEl = document.getElementById('gifwall');
     a.giphy.forEach(function (g) {
-      gEl.appendChild(GA.el('<a href="https://giphy.com/gifs/' + g.id + '" target="_blank" rel="noopener" title="' + GA.esc(g.title || 'GIF') + '">' + GA.loopHTML(GA.giphyMp4(g.id), GA.giphyStill(g.id), '', GA.giphyWebp(g.id)) + '</a>'));
+      gEl.appendChild(GA.el('<a href="https://giphy.com/gifs/' + g.id + '" target="_blank" rel="noopener" title="' + GA.esc(g.title || 'GIF') + '">' + GA.giphyImg(g.id, g.title) + '</a>'));
     });
 
     GA.observeLazy(); GA.observeReveals();
