@@ -180,10 +180,12 @@
       micro.querySelectorAll('.info [data-step]').forEach(function (b) { b.addEventListener('click', function () { stepSite(+b.dataset.step); }); });
       micro.querySelector('.stage').innerHTML =
         '<div class="browser"><div class="bar"><i></i><i></i><i></i><span class="url">' + esc(s.domain) + '</span></div>' +
-        '<div class="scroller"><img src="' + esc(s.full || s.shot) + '" alt="' + esc(s.name) + ' full page"></div></div>' +
+        '<div class="scroller"><img src="' + esc(s.full || s.shot) + '" alt="' + esc(s.name) + ' full page"></div><div class="hint">Scroll the page ↓</div></div>' +
         (s.mobile ? '<div class="phone"><img src="' + esc(s.mobile) + '" alt=""></div>' : '');
       micro.classList.add('open'); lockScroll(true);
       sheet.scrollTop = 0;
+      var scroller = micro.querySelector('.browser .scroller');
+      if (scroller) scroller.addEventListener('scroll', function () { scroller.parentNode.classList.add('scrolled'); }, { once: true, passive: true });
       if (history.replaceState) history.replaceState(null, '', '#site=' + id);
     });
   }
