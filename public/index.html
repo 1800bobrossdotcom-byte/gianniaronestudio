@@ -163,7 +163,8 @@
 (function () {
   var tm = document.getElementById('tm');
   var words = ['Motion design', 'Video editing', 'Web design + code', 'Illustration', 'GIF art', 'Music as visitor', 'Photography', 'Drone', 'Rochester, NY'];
-  tm.innerHTML = (words.map(function (w) { return '<span>' + w + '</span>'; }).join('')).repeat(3);
+  tm.innerHTML = words.map(function (w) { return '<span>' + w + '</span>'; }).join('');
+  GA.startMarquee(tm, 90);
 
   GA.loadVideos().then(function (d) {
     var el = document.getElementById('featured');
