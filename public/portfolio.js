@@ -232,16 +232,51 @@
   function giphyImg(id, title) { return '<img loading="lazy" decoding="async" src="' + esc(giphyWebp(id)) + '" alt="' + esc(title || '') + '">'; }
   function marqueeFill(track, gifs, count) {
     var picks = gifs.slice(0, count);
-    var html = picks.map(function (g) { return '<div class="item">' + giphyImg(g.id, g.title) + '</div>'; }).join('');
-    track.innerHTML = html + html; // duplicate for seamless loop
-    observeLazy(track);
+    track.innerHTML = picks.map(function (g) { return '<div class="item">' + giphyImg(g.id, g.title) + '</div>'; }).join('');
+    startMarquee(track, 70);
+  }
+
+  // ── Marquee: frame-driven, snapped to whole device pixels ──
+  // A CSS transform animation lands content on fractional pixels every frame, and thin
+  // high-contrast edges shimmer there on desktop GPUs. Here the offset is rounded to the
+  // device pixel grid, the track is looped by exact width, and it pauses when hidden.
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function startMarquee(track, speed) {
+    if (reduceMotion || !track) return;
+    var base = track.innerHTML;
+    // Repeat the base until it covers two viewport widths, then double it for the seamless wrap.
+    var guard = 0;
+    while (track.scrollWidth < window.innerWidth * 2 && guard++ < 8) track.innerHTML += base;
+    track.innerHTML += track.innerHTML;
+    var half = 0, x = 0, last = null, paused = false, raf = 0;
+    var gap = parseFloat(getComputedStyle(track).gap) || 0;
+    function measure() { half = (track.scrollWidth + gap) / 2; }
+    measure();
+    window.addEventListener('resize', measure);
+    var host = track.parentNode;
+    if (host && host.classList.contains('marquee')) { host.addEventListener('mouseenter', function () { paused = true; }); host.addEventListener('mouseleave', function () { paused = false; last = null; }); }
+    document.addEventListener('visibilitychange', function () { last = null; });
+    var dpr = window.devicePixelRatio || 1;
+    function frame(t) {
+      raf = requestAnimationFrame(frame);
+      if (paused || document.hidden) return;
+      if (last === null) { last = t; return; }
+      var dt = Math.min(64, t - last); last = t;
+      x -= speed * dt / 1000;
+      if (half && x <= -half) x += half;
+      var snapped = Math.round(x * dpr) / dpr;
+      track.style.transform = 'translate3d(' + snapped + 'px,0,0)';
+    }
+    raf = requestAnimationFrame(frame);
+    // Images arriving later can change nothing (fixed tiles), but fonts can: re-measure once loaded.
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
   }
 
   // ── Public API ──
   window.GA = {
     loadVideos: loadVideos, vcard: vcard, openVideo: openVideo, setPlaylist: setPlaylist, fmtDur: fmtDur, esc: esc, CAT_LABEL: CAT_LABEL,
     loadSites: loadSites, scard: scard, openSite: openSite,
-    loadArt: loadArt, openLb: openLb, loopHTML: loopHTML, giphyMp4: giphyMp4, giphyStill: giphyStill, giphyWebp: giphyWebp, giphyImg: giphyImg, marqueeFill: marqueeFill,
+    loadArt: loadArt, openLb: openLb, loopHTML: loopHTML, giphyMp4: giphyMp4, giphyStill: giphyStill, giphyWebp: giphyWebp, giphyImg: giphyImg, marqueeFill: marqueeFill, startMarquee: startMarquee,
     observeReveals: observeReveals, observeLazy: observeLazy, bindPlayers: bindPlayers, el: el
   };
 
