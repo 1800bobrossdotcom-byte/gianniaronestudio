@@ -1,6 +1,6 @@
 # gianniaronestudio
 
-Portfolio site for Gianni Arone: video work (Vimeo), websites, resume, plus the original art gallery and v1s1t0r mixes.
+Portfolio site for Gianni Arone (gianniarone.com): video work (Vimeo), websites, resume, plus the original art gallery and v1s1t0r mixes.
 
 Static HTML in `public/`, served by Vercel with a few serverless functions in `api/` (used by the art gallery admin).
 
