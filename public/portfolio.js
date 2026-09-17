@@ -32,7 +32,10 @@
     entries.forEach(function (e) {
       var n = e.target;
       if (e.isIntersecting) {
-        if (n.dataset.src && !n.src) { n.src = n.dataset.src; if (n.tagName === 'VIDEO') { n.load(); } }
+        if (n.dataset.src && !n.src) {
+          n.src = n.dataset.src;
+          if (n.tagName === 'VIDEO') { n.addEventListener('error', function () { videoFailed(n); }); n.load(); }
+        }
         if (n.tagName === 'VIDEO') { var p = n.play(); if (p && p.catch) p.catch(function () {}); }
       } else if (n.tagName === 'VIDEO' && !n.paused) { n.pause(); }
     });
@@ -42,8 +45,20 @@
       if (lazyIO) lazyIO.observe(n); else { n.src = n.dataset.src; }
     });
   }
-  function loopHTML(src, poster, cls) {
-    return '<video class="' + (cls || '') + '" muted loop playsinline preload="none" data-src="' + esc(src) + '"' + (poster ? ' poster="' + esc(poster) + '"' : '') + '></video>';
+  // A looping clip. MP4 first (smallest, plays everywhere that matters), WebM as a
+  // fallback for browsers built without H.264, and finally a still/animated image if
+  // neither decodes. `alt` is an image URL used for that last fallback.
+  function loopHTML(src, poster, cls, alt) {
+    var webm = /\.mp4$/.test(src) && src.indexOf('giphy.com') < 0 ? src.replace(/\.mp4$/, '.webm') : null;
+    return '<video class="' + (cls || '') + '" muted loop playsinline preload="none" data-src="' + esc(src) + '"' +
+      (webm ? ' data-webm="' + esc(webm) + '"' : '') +
+      (alt ? ' data-fallback="' + esc(alt) + '"' : '') +
+      (poster ? ' poster="' + esc(poster) + '"' : '') + '></video>';
+  }
+  function videoFailed(v) {
+    if (v.dataset.webm && v.src !== v.dataset.webm) { v.src = v.dataset.webm; v.load(); var p = v.play(); if (p && p.catch) p.catch(function () {}); return; }
+    var alt = v.dataset.fallback || v.poster;
+    if (alt) { var img = document.createElement('img'); img.src = alt; img.alt = ''; img.loading = 'lazy'; if (v.className) img.className = v.className; if (v.parentNode) v.parentNode.replaceChild(img, v); }
   }
 
   // ── Video data + cards ──
@@ -188,7 +203,12 @@
   function openLb(list, idx) { ensureLb(); lbList = list; showLb(idx); lb.classList.add('open'); lockScroll(true); }
   function showLb(i) {
     lbIdx = (i + lbList.length) % lbList.length; var it = lbList[lbIdx];
-    var media = it.type === 'loop' ? '<video src="' + esc(it.src) + '" poster="' + esc(it.poster || '') + '" autoplay muted loop playsinline></video>' : '<img src="' + esc(it.src) + '" alt="' + esc(it.title || '') + '">';
+    var media = it.type === 'loop'
+      ? '<video poster="' + esc(it.poster || '') + '" autoplay muted loop playsinline onerror="this.dispatchEvent(new Event(\'lbfail\'))">' +
+          '<source src="' + esc(it.src) + '" type="video/mp4">' +
+          '<source src="' + esc(it.src.replace(/\.mp4$/, '.webm')) + '" type="video/webm">' +
+        '</video>'
+      : '<img src="' + esc(it.src) + '" alt="' + esc(it.title || '') + '">';
     lb.querySelector('.inner').innerHTML = media + '<div class="cap">' + (it.title ? '<span>' + esc(it.title) + '</span>' : '') + (it.sub ? '<small>' + esc(it.sub) + '</small>' : '') + (it.url ? '<a href="' + esc(it.url) + '" target="_blank" rel="noopener">' + esc(it.linkLabel || 'Open ↗') + '</a>' : '') + '</div>';
     lb.querySelector('.prev').style.display = lb.querySelector('.next').style.display = lbList.length > 1 ? '' : 'none';
   }
@@ -199,9 +219,10 @@
   function loadArt() { if (acache) return Promise.resolve(acache); return getJSON('/art.json').then(function (d) { acache = d; return d; }); }
   function giphyMp4(id) { return 'https://media.giphy.com/media/' + id + '/giphy.mp4'; }
   function giphyStill(id) { return 'https://media.giphy.com/media/' + id + '/480w_s.jpg'; }
+  function giphyWebp(id) { return 'https://media.giphy.com/media/' + id + '/200w.webp'; }
   function marqueeFill(track, gifs, count) {
     var picks = gifs.slice(0, count);
-    var html = picks.map(function (g) { return '<div class="item">' + loopHTML(giphyMp4(g.id), giphyStill(g.id)) + '</div>'; }).join('');
+    var html = picks.map(function (g) { return '<div class="item">' + loopHTML(giphyMp4(g.id), giphyStill(g.id), '', giphyWebp(g.id)) + '</div>'; }).join('');
     track.innerHTML = html + html; // duplicate for seamless loop
     observeLazy(track);
   }
@@ -210,7 +231,7 @@
   window.GA = {
     loadVideos: loadVideos, vcard: vcard, openVideo: openVideo, setPlaylist: setPlaylist, fmtDur: fmtDur, esc: esc, CAT_LABEL: CAT_LABEL,
     loadSites: loadSites, scard: scard, openSite: openSite,
-    loadArt: loadArt, openLb: openLb, loopHTML: loopHTML, giphyMp4: giphyMp4, giphyStill: giphyStill, marqueeFill: marqueeFill,
+    loadArt: loadArt, openLb: openLb, loopHTML: loopHTML, giphyMp4: giphyMp4, giphyStill: giphyStill, giphyWebp: giphyWebp, marqueeFill: marqueeFill,
     observeReveals: observeReveals, observeLazy: observeLazy, bindPlayers: bindPlayers, el: el
   };
 
@@ -218,6 +239,8 @@
   // Safety net: anything already on screen (or if the observer never fires) becomes visible.
   function revealVisible() { document.querySelectorAll('.reveal:not(.in)').forEach(function (n) { if (n.getBoundingClientRect().top < window.innerHeight * 1.1) n.classList.add('in'); }); }
   setTimeout(revealVisible, 1200); setInterval(revealVisible, 2500);
+  var ticking = false;
+  window.addEventListener('scroll', function () { if (ticking) return; ticking = true; requestAnimationFrame(function () { revealVisible(); ticking = false; }); }, { passive: true });
   window.addEventListener('beforeprint', function () { document.querySelectorAll('.reveal').forEach(function (n) { n.classList.add('in'); }); });
   window.addEventListener('hashchange', openFromHash);
   if (/#site=/.test(location.hash)) openFromHash();
