@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Art — Gianni Arone</title>
-  <meta name="description" content="Illustration, GIF art, on-chain work on SuperRare and Fake Rares, a billion-view GIPHY channel, and physical work from the studio of Gianni Arone (LOVEBEING).">
+  <meta name="description" content="Illustration, GIF art, on-chain work on SuperRare and Fake Rares, a billion-view GIPHY channel, and physical work from the studio of Gianni Arone.">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/portfolio.css">
 </head>
@@ -57,7 +57,7 @@
   <section id="onchain" class="tint-violet bordered">
     <div class="wrap">
       <div class="sec-head reveal">
-        <div><span class="eyebrow violet">On-chain · SuperRare as LOVEBEING</span><h2>Scanman, paperworks, <span class="mark violet">digital works.</span></h2><p>Over 200 works minted on SuperRare since 2021 in series like Scanman, DARPA, Paperworks and Transmissions. Here are the image works; the video and interactive pieces live on SuperRare.</p></div>
+        <div><span class="eyebrow violet">On-chain · SuperRare</span><h2>Scanman, paperworks, <span class="mark violet">digital works.</span></h2><p>Over 200 works minted on SuperRare since 2021 (the account there is LOVEBEING) in series like Scanman, DARPA, Paperworks and Transmissions. Here are the image works; the video and interactive pieces live on SuperRare.</p></div>
         <a class="btn more" href="https://superrare.com/lovebeing" target="_blank" rel="noopener">SuperRare ↗</a>
       </div>
       <div class="filters" id="srfilters"></div>
@@ -147,7 +147,7 @@
         t.addEventListener('click', function (e) { e.preventDefault(); GA.openLb(items, i); });
         sEl.appendChild(t);
       });
-      GA.observeReveals(sEl);
+      GA.observeReveals(sEl); GA.bindTilt(sEl);
       fEl.querySelectorAll('button').forEach(function (b) { b.classList.toggle('active', b.dataset.s === active); });
     }
     ['all'].concat(order).forEach(function (s) {
@@ -173,7 +173,7 @@
       gEl.appendChild(GA.el('<a href="https://giphy.com/gifs/' + g.id + '" target="_blank" rel="noopener" title="' + GA.esc(g.title || 'GIF') + '">' + GA.giphyImg(g.id, g.title) + '</a>'));
     });
 
-    GA.observeLazy(); GA.observeReveals();
+    GA.observeLazy(); GA.observeReveals(); GA.bindTilt();
   });
 
   // Physical work from the gallery's blob storage
