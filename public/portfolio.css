@@ -81,7 +81,7 @@ p { color: var(--ink-2); }
 .small { font-size: 14px; }
 
 /* ── Nav ── */
-.nav { position: sticky; top: 0; z-index: 500; background: rgba(241,237,228,.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: var(--bw) solid var(--rule); }
+.nav { position: sticky; top: 0; z-index: 500; background: var(--paper); border-bottom: var(--bw) solid var(--rule); }
 .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
 .brand { font: 800 24px/1 var(--display); text-transform: uppercase; letter-spacing: .04em; display: flex; align-items: center; gap: 12px; }
 .brand .dot { width: 18px; height: 18px; background: var(--pink); border: var(--bw) solid var(--ink); transition: transform .3s; }
@@ -191,9 +191,9 @@ section.bordered { border-top: var(--bw) solid var(--rule); }
 @keyframes popIn { from { opacity: 0; transform: scale(.94) translateY(20px); } to { opacity: 1; transform: none; } }
 
 /* ── Site micro-page lightbox ── */
-.micro { display: none; position: fixed; inset: 0; z-index: 1100; background: rgba(21,21,21,.88); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); align-items: stretch; justify-content: center; padding: 24px; }
+.micro { display: none; position: fixed; inset: 0; z-index: 1100; background: rgba(21,21,21,.9); align-items: stretch; justify-content: center; padding: 24px; }
 .micro.open { display: flex; animation: fadeIn .25s ease; }
-.micro .sheet { position: relative; width: min(1320px, 100%); margin: auto; max-height: calc(100vh - 48px); overflow: auto; background: var(--paper); border: 3px solid var(--ink); border-radius: var(--r); box-shadow: 14px 14px 0 var(--accent, var(--pink)); animation: slideUp .45s cubic-bezier(.2,.9,.3,1.1); display: grid; grid-template-columns: minmax(300px, 1fr) minmax(0, 1.25fr); }
+.micro .sheet { position: relative; width: min(1320px, 100%); margin: auto; max-height: calc(100vh - 48px); overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable; background: var(--paper); border: 3px solid var(--ink); border-radius: var(--r); box-shadow: 14px 14px 0 var(--accent, var(--pink)); animation: slideUp .45s cubic-bezier(.2,.9,.3,1.1); display: grid; grid-template-columns: minmax(300px, 1fr) minmax(0, 1.25fr); }
 .micro .info { padding: 44px 40px; display: flex; flex-direction: column; gap: 18px; }
 .micro .info h2 { font-size: clamp(44px, 5vw, 76px); }
 .micro .info .tag { font-size: 20px; font-weight: 600; color: var(--ink-2); }

@@ -28,6 +28,8 @@
   }
 
   // ── Lazy media (videos/images with data-src) ──
+  // Loads a clip the first time it comes near the viewport and plays it while at least a
+  // quarter of it is visible. Play/pause only fire on a real state change, so nothing churns.
   var lazyIO = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       var n = e.target;
@@ -36,10 +38,10 @@
           n.src = n.dataset.src;
           if (n.tagName === 'VIDEO') { n.addEventListener('error', function () { videoFailed(n); }); n.load(); }
         }
-        if (n.tagName === 'VIDEO') { var p = n.play(); if (p && p.catch) p.catch(function () {}); }
-      } else if (n.tagName === 'VIDEO' && !n.paused) { n.pause(); }
+        if (n.tagName === 'VIDEO' && n.paused) { var p = n.play(); if (p && p.catch) p.catch(function () {}); }
+      } else if (n.tagName === 'VIDEO' && !n.paused && !n.closest('.marquee')) { n.pause(); }
     });
-  }, { rootMargin: '300px 0px' }) : null;
+  }, { rootMargin: '200px 0px', threshold: 0.25 }) : null;
   function observeLazy(root) {
     (root || document).querySelectorAll('video[data-src], img[data-src]').forEach(function (n) {
       if (lazyIO) lazyIO.observe(n); else { n.src = n.dataset.src; }
@@ -223,9 +225,12 @@
   function giphyMp4(id) { return 'https://media.giphy.com/media/' + id + '/giphy.mp4'; }
   function giphyStill(id) { return 'https://media.giphy.com/media/' + id + '/480w_s.jpg'; }
   function giphyWebp(id) { return 'https://media.giphy.com/media/' + id + '/200w.webp'; }
+  // GIPHY clips render as animated WebP images: dozens of animated images are cheap for the
+  // browser, dozens of <video> decoders are not, and there is no play/pause state to manage.
+  function giphyImg(id, title) { return '<img loading="lazy" decoding="async" src="' + esc(giphyWebp(id)) + '" alt="' + esc(title || '') + '">'; }
   function marqueeFill(track, gifs, count) {
     var picks = gifs.slice(0, count);
-    var html = picks.map(function (g) { return '<div class="item">' + loopHTML(giphyMp4(g.id), giphyStill(g.id), '', giphyWebp(g.id)) + '</div>'; }).join('');
+    var html = picks.map(function (g) { return '<div class="item">' + giphyImg(g.id, g.title) + '</div>'; }).join('');
     track.innerHTML = html + html; // duplicate for seamless loop
     observeLazy(track);
   }
@@ -234,16 +239,24 @@
   window.GA = {
     loadVideos: loadVideos, vcard: vcard, openVideo: openVideo, setPlaylist: setPlaylist, fmtDur: fmtDur, esc: esc, CAT_LABEL: CAT_LABEL,
     loadSites: loadSites, scard: scard, openSite: openSite,
-    loadArt: loadArt, openLb: openLb, loopHTML: loopHTML, giphyMp4: giphyMp4, giphyStill: giphyStill, giphyWebp: giphyWebp, marqueeFill: marqueeFill,
+    loadArt: loadArt, openLb: openLb, loopHTML: loopHTML, giphyMp4: giphyMp4, giphyStill: giphyStill, giphyWebp: giphyWebp, giphyImg: giphyImg, marqueeFill: marqueeFill,
     observeReveals: observeReveals, observeLazy: observeLazy, bindPlayers: bindPlayers, el: el
   };
 
   bindPlayers(); observeReveals(); observeLazy();
   // Safety net: anything already on screen (or if the observer never fires) becomes visible.
-  function revealVisible() { document.querySelectorAll('.reveal:not(.in)').forEach(function (n) { if (n.getBoundingClientRect().top < window.innerHeight * 1.1) n.classList.add('in'); }); }
-  setTimeout(revealVisible, 1200); setInterval(revealVisible, 2500);
-  var ticking = false;
-  window.addEventListener('scroll', function () { if (ticking) return; ticking = true; requestAnimationFrame(function () { revealVisible(); ticking = false; }); }, { passive: true });
+  function revealVisible() {
+    var pending = document.querySelectorAll('.reveal:not(.in)');
+    pending.forEach(function (n) { if (n.getBoundingClientRect().top < window.innerHeight * 1.1) n.classList.add('in'); });
+    return pending.length;
+  }
+  var ticking = false, lastRun = 0;
+  function onScroll() {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function () { var now = performance.now(); if (now - lastRun > 120) { lastRun = now; revealVisible(); } ticking = false; });
+  }
+  setTimeout(revealVisible, 1200);
+  window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('beforeprint', function () { document.querySelectorAll('.reveal').forEach(function (n) { n.classList.add('in'); }); });
   window.addEventListener('hashchange', openFromHash);
   if (/#site=/.test(location.hash)) openFromHash();
