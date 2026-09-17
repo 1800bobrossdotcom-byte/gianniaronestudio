@@ -1,40 +1,46 @@
-# gianniaronestudio
+# gianniarone.com
 
-Portfolio site for Gianni Arone (gianniarone.com): video work (Vimeo), websites, resume, plus the original art gallery and v1s1t0r mixes.
+Portfolio for Gianni Arone: video (Vimeo), art (Behance, SuperRare, Fake Rares, GIPHY, studio gallery), websites, music (SoundCloud as visitor) and resume.
 
-Static HTML in `public/`, served by Vercel with a few serverless functions in `api/` (used by the art gallery admin).
+Static HTML in `public/`, served by Vercel, with serverless functions in `api/` for the studio gallery's Blob-backed admin panel.
 
 ## Pages
 
 | Path | What |
 | --- | --- |
-| `/` | Home: reel, selected video, websites, resume snapshot |
-| `/video/` | Every video on vimeo.com/uaawtf, filterable by category |
-| `/web/` | Websites designed and built |
-| `/resume/` | Resume (print-friendly: use the Print / Save as PDF button) |
-| `/art/` | Original studio gallery (password gate + admin panel, Vercel Blob) |
-| `/v1s1t0r/mixes/` | Practice mixes |
+| `/` | Home: hero collage, reel, featured video, art picks, featured sites, album, about |
+| `/video/` | Every video from vimeo.com/uaawtf with filters; playable ones open in an on-page player |
+| `/art/` | Illustration & GIF art, SuperRare works by series, Fake Rares, GIPHY wall, physical strip |
+| `/art/gallery/` | The original Blob-backed gallery (admin panel behind the gear icon), now also showing the static art as "digital" |
+| `/web/` | Website cards; each opens a micro-page lightbox with a scrolling full-page capture, phone view and live link |
+| `/music/` | SoundCloud: album player, every track (click to play), playlists and archive |
+| `/resume/` | Resume, print-friendly (Print / Save as PDF button) |
 
-Shared styles and behaviour live in `public/portfolio.css` and `public/portfolio.js`.
+Shared styling is `public/portfolio.css`; shared behaviour (nav, reveal animations, lazy loops, video modal, micro-pages, lightbox) is `public/portfolio.js`.
 
-## Video data
+## Data files (edit these to change content)
 
-`public/videos.json` is the source for the video pages. Refresh it after uploading to Vimeo:
+| File | Feeds | Refresh |
+| --- | --- | --- |
+| `public/videos.json` | Video pages | `npm run sync-vimeo` (keeps hand-set `category` and `featured`) |
+| `public/sites.json` | Web cards and micro-pages | Edit by hand; screenshots live in `public/img/sites/` and `public/img/sites/full/` |
+| `public/art.json` | Art page, home art picks, gallery "digital" items | Edit by hand; assets in `public/img/art/` |
+| `public/music.json` | Music page | Edit by hand; artwork in `public/img/music/` |
+
+## Video playback
+
+Only videos whose Vimeo privacy allows embedding **anywhere** play on the site. The rest show a "Vimeo ↗" badge and open on vimeo.com. To make everything play on-site: Vimeo → Videos → select all → Privacy → *Where can this be embedded?* → Anywhere (or add gianniarone.com to the allowed domains).
+
+## Putting the art into Blob storage
+
+The art page and the gallery already display the harvested art from `public/img/art/`. To store copies in the gallery's Vercel Blob store as well (tagged "digital"):
 
 ```sh
-npm run sync-vimeo
+BLOB_READ_WRITE_TOKEN=... npm run upload-art
 ```
-
-The script pulls the public Vimeo list, downloads any missing thumbnails into `public/img/video/`, and keeps the hand-set `category` (`reels`, `spots`, `entertainment`, `music`, `art`) and `featured` order for videos already in the file. Edit those fields directly in `videos.json`.
-
-Only videos whose Vimeo privacy setting allows embedding **anywhere** play inline. Others link out to vimeo.com and show a "vimeo ↗" tag. To make a video play on-site: Vimeo → video settings → Privacy → *Where can this be embedded?* → Anywhere.
-
-## Website cards
-
-Screenshots are in `public/img/sites/` (1280×800 JPEG). Card copy is in `public/web/index.html` and the four featured cards in `public/index.html`. When Charlotte Square moves to its own domain, update the two links and remove the "custom domain soon" badge.
 
 ## Local preview
 
 ```sh
-npm run dev   # http://localhost:3000
+npm run dev   # http://localhost:3000 (API routes are not served locally; the gallery falls back gracefully)
 ```

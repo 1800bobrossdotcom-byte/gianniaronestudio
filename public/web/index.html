@@ -4,124 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web — Gianni Arone</title>
-  <meta name="description" content="Websites and web products designed, coded and shipped by Gianni Arone: Charlotte Square, Caliper, cbuy, Faraday, Glitch Pixel Studio, b0b.dev, dottrader, irl.ing.">
+  <meta name="description" content="Websites and products designed, coded and shipped by Gianni Arone: Charlotte Square, Caliper, cbuy, Faraday, Glitch Pixel Studio, This Is An Art Gallery, b0b.dev, dottrader, irl.ing.">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/portfolio.css">
 </head>
 <body>
-
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="/">Gianni Arone <span>Studio</span></a>
+    <a class="brand" href="/"><span class="dot"></span>Gianni Arone</a>
     <button class="nav-toggle" aria-label="Menu">Menu</button>
     <ul>
       <li><a href="/video/">Video</a></li>
-      <li><a href="/web/" class="active">Web</a></li>
-      <li><a href="/resume/">Resume</a></li>
       <li><a href="/art/">Art</a></li>
-      <li><a href="/v1s1t0r/mixes/">Mixes</a></li>
+      <li><a href="/web/" class="active">Web</a></li>
+      <li><a href="/music/">Music</a></li>
+      <li><a href="/resume/">Resume</a></li>
       <li><a href="mailto:gianniaronestudio@gmail.com">Contact</a></li>
     </ul>
   </div>
 </header>
 
 <main>
-  <section class="hero" style="padding-bottom:32px">
-    <div class="wrap">
-      <div class="eyebrow">Design · Front end · Database · Deploy</div>
-      <h1>Websites</h1>
-      <p class="lede" style="margin-top:14px">Every site here went from blank page to live URL with me doing the brand, copy, UI, front end, database and deploy. Stack is usually React or Next.js, Node, Postgres, and Vercel or Cloudflare. Click any card to open the live site.</p>
-    </div>
-  </section>
-
-  <section style="padding-top:24px">
-    <div class="wrap">
-      <div class="sites">
-
-        <a class="site" href="https://50-charlotte-square.vercel.app/" target="_blank" rel="noopener">
-          <div class="shot"><img loading="lazy" src="/img/sites/charlotte-square.jpg" alt="Charlotte Square at the East End homepage"><span class="soon">custom domain soon</span></div>
-          <div class="head"><h3>Charlotte Square at the East End</h3><span class="url">50-charlotte-square.vercel.app</span></div>
-          <div class="role">Client · Evolution24 Properties · 2026</div>
-          <p>Leasing site for a new luxury apartment building at 50 Charlotte Street in Rochester's East End. Residences and floor plans, amenities, neighborhood, tour scheduling, resident login, and the SEO and lead-capture plumbing behind it. Moving to its own domain shortly.</p>
-          <div class="tags"><span>Marketing site</span><span>Technical SEO</span><span>Lead capture</span><span>Structured data</span><span>Vercel</span></div>
-        </a>
-
-        <a class="site" href="https://caliper.solutions" target="_blank" rel="noopener">
-          <div class="shot"><img loading="lazy" src="/img/sites/caliper.jpg" alt="Caliper homepage"></div>
-          <div class="head"><h3>Caliper</h3><span class="url">caliper.solutions</span></div>
-          <div class="role">Founder · Product · 2025 –</div>
-          <p>Property maintenance and portfolio software, built out of my own time in the field. An owner-facing portfolio view plus a crew operations app, with true job costing, warranty catching, and offline photo and receipt capture for techs with no signal in a basement.</p>
-          <div class="tags"><span>React</span><span>Vite PWA</span><span>Postgres</span><span>Row-level security</span><span>AES-256-GCM</span><span>Vercel</span></div>
-        </a>
-
-        <a class="site" href="https://cbuy.ing" target="_blank" rel="noopener">
-          <div class="shot"><img loading="lazy" src="/img/sites/cbuy.jpg" alt="cbuy marketplace homepage"></div>
-          <div class="head"><h3>cbuy</h3><span class="url">cbuy.ing</span></div>
-          <div class="role">Founder · Product</div>
-          <p>Peer-to-peer marketplace for physical goods, settled in stablecoins. Escrow releases on carrier delivery confirmation. Encrypted messaging, image verification, an AI price checker, barter, and a crypto sticker marketplace. Flat 4.2069% fee, promised never to rise.</p>
-          <div class="tags"><span>Multisig escrow</span><span>EVM / Solana</span><span>Shippo webhooks</span><span>Encrypted messaging</span><span>PWA</span></div>
-        </a>
-
-        <a class="site" href="https://faraday.cam" target="_blank" rel="noopener">
-          <div class="shot"><img loading="lazy" src="/img/sites/faraday.jpg" alt="Faraday homepage"></div>
-          <div class="head"><h3>Faraday</h3><span class="url">faraday.cam</span></div>
-          <div class="role">Founder · Product · Live on Google Play</div>
-          <p>Anonymous encrypted video calling. "Signal for meetings." A WebGL2 shader destroys your face and on-device DSP your voice before a byte leaves the browser. No accounts, no logs, no trackers. Relay-only TURN with ephemeral credentials, so your IP never reaches the peer.</p>
-          <div class="tags"><span>WebRTC</span><span>DTLS-SRTP</span><span>WebGL2</span><span>WebAudio</span><span>Self-hosted TURN</span><span>Next.js</span></div>
-        </a>
-
-        <a class="site" href="https://glitchpixelstudio.app" target="_blank" rel="noopener">
-          <div class="shot"><img loading="lazy" src="/img/sites/glitchpixelstudio.jpg" alt="Glitch Pixel Studio homepage"></div>
-          <div class="head"><h3>Glitch Pixel Studio</h3><span class="url">glitchpixelstudio.app</span></div>
-          <div class="role">Founder · Product · Android</div>
-          <p>A real-time WebGL glitch and AI camera FX studio for Android. True CPU Asendorf pixel sort, GPU datamosh, kaleido and radial UV warps, 40+ generators, on-device MediaPipe face FX, MIDI and audio-reactive control, projector mode for VJ sets. The site itself runs a live shader kit.</p>
-          <div class="tags"><span>WebGL</span><span>Shaders</span><span>MediaPipe</span><span>MIDI</span><span>Google Play Billing</span></div>
-        </a>
-
-        <a class="site" href="https://b0b.dev" target="_blank" rel="noopener">
-          <div class="shot"><img loading="lazy" src="/img/sites/b0b.jpg" alt="b0b.dev"></div>
-          <div class="head"><h3>b0b.dev</h3><span class="url">b0b.dev</span></div>
-          <div class="role">Personal · Research</div>
-          <p>"Signal over noise." Independent OSINT research: sourced reporting on surveillance infrastructure and control networks, an interactive map, and open audio tools, behind a video gate.</p>
-          <div class="tags"><span>Research</span><span>Interactive map</span><span>Audio tools</span><span>Static + edge</span></div>
-        </a>
-
-        <a class="site" href="https://dottrader.app" target="_blank" rel="noopener">
-          <div class="shot"><img loading="lazy" src="/img/sites/dottrader.jpg" alt="dottrader dashboard"></div>
-          <div class="head"><h3>dottrader</h3><span class="url">dottrader.app</span></div>
-          <div class="role">Personal · Live dashboard</div>
-          <p>A swarm of small trading agents with one instruction: end every cycle holding more $DOT than it started with. Every fill, win and loss is posted in public, measured against the day it began. Live on Base.</p>
-          <div class="tags"><span>Trading agents</span><span>Base</span><span>Live data</span><span>Open journal</span></div>
-        </a>
-
-        <a class="site" href="http://irl.ing" target="_blank" rel="noopener">
-          <div class="shot"><img loading="lazy" src="/img/sites/irl.jpg" alt="irl.ing"></div>
-          <div class="head"><h3>irl.ing</h3><span class="url">irl.ing</span></div>
-          <div class="role">Personal · One page</div>
-          <p>A single page: two lines of text over a generative canvas of rain and light. Nothing to click, nothing to buy.</p>
-          <div class="tags"><span>Canvas</span><span>Generative</span><span>Zero dependencies</span></div>
-        </a>
-
+  <section class="hero" style="min-height:0;padding-bottom:40px">
+    <div class="blob b2"></div><div class="blob b3"></div>
+    <div class="wrap" style="grid-template-columns:1fr">
+      <div>
+        <span class="eyebrow blue">Web · design + code</span>
+        <h1>Blank page to <span class="grad-text">live URL.</span></h1>
+        <p class="lede" style="margin-top:18px">Nine sites and products where I did the brand, copy, UI, front end, database and deploy. Usually React or Next.js, Node, Postgres and Vercel or Cloudflare. Click any card to open its micro-page with a scrolling full-site capture, a phone view and the live link.</p>
       </div>
     </div>
   </section>
-
+  <section class="tint-blue bordered" style="padding-top:56px">
+    <div class="wrap">
+      <div class="sgrid" id="sites"></div>
+    </div>
+  </section>
   <section>
     <div class="wrap">
-      <div class="sec-head"><h2>Also</h2></div>
-      <div class="cols">
-        <a class="site" href="https://thisisanartgallery.com" target="_blank" rel="noopener">
-          <div class="head"><h3>This Is An Art Gallery</h3><span class="url">thisisanartgallery.com</span></div>
-          <div class="role">Founder</div>
-          <p>An anonymous crypto art gallery on Base, curated in seasons by rotating directors. No artist names, no collector names. Commissions program, zine, open application flow.</p>
-          <div class="tags"><span>Next.js</span><span>On-chain minting</span><span>Wallet auth</span><span>Seasonal CMS</span></div>
-        </a>
-        <a class="site" href="/art/">
-          <div class="head"><h3>Gianni Arone Studio · Art</h3><span class="url">/art/</span></div>
-          <div class="role">This site</div>
-          <p>The studio's own gallery: a sliding-puzzle grid of physical and digital work with a tag system and an admin panel backed by Vercel Blob. It is where this domain started.</p>
-          <div class="tags"><span>Vanilla JS</span><span>Vercel Blob</span><span>Serverless API</span></div>
-        </a>
+      <div class="sec-head reveal">
+        <div><span class="eyebrow">Also on this site</span><h2>The studio <span class="mark">gallery.</span></h2><p>A sliding-puzzle grid of physical and digital work with an admin panel backed by Vercel Blob. It is where this domain started.</p></div>
+        <a class="btn more" href="/art/gallery/">Open the gallery →</a>
       </div>
     </div>
   </section>
@@ -129,16 +55,34 @@
 
 <footer>
   <div class="wrap">
-    <div class="links">
-      <a href="mailto:gianniaronestudio@gmail.com">gianniaronestudio@gmail.com</a>
-      <a href="https://vimeo.com/uaawtf" target="_blank" rel="noopener">Vimeo</a>
-      <a href="https://www.instagram.com/gianniarone/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://linktr.ee/gianniarone" target="_blank" rel="noopener">Linktree</a>
+    <div>
+      <div class="big">Let's make <a href="mailto:gianniaronestudio@gmail.com">something loud.</a></div>
+      <div class="links">
+        <a href="mailto:gianniaronestudio@gmail.com">gianniaronestudio@gmail.com</a>
+        <a href="https://vimeo.com/uaawtf" target="_blank" rel="noopener">Vimeo</a>
+        <a href="https://soundcloud.com/v-i-s-i-t-o-r" target="_blank" rel="noopener">SoundCloud</a>
+        <a href="https://www.instagram.com/gianniarone/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://giphy.com/gianniarone" target="_blank" rel="noopener">GIPHY</a>
+        <a href="https://www.behance.net/gianniarone" target="_blank" rel="noopener">Behance</a>
+        <a href="https://superrare.com/lovebeing" target="_blank" rel="noopener">SuperRare</a>
+        <a href="https://linktr.ee/gianniarone" target="_blank" rel="noopener">Linktree</a>
+      </div>
     </div>
-    <div class="copy">&copy; 2026 Gianni Arone · Rochester, NY</div>
+    <div class="links" style="margin-top:0">
+      <a href="/video/">Video</a><a href="/art/">Art</a><a href="/web/">Web</a><a href="/music/">Music</a><a href="/resume/">Resume</a><a href="/art/gallery/">Gallery</a>
+    </div>
+    <div class="copy">&copy; 2026 Gianni Arone · Rochester, NY · Director of Digital Operations, Evolution24 Properties</div>
   </div>
 </footer>
 
 <script src="/portfolio.js"></script>
+<script>
+GA.loadSites().then(function (sites) {
+  var el = document.getElementById('sites');
+  sites.forEach(function (s, i) { el.appendChild(GA.scard(s, false)); });
+  GA.observeReveals(el);
+});
+</script>
+
 </body>
 </html>

@@ -3,1143 +3,194 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Content-Type-Options" content="nosniff">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Art — Gianni Arone Studio</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      background: #000;
-      color: #ccc;
-      font-family: monospace;
-      min-height: 100vh;
-    }
-
-    /* Admin Login */
-    #admin-gate {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.95);
-      z-index: 99998;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    #admin-gate.open {
-      display: flex;
-    }
-
-    .admin-container {
-      background: #111;
-      border: 1px solid #333;
-      padding: 30px;
-      border-radius: 4px;
-      text-align: center;
-      width: 100%;
-      max-width: 350px;
-    }
-
-    .admin-container h2 {
-      margin-bottom: 20px;
-      font-weight: normal;
-      letter-spacing: 2px;
-      font-size: 16px;
-    }
-
-    .admin-form-group {
-      margin-bottom: 15px;
-    }
-
-    .admin-form-group input {
-      width: 100%;
-      padding: 10px;
-      font-size: 14px;
-      background: #222;
-      border: 1px solid #444;
-      color: #fff;
-      font-family: monospace;
-      margin-bottom: 5px;
-    }
-
-    .admin-btn-group {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .admin-btn-group button {
-      flex: 1;
-      padding: 8px;
-      background: #222;
-      border: 1px solid #444;
-      color: #ccc;
-      font-family: monospace;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .admin-btn-group button:hover {
-      background: #333;
-      border-color: #555;
-    }
-
-    #admin-err {
-      color: #f44;
-      margin-top: 10px;
-      font-size: 12px;
-      visibility: hidden;
-    }
-
-    /* Admin Panel */
-    #admin-panel {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 300px;
-      height: 100vh;
-      background: #111;
-      border-left: 1px solid #333;
-      z-index: 9999;
-      display: none;
-      flex-direction: column;
-      overflow-y: auto;
-    }
-
-    #admin-panel.open {
-      display: flex;
-    }
-
-    .admin-header {
-      padding: 15px;
-      border-bottom: 1px solid #333;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .admin-header h3 {
-      font-size: 14px;
-      font-weight: normal;
-    }
-
-    .admin-close {
-      background: none;
-      border: none;
-      color: #ccc;
-      cursor: pointer;
-      font-size: 20px;
-      padding: 0;
-      width: 30px;
-      height: 30px;
-    }
-
-    .admin-content {
-      flex: 1;
-      padding: 15px;
-      overflow-y: auto;
-    }
-
-    .admin-section {
-      margin-bottom: 20px;
-    }
-
-    .admin-section h4 {
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #999;
-      text-transform: uppercase;
-    }
-
-    .admin-input {
-      width: 100%;
-      padding: 8px;
-      font-size: 12px;
-      background: #222;
-      border: 1px solid #444;
-      color: #fff;
-      font-family: monospace;
-      margin-bottom: 8px;
-    }
-
-    .admin-btn {
-      width: 100%;
-      padding: 8px;
-      font-size: 12px;
-      background: #222;
-      border: 1px solid #444;
-      color: #ccc;
-      font-family: monospace;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-bottom: 8px;
-    }
-
-    .admin-btn:hover {
-      background: #333;
-      border-color: #555;
-    }
-
-    .admin-status {
-      font-size: 11px;
-      color: #999;
-      padding: 8px;
-      background: #0a0a0a;
-      border: 1px solid #222;
-      border-radius: 2px;
-      margin-bottom: 8px;
-    }
-
-    .admin-status.success {
-      color: #4f4;
-      border-color: #2a5a2a;
-    }
-
-    .admin-status.error {
-      color: #f44;
-      border-color: #5a2a2a;
-    }
-
-    .admin-btn-danger {
-      background: #3a1a1a !important;
-      border-color: #f44 !important;
-      color: #f44 !important;
-    }
-
-    .admin-btn-danger:hover {
-      background: #5a2a2a !important;
-    }
-
-    .admin-btn-active {
-      background: #1a2a3a !important;
-      border-color: #4af !important;
-      color: #4af !important;
-    }
-
-    .upload-zone {
-      border: 2px dashed #444;
-      border-radius: 4px;
-      padding: 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-bottom: 8px;
-      font-size: 11px;
-      color: #777;
-    }
-
-    .upload-zone:hover, .upload-zone.drag-over {
-      border-color: #4af;
-      background: #0a1a2a;
-      color: #4af;
-    }
-
-    .upload-progress {
-      margin-bottom: 8px;
-    }
-
-    .upload-bar-track {
-      width: 100%;
-      height: 4px;
-      background: #222;
-      border-radius: 2px;
-      overflow: hidden;
-      margin-bottom: 4px;
-    }
-
-    .upload-bar {
-      height: 100%;
-      background: #4af;
-      width: 0%;
-      transition: width 0.3s;
-    }
-
-    .upload-count {
-      font-size: 10px;
-      color: #777;
-    }
-
-    .grid-cell.selectable {
-      cursor: crosshair !important;
-    }
-
-    .grid-cell .select-check {
-      display: none;
-      position: absolute;
-      top: 4px;
-      right: 4px;
-      width: 22px;
-      height: 22px;
-      background: rgba(0,0,0,0.6);
-      border: 2px solid #fff;
-      border-radius: 50%;
-      z-index: 5;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      color: #fff;
-      pointer-events: none;
-    }
-
-    .grid-cell.selectable .select-check {
-      display: flex;
-    }
-
-    .grid-cell.selected .select-check {
-      background: #4af;
-      border-color: #4af;
-    }
-
-    .grid-cell.selected {
-      outline: 2px solid #4af;
-      outline-offset: -2px;
-    }
-
-    /* Tag Filter Nav */
-    #tag-nav {
-      display: flex;
-      justify-content: center;
-      gap: 0;
-      padding: 15px 10px 10px;
-      background: #000;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      flex-wrap: wrap;
-    }
-
-    .tag-btn {
-      padding: 6px 16px;
-      font-size: 11px;
-      font-family: monospace;
-      background: transparent;
-      border: none;
-      color: #666;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .tag-btn:hover {
-      color: #ccc;
-    }
-
-    .tag-btn.active {
-      color: #fff;
-      border-bottom: 1px solid #fff;
-    }
-
-    .tag-select {
-      width: 100%;
-      padding: 8px;
-      font-size: 12px;
-      background: #222;
-      border: 1px solid #444;
-      color: #fff;
-      font-family: monospace;
-      margin-bottom: 8px;
-      cursor: pointer;
-    }
-
-    /* Gallery Grid - Sliding Puzzle */
-    #grid {
-      position: relative;
-      width: 100%;
-      background: #000;
-      margin: 0 auto;
-    }
-
-    .grid-cell {
-      position: absolute;
-      opacity: 0;
-      transition: transform 0.4s ease-in-out, opacity 0.5s ease;
-      border: 1px solid #1a1a1a;
-      overflow: hidden;
-      background: #0a0a0a;
-    }
-
-    .grid-cell img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .grid-cell:hover {
-      border-color: #333;
-      z-index: 10;
-    }
-
-    /* Lightbox */
-    #lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.95);
-      z-index: 10000;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #lightbox.open {
-      display: flex;
-    }
-
-    #lightbox img {
-      max-width: 90vw;
-      max-height: 90vh;
-      object-fit: contain;
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 36px;
-      color: #fff;
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-family: monospace;
-    }
-
-    .lightbox-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 40px;
-      color: #fff;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 20px;
-      font-family: monospace;
-    }
-
-    .lightbox-nav.prev {
-      left: 10px;
-    }
-
-    .lightbox-nav.next {
-      right: 10px;
-    }
-
-    .admin-toggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      background: #222;
-      border: 1px solid #444;
-      border-radius: 50%;
-      color: #ccc;
-      cursor: pointer;
-      font-size: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      transition: all 0.2s;
-    }
-
-    .admin-toggle:hover {
-      background: #333;
-      border-color: #555;
-    }
-
-    @media (max-width: 768px) {
-      .admin-toggle {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-        bottom: 10px;
-        right: 10px;
-      }
-    }
-  </style>
+  <title>Art — Gianni Arone</title>
+  <meta name="description" content="Illustration, GIF art, on-chain work on SuperRare and Fake Rares, a billion-view GIPHY channel, and physical work from the studio of Gianni Arone (LOVEBEING).">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/portfolio.css">
 </head>
 <body>
-
-<!-- Admin Login -->
-<div id="admin-gate">
-  <div class="admin-container">
-    <h2>Admin Login</h2>
-    <input id="admin-email" type="email" placeholder="Email" value="gianniaronestudio@gmail.com">
-    <br>
-    <input id="admin-pw" type="password" placeholder="Password">
-    <br>
-    <div class="admin-btn-group">
-      <button onclick="adminLogin()">Login</button>
-      <button onclick="closeAdminLogin()">Back</button>
-    </div>
-    <p id="admin-err">Invalid credentials</p>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="dot"></span>Gianni Arone</a>
+    <button class="nav-toggle" aria-label="Menu">Menu</button>
+    <ul>
+      <li><a href="/video/">Video</a></li>
+      <li><a href="/art/" class="active">Art</a></li>
+      <li><a href="/web/">Web</a></li>
+      <li><a href="/music/">Music</a></li>
+      <li><a href="/resume/">Resume</a></li>
+      <li><a href="mailto:gianniaronestudio@gmail.com">Contact</a></li>
+    </ul>
   </div>
-</div>
+</header>
 
-<!-- Admin Panel -->
-<div id="admin-panel">
-  <div class="admin-header">
-    <h3>Admin Panel</h3>
-    <button class="admin-close" onclick="closeAdminPanel()">&times;</button>
-  </div>
-  <div class="admin-content">
-    <div class="admin-section">
-      <h4>Status</h4>
-      <div id="admin-status" class="admin-status">Ready</div>
-    </div>
-
-    <div class="admin-section">
-      <h4>Upload Images</h4>
-      <select id="upload-tag" class="tag-select">
-        <option value="physical">Physical</option>
-        <option value="digital">Digital</option>
-        <option value="music">Music</option>
-        <option value="written">Written</option>
-        <option value="photography">Photography</option>
-      </select>
-      <div id="upload-zone" class="upload-zone">
-        Drop files here or click to browse<br>
-        <small>JPG, PNG, GIF, WebP</small>
-      </div>
-      <input type="file" id="upload-input" multiple accept=".jpg,.jpeg,.png,.gif,.webp" hidden>
-      <div id="upload-progress" class="upload-progress" style="display:none">
-        <div class="upload-bar-track"><div id="upload-bar" class="upload-bar"></div></div>
-        <span id="upload-count" class="upload-count"></span>
+<main>
+  <section class="hero" style="min-height:0;padding-bottom:40px">
+    <div class="blob b1"></div><div class="blob b2"></div>
+    <div class="wrap" style="grid-template-columns:1fr">
+      <div>
+        <span class="eyebrow pink">Art · illustration · GIFs · on-chain · physical</span>
+        <h1>Drawn, glitched, <span class="grad-text">animated.</span></h1>
+        <p class="lede" style="margin-top:18px">Hand-drawn figures, scanner collages, glitch portraits and looping GIFs. Some hang on walls, some live on-chain, a lot of them live in your group chats. Click anything to see it big.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#illustration">Illustration &amp; GIF art</a>
+          <a class="btn pink" href="#onchain">On-chain</a>
+          <a class="btn yellow" href="#gifs">GIF wall</a>
+          <a class="btn" href="#physical">Physical</a>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="admin-section">
-      <h4>Manage Images</h4>
-      <button class="admin-btn" id="select-mode-btn" onclick="toggleSelectMode()">Select Images</button>
-      <div id="select-actions" style="display:none">
-        <select id="retag-select" class="tag-select">
-          <option value="physical">Physical</option>
-          <option value="digital">Digital</option>
-          <option value="music">Music</option>
-          <option value="written">Written</option>
-          <option value="photography">Photography</option>
-        </select>
-        <button class="admin-btn" id="retag-btn" onclick="retagSelected()">Re-tag Selected (0)</button>
-        <button class="admin-btn admin-btn-danger" id="delete-selected-btn" onclick="deleteSelected()">Delete Selected (0)</button>
+  <div class="marquee" aria-hidden="true"><div class="track" id="gifmarquee"></div></div>
+
+  <section id="illustration" class="tint-yellow">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><span class="eyebrow">Illustration &amp; GIF art</span><h2>Ink, collage, <span class="mark pink">loops.</span></h2><p>Drawings, paintings and animated pieces. Loops play as you scroll.</p></div>
+        <a class="btn more" href="https://www.behance.net/gallery/186190901/Illustration-and-Gif-Art" target="_blank" rel="noopener">Behance ↗</a>
+      </div>
+      <div class="masonry" id="behance"></div>
+    </div>
+  </section>
+
+  <section id="onchain" class="tint-violet bordered">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><span class="eyebrow violet">On-chain · SuperRare as LOVEBEING</span><h2>Scanman, paperworks, <span class="mark violet">digital works.</span></h2><p>Over 200 works minted on SuperRare since 2021 in series like Scanman, DARPA, Paperworks and Transmissions. Here are the image works; the video and interactive pieces live on SuperRare.</p></div>
+        <a class="btn more" href="https://superrare.com/lovebeing" target="_blank" rel="noopener">SuperRare ↗</a>
+      </div>
+      <div class="filters" id="srfilters"></div>
+      <div class="agrid" id="superrare"></div>
+    </div>
+  </section>
+
+  <section class="tint-lime bordered">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><span class="eyebrow lime">Fake Rares · Counterparty</span><h2>Six <span class="mark lime">cards.</span></h2><p>LOVEBEING cards in the Fake Rares directory, seasons 5 through 14.</p></div>
+        <a class="btn more" href="https://pepe.wtf/artists/LOVEBEING" target="_blank" rel="noopener">pepe.wtf ↗</a>
+      </div>
+      <div class="cards5" id="fakerares"></div>
+    </div>
+  </section>
+
+  <section id="gifs" class="tint-pink bordered">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><span class="eyebrow pink">GIF wall · GIPHY</span><h2>One billion <span class="mark">views.</span></h2><p>Stickers and GIFs from the channel. Hover to watch, click to open on GIPHY.</p></div>
+        <a class="btn more" href="https://giphy.com/gianniarone" target="_blank" rel="noopener">giphy.com/gianniarone ↗</a>
+      </div>
+      <div class="gifwall" id="gifwall"></div>
+    </div>
+  </section>
+
+  <section id="physical" class="bordered">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><span class="eyebrow">Physical work · studio gallery</span><h2>Paint, paper, <span class="mark blue">objects.</span></h2><p>Assemblage, screen prints, paintings and installations from the studio, served from the gallery's own storage.</p></div>
+        <a class="btn more primary" href="/art/gallery/">Open the full gallery →</a>
+      </div>
+      <div class="strip" id="physicalstrip"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="big">Let's make <a href="mailto:gianniaronestudio@gmail.com">something loud.</a></div>
+      <div class="links">
+        <a href="mailto:gianniaronestudio@gmail.com">gianniaronestudio@gmail.com</a>
+        <a href="https://vimeo.com/uaawtf" target="_blank" rel="noopener">Vimeo</a>
+        <a href="https://soundcloud.com/v-i-s-i-t-o-r" target="_blank" rel="noopener">SoundCloud</a>
+        <a href="https://www.instagram.com/gianniarone/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://giphy.com/gianniarone" target="_blank" rel="noopener">GIPHY</a>
+        <a href="https://www.behance.net/gianniarone" target="_blank" rel="noopener">Behance</a>
+        <a href="https://superrare.com/lovebeing" target="_blank" rel="noopener">SuperRare</a>
+        <a href="https://linktr.ee/gianniarone" target="_blank" rel="noopener">Linktree</a>
       </div>
     </div>
-
-    <div class="admin-section">
-      <h4>Gallery</h4>
-      <button class="admin-btn" onclick="regenerateList()">Refresh Image List</button>
+    <div class="links" style="margin-top:0">
+      <a href="/video/">Video</a><a href="/art/">Art</a><a href="/web/">Web</a><a href="/music/">Music</a><a href="/resume/">Resume</a><a href="/art/gallery/">Gallery</a>
     </div>
-
-    <div class="admin-section">
-      <h4>Logout</h4>
-      <button class="admin-btn" onclick="adminLogout()">Logout</button>
-    </div>
+    <div class="copy">&copy; 2026 Gianni Arone · Rochester, NY · Director of Digital Operations, Evolution24 Properties</div>
   </div>
-</div>
+</footer>
 
-<!-- Tag Navigation -->
-<nav id="tag-nav">
-  <button class="tag-btn active" onclick="filterByTag('all')">All</button>
-  <button class="tag-btn" onclick="filterByTag('physical')">Physical</button>
-  <button class="tag-btn" onclick="filterByTag('digital')">Digital</button>
-  <button class="tag-btn" onclick="filterByTag('music')">Music</button>
-  <button class="tag-btn" onclick="filterByTag('written')">Written</button>
-  <button class="tag-btn" onclick="filterByTag('photography')">Photography</button>
-</nav>
-
-<!-- Gallery Grid -->
-<div id="grid"></div>
-
-<!-- Lightbox -->
-<div id="lightbox">
-  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-  <button class="lightbox-nav prev" onclick="navLightbox(-1)">&#8249;</button>
-  <img id="lightbox-img" src="" alt="">
-  <button class="lightbox-nav next" onclick="navLightbox(1)">&#8250;</button>
-</div>
-
-<!-- Admin Toggle Button -->
-<button class="admin-toggle" onclick="toggleAdminPanel()" title="Admin">⚙️</button>
-
+<script src="/portfolio.js"></script>
 <script>
-const ADMIN_PW_HASH = -2057484341;
+(function () {
+  GA.loadArt().then(function (a) {
+    GA.marqueeFill(document.getElementById('gifmarquee'), a.giphy.slice(24, 48), 24);
 
-function hashPassword(str) {
-  let h = 0;
-  for (let i = 0; i < str.length; i++) {
-    h = ((h << 5) - h) + str.charCodeAt(i);
-    h = h | 0;
-  }
-  return h;
-}
-
-// ===== ADMIN LOGIN =====
-function openAdminLogin() {
-  document.getElementById('admin-gate').classList.add('open');
-}
-
-function closeAdminLogin() {
-  document.getElementById('admin-gate').classList.remove('open');
-  document.getElementById('admin-err').style.visibility = 'hidden';
-}
-
-function adminLogin() {
-  const email = document.getElementById('admin-email').value;
-  const pw = document.getElementById('admin-pw').value;
-  const pwHash = hashPassword(pw);
-  
-  if (email === 'gianniaronestudio@gmail.com' && pwHash === ADMIN_PW_HASH) {
-    sessionStorage.setItem('admin_auth', '1');
-    sessionStorage.setItem('admin_token', pw);
-    closeAdminLogin();
-    openAdminPanel();
-  } else {
-    document.getElementById('admin-err').style.visibility = 'visible';
-  }
-}
-
-document.getElementById('admin-pw').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') adminLogin();
-});
-
-// ===== ADMIN PANEL =====
-function openAdminPanel() {
-  document.getElementById('admin-panel').classList.add('open');
-  document.getElementById('gallery').classList.add('admin-open');
-}
-
-function closeAdminPanel() {
-  document.getElementById('admin-panel').classList.remove('open');
-  document.getElementById('gallery').classList.remove('admin-open');
-}
-
-function toggleAdminPanel() {
-  if (document.getElementById('admin-panel').classList.contains('open')) {
-    closeAdminPanel();
-  } else if (sessionStorage.getItem('admin_auth') === '1') {
-    openAdminPanel();
-  } else {
-    openAdminLogin();
-  }
-}
-
-function adminLogout() {
-  sessionStorage.removeItem('admin_auth');
-  sessionStorage.removeItem('admin_token');
-  closeAdminPanel();
-}
-
-function setAdminStatus(msg, type = 'normal') {
-  const status = document.getElementById('admin-status');
-  status.textContent = msg;
-  status.className = 'admin-status';
-  if (type) status.classList.add(type);
-}
-
-async function regenerateList() {
-  if (sessionStorage.getItem('admin_auth') !== '1') {
-    setAdminStatus('Not authenticated', 'error');
-    return;
-  }
-
-  setAdminStatus('Regenerating list...');
-  
-  try {
-    const token = sessionStorage.getItem('admin_token');
-    const res = await fetch('/api/regenerate-list', {
-      method: 'POST',
-      headers: {
-        'x-admin-token': token,
-        'Content-Type': 'application/json'
-      }
+    // Behance masonry
+    var bEl = document.getElementById('behance');
+    var bItems = a.behance.map(function (b) { return { type: b.type, src: b.src, poster: b.poster, title: '', sub: 'Illustration & GIF art', url: a.links.behance, linkLabel: 'Behance ↗' }; });
+    a.behance.forEach(function (b, i) {
+      var t = GA.el('<a class="tile reveal d' + (i % 4) + '" href="' + a.links.behance + '"><div class="media">' + (b.type === 'loop' ? GA.loopHTML(b.src, b.poster) : '<img loading="lazy" decoding="async" src="' + b.src + '" alt="" width="' + b.w + '" height="' + b.h + '">') + '</div></a>');
+      t.addEventListener('click', function (e) { e.preventDefault(); GA.openLb(bItems, i); });
+      bEl.appendChild(t);
     });
 
-    if (!res.ok) {
-      throw new Error('HTTP ' + res.status);
-    }
-
-    const data = await res.json();
-    setAdminStatus('Found ' + data.count + ' images', 'success');
-    
-    // Reload gallery with new images
-    await new Promise(r => setTimeout(r, 500));
-    loadImageList();
-  } catch (err) {
-    setAdminStatus('Error: ' + err.message, 'error');
-  }
-}
-
-// ===== GALLERY =====
-let localImages = [];
-let imageMetadata = [];
-let allImageMetadata = [];
-let activeTag = 'all';
-let currentIndex = 0;
-let selectMode = false;
-let selectedUrls = new Set();
-const gridEl = document.getElementById('grid');
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-
-const CELL = 155;
-const BATCH = 50;
-let cols = 1;
-let offsetX = 0;
-let totalRows = 1;
-let cells = [];
-let gridMap = {};
-let slideIntervals = [];
-
-function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
-
-function posKey(r, c) { 
-  return r + ',' + c; 
-}
-
-function setupGrid() {
-  cols = Math.max(1, Math.floor(window.innerWidth / CELL));
-  offsetX = Math.floor((window.innerWidth - cols * CELL) / 2);
-  totalRows = Math.ceil(localImages.length / cols);
-  gridEl.style.height = (totalRows * CELL + CELL) + 'px';
-}
-
-function loadBatch(start) {
-  var end = Math.min(start + BATCH, localImages.length);
-  for (var i = start; i < end; i++) {
-    var row = Math.floor(i / cols);
-    var col = i % cols;
-
-    var div = document.createElement('div');
-    div.className = 'grid-cell' + (selectMode ? ' selectable' : '');
-    div.style.width = (CELL - 5) + 'px';
-    div.style.height = (CELL - 5) + 'px';
-    div.style.position = 'absolute';
-    div.style.transform = 'translate(' + (offsetX + col * CELL) + 'px,' + (row * CELL) + 'px)';
-    div.style.cursor = 'pointer';
-    div.dataset.imgUrl = localImages[i];
-
-    var check = document.createElement('div');
-    check.className = 'select-check';
-    check.textContent = '✓';
-    div.appendChild(check);
-
-    var img = new Image();
-    img.alt = '';
-    img.loading = start === 0 ? 'eager' : 'lazy';
-    img.decoding = 'async';
-    img.onload = (function(d) { 
-      return function() { 
-        d.style.opacity = 1; 
-      }; 
-    })(div);
-    img.onerror = (function(d) { 
-      return function() { 
-        d.style.display = 'none'; 
-      }; 
-    })(div);
-    img.src = localImages[i];
-    div.appendChild(img);
-
-    div.addEventListener('click', (function(index, url, el) {
-      return function() {
-        if (selectMode) {
-          toggleImageSelection(url, el);
-        } else {
-          openLightbox(index);
-        }
-      };
-    })(i, localImages[i], div));
-
-    gridEl.appendChild(div);
-    cells.push({ el: div, row: row, col: col, imgIdx: i });
-    gridMap[posKey(row, col)] = cells.length - 1;
-  }
-  if (end < localImages.length) {
-    setTimeout(function() { loadBatch(end); }, 1500);
-  }
-}
-
-function slideRandom() {
-  if (selectMode) return;
-  if (cells.length < 2) return;
-  var idx = Math.floor(Math.random() * cells.length);
-  var cell = cells[idx];
-  if (!cell.el || cell.el.style.display === 'none') return;
-
-  var dirs = [[-1,0],[1,0],[0,-1],[0,1]];
-  var d = dirs[Math.floor(Math.random() * 4)];
-  var nr = cell.row + d[0];
-  var nc = cell.col + d[1];
-
-  if (nr < 0 || nr >= totalRows || nc < 0 || nc >= cols) return;
-
-  var key = posKey(nr, nc);
-  var ti = gridMap[key];
-  if (ti === undefined) return;
-
-  var target = cells[ti];
-  if (!target.el || target.el.style.display === 'none') return;
-
-  gridMap[posKey(cell.row, cell.col)] = ti;
-  gridMap[key] = idx;
-
-  var tr = cell.row, tc = cell.col;
-  cell.row = target.row; cell.col = target.col;
-  target.row = tr; target.col = tc;
-
-  cell.el.style.transform = 'translate(' + (offsetX + cell.col * CELL) + 'px,' + (cell.row * CELL) + 'px)';
-  target.el.style.transform = 'translate(' + (offsetX + target.col * CELL) + 'px,' + (target.row * CELL) + 'px)';
-}
-
-async function loadImageList() {
-  try {
-    console.log('Loading image list from blob storage...');
-    const res = await fetch('/api/images');
-    
-    if (!res.ok) throw new Error('API ' + res.status);
-    
-    const images = await res.json();
-    allImageMetadata = images;
-    console.log('Loaded', allImageMetadata.length, 'images from blob');
-    filterByTag(activeTag);
-  } catch (err) {
-    console.log('Blob API unavailable, falling back to image-list.json');
-    try {
-      const res = await fetch('/image-list.json');
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const filenames = await res.json();
-      if (!Array.isArray(filenames)) throw new Error('Invalid format');
-      allImageMetadata = filenames.map(function(f) { return { url: 'images/' + f, pathname: f, tag: 'physical' }; });
-      console.log('Loaded', allImageMetadata.length, 'images from file list');
-      filterByTag(activeTag);
-    } catch (err2) {
-      console.error('Failed to load images:', err2);
-      gridEl.innerHTML = '<p style="padding: 40px; text-align: center; color: #f44; font-family: monospace;">Error: ' + err2.message + '</p>';
-    }
-  }
-}
-
-function filterByTag(tag) {
-  activeTag = tag;
-  
-  // Update active button
-  document.querySelectorAll('#tag-nav .tag-btn').forEach(function(btn) {
-    btn.classList.toggle('active', btn.textContent.toLowerCase().replace(/\s*\(\d+\)/, '') === tag || (tag === 'all' && btn.textContent.toLowerCase().startsWith('all')));
-  });
-  
-  // Filter images
-  if (tag === 'all') {
-    imageMetadata = allImageMetadata.slice();
-  } else {
-    imageMetadata = allImageMetadata.filter(function(img) { return (img.tag || 'physical') === tag; });
-  }
-  localImages = imageMetadata.map(function(img) { return img.url; });
-  
-  // Update tag counts in nav buttons
-  var counts = { all: allImageMetadata.length };
-  allImageMetadata.forEach(function(img) {
-    var t = img.tag || 'physical';
-    counts[t] = (counts[t] || 0) + 1;
-  });
-  document.querySelectorAll('#tag-nav .tag-btn').forEach(function(btn) {
-    var btnTag = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
-    var count = counts[btnTag] || 0;
-    var label = btnTag.charAt(0).toUpperCase() + btnTag.slice(1);
-    if (btnTag === 'all') label = 'All';
-    btn.textContent = label + ' (' + count + ')';
-    btn.classList.toggle('active', btnTag === activeTag);
-  });
-  
-  // Exit select mode if active
-  if (selectMode) toggleSelectMode();
-  
-  renderGallery();
-}
-
-function renderGallery() {
-  // Clear previous slide intervals
-  slideIntervals.forEach(function(id) { clearInterval(id); });
-  slideIntervals = [];
-  
-  gridEl.innerHTML = '';
-  cells = [];
-  gridMap = {};
-  
-  if (localImages.length === 0) {
-    gridEl.innerHTML = '<p style="padding: 40px; text-align: center; color: #999; font-family: monospace;">No images found</p>';
-    return;
-  }
-  
-  setupGrid();
-  loadBatch(0);
-  
-  setTimeout(function() {
-    slideIntervals.push(setInterval(slideRandom, 400));
-    slideIntervals.push(setInterval(slideRandom, 700));
-    slideIntervals.push(setInterval(slideRandom, 1100));
-  }, 3000);
-}
-
-function openLightbox(idx) {
-  currentIndex = idx;
-  lightboxImg.src = localImages[idx];
-  lightbox.classList.add('open');
-}
-
-function closeLightbox() {
-  lightbox.classList.remove('open');
-  lightboxImg.src = '';
-}
-
-function navLightbox(dir) {
-  currentIndex = (currentIndex + dir + localImages.length) % localImages.length;
-  lightboxImg.src = localImages[currentIndex];
-}
-
-lightbox.addEventListener('click', function(e) {
-  if (e.target === lightbox) closeLightbox();
-});
-
-document.addEventListener('keydown', function(e) {
-  if (!lightbox.classList.contains('open')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft') navLightbox(-1);
-  if (e.key === 'ArrowRight') navLightbox(1);
-});
-
-// ===== UPLOAD =====
-var uploadZone = document.getElementById('upload-zone');
-var uploadInput = document.getElementById('upload-input');
-
-uploadZone.addEventListener('click', function() {
-  uploadInput.click();
-});
-
-uploadZone.addEventListener('dragover', function(e) {
-  e.preventDefault();
-  uploadZone.classList.add('drag-over');
-});
-
-uploadZone.addEventListener('dragleave', function() {
-  uploadZone.classList.remove('drag-over');
-});
-
-uploadZone.addEventListener('drop', function(e) {
-  e.preventDefault();
-  uploadZone.classList.remove('drag-over');
-  if (e.dataTransfer.files.length > 0) {
-    uploadFiles(e.dataTransfer.files);
-  }
-});
-
-uploadInput.addEventListener('change', function() {
-  if (uploadInput.files.length > 0) {
-    uploadFiles(uploadInput.files);
-  }
-});
-
-async function uploadFiles(files) {
-  if (sessionStorage.getItem('admin_auth') !== '1') {
-    setAdminStatus('Not authenticated', 'error');
-    return;
-  }
-
-  var token = sessionStorage.getItem('admin_token');
-  var total = files.length;
-  var done = 0;
-  var failed = 0;
-
-  document.getElementById('upload-progress').style.display = 'block';
-  document.getElementById('upload-bar').style.width = '0%';
-  document.getElementById('upload-count').textContent = '0/' + total;
-  setAdminStatus('Uploading ' + total + ' file(s)...');
-
-  for (var i = 0; i < files.length; i++) {
-    var file = files[i];
-    try {
-      var res = await fetch('/api/upload?filename=' + encodeURIComponent(file.name) + '&tag=' + encodeURIComponent(document.getElementById('upload-tag').value), {
-        method: 'POST',
-        headers: { 'x-admin-token': token },
-        body: file,
+    // SuperRare grid with series filter
+    var sEl = document.getElementById('superrare'), fEl = document.getElementById('srfilters');
+    var series = {}; a.superrare.forEach(function (w) { series[w.series] = (series[w.series] || 0) + 1; });
+    var order = Object.keys(series).sort(function (x, y) { return series[y] - series[x]; });
+    var active = 'all';
+    function renderSR() {
+      sEl.innerHTML = '';
+      var list = a.superrare.filter(function (w) { return active === 'all' || w.series === active; });
+      var items = list.map(function (w) { return { type: 'image', src: w.src, title: w.title, sub: w.series + (w.year ? ' · ' + w.year : ''), url: w.url, linkLabel: 'View on SuperRare ↗' }; });
+      list.forEach(function (w, i) {
+        var t = GA.el('<a class="tile reveal d' + (i % 4) + '" href="' + w.url + '" target="_blank" rel="noopener"><div class="media"><img loading="lazy" decoding="async" src="' + w.src + '" alt="' + GA.esc(w.title) + '"></div><div class="cap"><span>' + GA.esc(w.title) + '</span><small>' + (w.year || '') + '</small></div></a>');
+        t.addEventListener('click', function (e) { e.preventDefault(); GA.openLb(items, i); });
+        sEl.appendChild(t);
       });
-      if (!res.ok) {
-        var err = await res.json();
-        throw new Error(err.error || 'HTTP ' + res.status);
-      }
-      done++;
-    } catch (e) {
-      console.error('Upload failed for', file.name, e);
-      failed++;
-      done++;
+      GA.observeReveals(sEl);
+      fEl.querySelectorAll('button').forEach(function (b) { b.classList.toggle('active', b.dataset.s === active); });
     }
-    document.getElementById('upload-bar').style.width = Math.round(done / total * 100) + '%';
-    document.getElementById('upload-count').textContent = done + '/' + total;
-  }
-
-  uploadInput.value = '';
-  
-  if (failed > 0) {
-    setAdminStatus('Uploaded ' + (total - failed) + '/' + total + ' (' + failed + ' failed)', 'error');
-  } else {
-    setAdminStatus('Uploaded ' + total + ' file(s)', 'success');
-  }
-
-  setTimeout(function() {
-    document.getElementById('upload-progress').style.display = 'none';
-  }, 2000);
-
-  loadImageList();
-}
-
-// ===== SELECT, DELETE & RETAG =====
-function toggleSelectMode() {
-  selectMode = !selectMode;
-  selectedUrls.clear();
-  
-  var btn = document.getElementById('select-mode-btn');
-  var actions = document.getElementById('select-actions');
-  
-  if (selectMode) {
-    btn.textContent = 'Cancel Selection';
-    btn.classList.add('admin-btn-active');
-    actions.style.display = 'block';
-    updateDeleteCount();
-    cells.forEach(function(c) { c.el.classList.add('selectable'); });
-  } else {
-    btn.textContent = 'Select Images';
-    btn.classList.remove('admin-btn-active');
-    actions.style.display = 'none';
-    cells.forEach(function(c) {
-      c.el.classList.remove('selectable', 'selected');
+    ['all'].concat(order).forEach(function (s) {
+      var b = document.createElement('button'); b.dataset.s = s;
+      b.innerHTML = (s === 'all' ? 'All' : s) + '<small>' + (s === 'all' ? a.superrare.length : series[s]) + '</small>';
+      b.addEventListener('click', function () { active = s; renderSR(); });
+      fEl.appendChild(b);
     });
-  }
-}
+    renderSR();
 
-function toggleImageSelection(url, el) {
-  if (selectedUrls.has(url)) {
-    selectedUrls.delete(url);
-    el.classList.remove('selected');
-  } else {
-    selectedUrls.add(url);
-    el.classList.add('selected');
-  }
-  updateDeleteCount();
-}
-
-function updateDeleteCount() {
-  document.getElementById('delete-selected-btn').textContent = 'Delete Selected (' + selectedUrls.size + ')';
-  document.getElementById('retag-btn').textContent = 'Re-tag Selected (' + selectedUrls.size + ')';
-}
-
-async function retagSelected() {
-  if (selectedUrls.size === 0) {
-    setAdminStatus('No images selected', 'error');
-    return;
-  }
-  
-  var newTag = document.getElementById('retag-select').value;
-  if (!newTag) {
-    setAdminStatus('Select a tag first', 'error');
-    return;
-  }
-  
-  if (sessionStorage.getItem('admin_auth') !== '1') {
-    setAdminStatus('Not authenticated', 'error');
-    return;
-  }
-  
-  var token = sessionStorage.getItem('admin_token');
-  var urls = Array.from(selectedUrls);
-  setAdminStatus('Re-tagging ' + urls.length + ' image(s)...');
-  
-  try {
-    var res = await fetch('/api/tag-images', {
-      method: 'POST',
-      headers: {
-        'x-admin-token': token,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ urls: urls, tag: newTag })
-    });
-    
-    if (!res.ok) {
-      var err = await res.json();
-      throw new Error(err.error || 'HTTP ' + res.status);
-    }
-    
-    var data = await res.json();
-    setAdminStatus('Re-tagged ' + data.updated + ' image(s) to ' + newTag, 'success');
-    toggleSelectMode();
-    loadImageList();
-  } catch (e) {
-    setAdminStatus('Re-tag error: ' + e.message, 'error');
-  }
-}
-
-async function deleteSelected() {
-  if (selectedUrls.size === 0) {
-    setAdminStatus('No images selected', 'error');
-    return;
-  }
-
-  if (!confirm('Delete ' + selectedUrls.size + ' image(s)? This cannot be undone.')) {
-    return;
-  }
-
-  if (sessionStorage.getItem('admin_auth') !== '1') {
-    setAdminStatus('Not authenticated', 'error');
-    return;
-  }
-
-  var token = sessionStorage.getItem('admin_token');
-  var urls = Array.from(selectedUrls);
-  setAdminStatus('Deleting ' + urls.length + ' image(s)...');
-
-  try {
-    var res = await fetch('/api/delete-image', {
-      method: 'POST',
-      headers: {
-        'x-admin-token': token,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ urls: urls })
+    // Fake Rares
+    var frEl = document.getElementById('fakerares');
+    var frItems = a.fakerares.map(function (c) { return { type: c.type, src: c.src, poster: c.poster, title: c.title, sub: c.set, url: c.url, linkLabel: 'pepe.wtf ↗' }; });
+    a.fakerares.forEach(function (c, i) {
+      var t = GA.el('<a class="tile reveal d' + (i % 4) + '" href="' + c.url + '"><div class="media">' + (c.type === 'loop' ? GA.loopHTML(c.src, c.poster) : '<img loading="lazy" src="' + c.src + '" alt="' + c.title + '">') + '</div><div class="cap">' + c.title + '<small>' + c.set + '</small></div></a>');
+      t.addEventListener('click', function (e) { e.preventDefault(); GA.openLb(frItems, i); });
+      frEl.appendChild(t);
     });
 
-    if (!res.ok) {
-      var err = await res.json();
-      throw new Error(err.error || 'HTTP ' + res.status);
-    }
+    // GIF wall (hotlinked from GIPHY, lazy)
+    var gEl = document.getElementById('gifwall');
+    a.giphy.forEach(function (g) {
+      gEl.appendChild(GA.el('<a href="https://giphy.com/gifs/' + g.id + '" target="_blank" rel="noopener" title="' + GA.esc(g.title || 'GIF') + '">' + GA.loopHTML(GA.giphyMp4(g.id), GA.giphyStill(g.id)) + '</a>'));
+    });
 
-    var data = await res.json();
-    setAdminStatus('Deleted ' + data.deleted + ' image(s)', 'success');
-    toggleSelectMode();
-    loadImageList();
-  } catch (e) {
-    setAdminStatus('Delete error: ' + e.message, 'error');
-  }
-}
+    GA.observeLazy(); GA.observeReveals();
+  });
 
-loadImageList();
+  // Physical work from the gallery's blob storage
+  fetch('/api/images').then(function (r) { return r.ok ? r.json() : []; }).then(function (imgs) {
+    var el = document.getElementById('physicalstrip');
+    if (!imgs.length) { el.innerHTML = '<p class="muted">Open the gallery to browse the physical work.</p>'; return; }
+    var items = imgs.map(function (im) { return { type: 'image', src: im.url, title: '', sub: 'Physical work', url: '/art/gallery/', linkLabel: 'Open gallery →' }; });
+    imgs.slice(0, 14).forEach(function (im, i) {
+      var t = GA.el('<a class="tile" href="/art/gallery/"><div class="media"><img loading="lazy" src="' + im.url + '" alt=""></div></a>');
+      t.addEventListener('click', function (e) { e.preventDefault(); GA.openLb(items, i); });
+      el.appendChild(t);
+    });
+  }).catch(function () {});
+})();
 </script>
 
 </body>
