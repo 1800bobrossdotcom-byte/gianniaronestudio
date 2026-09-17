@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video — Gianni Arone</title>
+  <meta name="description" content="Motion design, editing, spec spots, lyric videos and social creative by Gianni Arone. Work for Disney, Marvel, Sony, Universal, Hulu, Nike, Kalshi and more.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/portfolio.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/">Gianni Arone <span>Studio</span></a>
+    <button class="nav-toggle" aria-label="Menu">Menu</button>
+    <ul>
+      <li><a href="/video/" class="active">Video</a></li>
+      <li><a href="/web/">Web</a></li>
+      <li><a href="/resume/">Resume</a></li>
+      <li><a href="/art/">Art</a></li>
+      <li><a href="/v1s1t0r/mixes/">Mixes</a></li>
+      <li><a href="mailto:gianniaronestudio@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="padding-bottom:32px">
+    <div class="wrap">
+      <div class="eyebrow">Motion · Edit · Sound · Direction</div>
+      <h1>Video</h1>
+      <p class="lede" style="margin-top:14px">Spec spots, studio social content, lyric videos, reels and personal work. Most of it animated, edited and sound-designed by me; credits are in each description. Full archive at <a href="https://vimeo.com/uaawtf" target="_blank" rel="noopener" style="color:#fff;border-bottom:1px solid #333">vimeo.com/uaawtf</a>.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:24px">
+    <div class="wrap">
+      <div class="filters" id="filters" role="tablist"></div>
+      <div class="grid" id="grid"></div>
+      <p class="small muted" id="empty" style="display:none;padding:40px 0;text-align:center">No videos in this set.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="mailto:gianniaronestudio@gmail.com">gianniaronestudio@gmail.com</a>
+      <a href="https://vimeo.com/uaawtf" target="_blank" rel="noopener">Vimeo</a>
+      <a href="https://www.instagram.com/gianniarone/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://linktr.ee/gianniarone" target="_blank" rel="noopener">Linktree</a>
+    </div>
+    <div class="copy">&copy; 2026 Gianni Arone · Rochester, NY</div>
+  </div>
+</footer>
+
+<script src="/portfolio.js"></script>
+<script>
+(function () {
+  var ORDER = ['all', 'reels', 'spots', 'entertainment', 'music', 'art'];
+  var LABEL = { all: 'All', reels: 'Reels', spots: 'Spots', entertainment: 'Entertainment', music: 'Music videos', art: 'Art' };
+  var grid = document.getElementById('grid');
+  var filters = document.getElementById('filters');
+  var empty = document.getElementById('empty');
+  var videos = [];
+  var active = (location.hash || '#all').slice(1);
+  if (ORDER.indexOf(active) < 0) active = 'all';
+
+  function render() {
+    grid.innerHTML = '';
+    var list = videos.filter(function (v) { return active === 'all' || v.category === active; });
+    list.forEach(function (v) { grid.appendChild(GA.card(v)); });
+    empty.style.display = list.length ? 'none' : 'block';
+    filters.querySelectorAll('button').forEach(function (b) { b.classList.toggle('active', b.dataset.cat === active); });
+  }
+
+  GA.loadVideos().then(function (d) {
+    videos = d.videos.slice().sort(function (a, b) {
+      // reels first, then newest first
+      var ra = a.category === 'reels' ? 0 : 1, rb = b.category === 'reels' ? 0 : 1;
+      if (ra !== rb) return ra - rb;
+      return a.date < b.date ? 1 : -1;
+    });
+    var counts = {};
+    videos.forEach(function (v) { counts[v.category] = (counts[v.category] || 0) + 1; });
+    ORDER.forEach(function (c) {
+      if (c !== 'all' && !counts[c]) return;
+      var b = document.createElement('button');
+      b.dataset.cat = c;
+      b.setAttribute('role', 'tab');
+      b.innerHTML = LABEL[c] + '<small>' + (c === 'all' ? videos.length : counts[c]) + '</small>';
+      b.addEventListener('click', function () {
+        active = c;
+        history.replaceState(null, '', c === 'all' ? location.pathname : '#' + c);
+        render();
+      });
+      filters.appendChild(b);
+    });
+    render();
+  }).catch(function (e) {
+    grid.innerHTML = '<p class="muted small">Could not load the video list. <a href="https://vimeo.com/uaawtf" style="color:#fff">Watch on Vimeo ↗</a></p>';
+    console.error(e);
+  });
+})();
+</script>
+</body>
+</html>
