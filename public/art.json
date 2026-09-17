@@ -1,0 +1,1366 @@
+{
+ "behance": [
+  {
+   "id": "00",
+   "type": "image",
+   "src": "/img/art/behance/00.webp",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "01",
+   "type": "image",
+   "src": "/img/art/behance/01.webp",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "02",
+   "type": "loop",
+   "src": "/img/art/behance/02.mp4",
+   "poster": "/img/art/behance/02.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "03",
+   "type": "loop",
+   "src": "/img/art/behance/03.mp4",
+   "poster": "/img/art/behance/03.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "04",
+   "type": "loop",
+   "src": "/img/art/behance/04.mp4",
+   "poster": "/img/art/behance/04.jpg",
+   "w": 1400,
+   "h": 1824
+  },
+  {
+   "id": "05",
+   "type": "image",
+   "src": "/img/art/behance/05.webp",
+   "w": 1400,
+   "h": 1073
+  },
+  {
+   "id": "06",
+   "type": "image",
+   "src": "/img/art/behance/06.webp",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "07",
+   "type": "image",
+   "src": "/img/art/behance/07.webp",
+   "w": 1400,
+   "h": 2100
+  },
+  {
+   "id": "08",
+   "type": "image",
+   "src": "/img/art/behance/08.webp",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "09",
+   "type": "image",
+   "src": "/img/art/behance/09.webp",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "10",
+   "type": "loop",
+   "src": "/img/art/behance/10.mp4",
+   "poster": "/img/art/behance/10.jpg",
+   "w": 700,
+   "h": 751
+  },
+  {
+   "id": "11",
+   "type": "loop",
+   "src": "/img/art/behance/11.mp4",
+   "poster": "/img/art/behance/11.jpg",
+   "w": 800,
+   "h": 800
+  },
+  {
+   "id": "12",
+   "type": "image",
+   "src": "/img/art/behance/12.webp",
+   "w": 1400,
+   "h": 1826
+  },
+  {
+   "id": "13",
+   "type": "loop",
+   "src": "/img/art/behance/13.mp4",
+   "poster": "/img/art/behance/13.jpg",
+   "w": 1400,
+   "h": 1927
+  },
+  {
+   "id": "14",
+   "type": "image",
+   "src": "/img/art/behance/14.webp",
+   "w": 1400,
+   "h": 1073
+  },
+  {
+   "id": "15",
+   "type": "image",
+   "src": "/img/art/behance/15.webp",
+   "w": 1400,
+   "h": 1750
+  },
+  {
+   "id": "16",
+   "type": "image",
+   "src": "/img/art/behance/16.webp",
+   "w": 1400,
+   "h": 1750
+  },
+  {
+   "id": "17",
+   "type": "image",
+   "src": "/img/art/behance/17.webp",
+   "w": 1400,
+   "h": 1750
+  },
+  {
+   "id": "18",
+   "type": "image",
+   "src": "/img/art/behance/18.webp",
+   "w": 1400,
+   "h": 1750
+  },
+  {
+   "id": "19",
+   "type": "image",
+   "src": "/img/art/behance/19.webp",
+   "w": 1400,
+   "h": 1750
+  },
+  {
+   "id": "20",
+   "type": "image",
+   "src": "/img/art/behance/20.webp",
+   "w": 1400,
+   "h": 1750
+  },
+  {
+   "id": "21",
+   "type": "loop",
+   "src": "/img/art/behance/21.mp4",
+   "poster": "/img/art/behance/21.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "22",
+   "type": "loop",
+   "src": "/img/art/behance/22.mp4",
+   "poster": "/img/art/behance/22.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "23",
+   "type": "loop",
+   "src": "/img/art/behance/23.mp4",
+   "poster": "/img/art/behance/23.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "24",
+   "type": "loop",
+   "src": "/img/art/behance/24.mp4",
+   "poster": "/img/art/behance/24.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "25",
+   "type": "image",
+   "src": "/img/art/behance/25.webp",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "26",
+   "type": "image",
+   "src": "/img/art/behance/26.webp",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "27",
+   "type": "image",
+   "src": "/img/art/behance/27.webp",
+   "w": 1400,
+   "h": 1680
+  },
+  {
+   "id": "28",
+   "type": "image",
+   "src": "/img/art/behance/28.webp",
+   "w": 1400,
+   "h": 1824
+  },
+  {
+   "id": "29",
+   "type": "image",
+   "src": "/img/art/behance/29.webp",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "30",
+   "type": "image",
+   "src": "/img/art/behance/30.webp",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "31",
+   "type": "image",
+   "src": "/img/art/behance/31.webp",
+   "w": 1400,
+   "h": 1375
+  },
+  {
+   "id": "32",
+   "type": "image",
+   "src": "/img/art/behance/32.webp",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "33",
+   "type": "loop",
+   "src": "/img/art/behance/33.mp4",
+   "poster": "/img/art/behance/33.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "34",
+   "type": "loop",
+   "src": "/img/art/behance/34.mp4",
+   "poster": "/img/art/behance/34.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "35",
+   "type": "loop",
+   "src": "/img/art/behance/35.mp4",
+   "poster": "/img/art/behance/35.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "36",
+   "type": "loop",
+   "src": "/img/art/behance/36.mp4",
+   "poster": "/img/art/behance/36.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "37",
+   "type": "loop",
+   "src": "/img/art/behance/37.mp4",
+   "poster": "/img/art/behance/37.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "38",
+   "type": "image",
+   "src": "/img/art/behance/38.webp",
+   "w": 1400,
+   "h": 1826
+  },
+  {
+   "id": "39",
+   "type": "loop",
+   "src": "/img/art/behance/39.mp4",
+   "poster": "/img/art/behance/39.jpg",
+   "w": 1400,
+   "h": 1826
+  },
+  {
+   "id": "40",
+   "type": "image",
+   "src": "/img/art/behance/40.webp",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "id": "41",
+   "type": "image",
+   "src": "/img/art/behance/41.webp",
+   "w": 1400,
+   "h": 1867
+  }
+ ],
+ "superrare": [
+  {
+   "title": "a drive should be an adventure home, no matter the destination",
+   "series": "Scanman",
+   "year": 2026,
+   "src": "/img/art/sr/cfb65bd6db43b795.jpg",
+   "w": 5100,
+   "h": 7020,
+   "url": "https://superrare.com/artwork/eth/0x3576Bb77Afe26dDb293DF7a920c1AA993CcE6f1a/9",
+   "description": "scan of two old photos, old thread, dust and hair",
+   "sold": false
+  },
+  {
+   "title": "the simplicity of a present Ghost",
+   "series": "Scanman",
+   "year": 2026,
+   "src": "/img/art/sr/b5e7154598765f77.jpg",
+   "w": 5100,
+   "h": 7020,
+   "url": "https://superrare.com/artwork/eth/0x3576Bb77Afe26dDb293DF7a920c1AA993CcE6f1a/8",
+   "description": "scan of antique photo",
+   "sold": false
+  },
+  {
+   "title": "no honour amongst thieves who reject the blessings of bread over coins",
+   "series": "Scanman",
+   "year": 2026,
+   "src": "/img/art/sr/f7edbfc62a11cb61.jpg",
+   "w": 5100,
+   "h": 7020,
+   "url": "https://superrare.com/artwork/eth/0x3576Bb77Afe26dDb293DF7a920c1AA993CcE6f1a/6",
+   "description": "scan of ninja face mask label, handmade sign, metal clip",
+   "sold": false
+  },
+  {
+   "title": "optimize talent is an inside job",
+   "series": "Scanman",
+   "year": 2026,
+   "src": "/img/art/sr/2bd9e8ed41b70cef.jpg",
+   "w": 5100,
+   "h": 7020,
+   "url": "https://superrare.com/artwork/eth/0x3576Bb77Afe26dDb293DF7a920c1AA993CcE6f1a/5",
+   "description": "scan of ripped vintage poster, jacket from ebay",
+   "sold": false
+  },
+  {
+   "title": "blame it on byzantine, a fault, a tolerance",
+   "series": "Digital works",
+   "year": 2026,
+   "src": "/img/art/sr/54e948d04d674188.jpg",
+   "w": 5100,
+   "h": 7020,
+   "url": "https://superrare.com/artwork/eth/0x3576Bb77Afe26dDb293DF7a920c1AA993CcE6f1a/4",
+   "description": "scan of antique wood letterpress letter holder, three wood balls, dried skins and stems of grape avocado and pear, pin from fren, antique glass and bronze, personal fingers, dust, hair",
+   "sold": false
+  },
+  {
+   "title": "some paint you can't swallow, my dove",
+   "series": "Scanman",
+   "year": 2026,
+   "src": "/img/art/sr/24a7e674c677ba41.jpg",
+   "w": 5100,
+   "h": 7020,
+   "url": "https://superrare.com/artwork/eth/0x3576Bb77Afe26dDb293DF7a920c1AA993CcE6f1a/3",
+   "description": "scan of two art push pins, a bent paperclip, ashes, paint roller tin",
+   "sold": false
+  },
+  {
+   "title": "lyrical vampyres",
+   "series": "Scanman",
+   "year": 2026,
+   "src": "/img/art/sr/a2d8ed45f954431c.jpg",
+   "w": 5100,
+   "h": 7020,
+   "url": "https://superrare.com/artwork/eth/0x3576Bb77Afe26dDb293DF7a920c1AA993CcE6f1a/2",
+   "description": "scan of vintage plastic toy, contemporary plastic toy, dried avocado skin, stickers, antique fountain pens",
+   "sold": false
+  },
+  {
+   "title": "the extraordinary rendition of mr. langley",
+   "series": "Scanman",
+   "year": 2026,
+   "src": "/img/art/sr/8c4244eb5279c66b.jpg",
+   "w": 5100,
+   "h": 7020,
+   "url": "https://superrare.com/artwork/eth/0x3576Bb77Afe26dDb293DF7a920c1AA993CcE6f1a/1",
+   "description": "Scan of zip ties forming a 16 pointed star.",
+   "sold": false
+  },
+  {
+   "title": "AR PSY OP",
+   "series": "Digital works",
+   "year": 2026,
+   "src": "/img/art/sr/1142fa5fe6343c59.jpg",
+   "w": 2221,
+   "h": 2422,
+   "url": "https://superrare.com/artwork/eth/0x9a8AA80477773522653DeE2D7e21d6a3ab6F3799/9",
+   "description": "DARPA N3 \nMOCKINGBIRD",
+   "sold": false
+  },
+  {
+   "title": "four and twenty SR-71 blackbirds baked in a pie...",
+   "series": "Paintings",
+   "year": 2026,
+   "src": "/img/art/sr/f7375e2a1a9f4fe2.jpg",
+   "w": 2243,
+   "h": 2804,
+   "url": "https://superrare.com/artwork/eth/0x6B91C902796448A06519ACFFE1E6eb4Ae3a5CDD9/10",
+   "description": "network effect of common prayer and meditation, complete breath",
+   "sold": false
+  },
+  {
+   "title": "I'll never forget where you're at",
+   "series": "Paperworks",
+   "year": 2026,
+   "src": "/img/art/sr/d18702dce1dcf9f8.jpg",
+   "w": 2284,
+   "h": 3045,
+   "url": "https://superrare.com/artwork/eth/0x9a8AA80477773522653DeE2D7e21d6a3ab6F3799/8",
+   "description": "XI XI\n",
+   "sold": true
+  },
+  {
+   "title": "S U P E R L U M I N A L",
+   "series": "Collage",
+   "year": 2026,
+   "src": "/img/art/sr/6b543660265c3836.jpg",
+   "w": 2296,
+   "h": 2943,
+   "url": "https://superrare.com/artwork/eth/0x9a8AA80477773522653DeE2D7e21d6a3ab6F3799/7",
+   "description": "A Waking Life",
+   "sold": true
+  },
+  {
+   "title": "Earth Dogs",
+   "series": "Illustration",
+   "year": 2026,
+   "src": "/img/art/sr/d3eee135b096c166.jpg",
+   "w": 3056,
+   "h": 3056,
+   "url": "https://superrare.com/artwork/eth/0x9a8AA80477773522653DeE2D7e21d6a3ab6F3799/6",
+   "description": "Love Is",
+   "sold": false
+  },
+  {
+   "title": "JOAN I",
+   "series": "Collage",
+   "year": 2026,
+   "src": "/img/art/sr/2528e0c3a5a696ca.jpg",
+   "w": 3056,
+   "h": 3056,
+   "url": "https://superrare.com/artwork/eth/0x9a8AA80477773522653DeE2D7e21d6a3ab6F3799/5",
+   "description": "Joan of Arc Cannon",
+   "sold": false
+  },
+  {
+   "title": "JOAN II",
+   "series": "Drawing",
+   "year": 2026,
+   "src": "/img/art/sr/2bdcbc6673fd3714.jpg",
+   "w": 3056,
+   "h": 3056,
+   "url": "https://superrare.com/artwork/eth/0x9a8AA80477773522653DeE2D7e21d6a3ab6F3799/4",
+   "description": "Joan of Arc Cannon",
+   "sold": false
+  },
+  {
+   "title": "CIVILITY",
+   "series": "Drawing",
+   "year": 2026,
+   "src": "/img/art/sr/f97fc5d23b7643df.jpg",
+   "w": 3056,
+   "h": 3056,
+   "url": "https://superrare.com/artwork/eth/0x9a8AA80477773522653DeE2D7e21d6a3ab6F3799/3",
+   "description": "Each One A Complete,\nConcise Manual\n\nSame, cloth bound\nThe Environment\nof Ideas on \nEvery Man\n\nby name",
+   "sold": false
+  },
+  {
+   "title": "SEASONS GREETINGS",
+   "series": "Digital works",
+   "year": 2026,
+   "src": "/img/art/sr/20f91faf0aedc52a.jpg",
+   "w": 2583,
+   "h": 2516,
+   "url": "https://superrare.com/artwork/eth/0x6B91C902796448A06519ACFFE1E6eb4Ae3a5CDD9/9",
+   "description": "Of what no thought of the heart has comprehended\nOf what no eye of an angel has ever seen\nSeasons Greetings\nEternally\n",
+   "sold": false
+  },
+  {
+   "title": "C I A C A D A ",
+   "series": "Assemblage",
+   "year": 2026,
+   "src": "/img/art/sr/6fc3ea9002a6a983.jpg",
+   "w": 3056,
+   "h": 3056,
+   "url": "https://superrare.com/artwork/eth/0x6B91C902796448A06519ACFFE1E6eb4Ae3a5CDD9/8",
+   "description": "Assemblage / collage.\nArtists Frame.\n2018",
+   "sold": false
+  },
+  {
+   "title": "FAKE SEAT",
+   "series": "Assemblage",
+   "year": 2026,
+   "src": "/img/art/sr/f7817a7c5f87d640.jpg",
+   "w": 3056,
+   "h": 3056,
+   "url": "https://superrare.com/artwork/eth/0x6B91C902796448A06519ACFFE1E6eb4Ae3a5CDD9/7",
+   "description": "Found seat from bar next door that burned down.\n\nFound materials.\n\n2026",
+   "sold": false
+  },
+  {
+   "title": "follow the water for fools who drink money",
+   "series": "Digital works",
+   "year": 2026,
+   "src": "/img/art/sr/edbad1fa56f81d8c.jpg",
+   "w": 7777,
+   "h": 7777,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/117",
+   "description": "message in a bottle\n",
+   "sold": false
+  },
+  {
+   "title": "O V E R S E E R   I I",
+   "series": "Paintings",
+   "year": 2026,
+   "src": "/img/art/sr/20ecb870e26cede0.jpg",
+   "w": 1744,
+   "h": 2390,
+   "url": "https://superrare.com/artwork/eth/0x6B91C902796448A06519ACFFE1E6eb4Ae3a5CDD9/6",
+   "description": "But if the watchman see the sword come, and blow not the trumpet, and the people be not warned; if the sword come, and take any person from among them, he is taken away in his iniquity; but his blood ",
+   "sold": false
+  },
+  {
+   "title": "Be Here Now",
+   "series": "Digital works",
+   "year": 2026,
+   "src": "/img/art/sr/6329c359c35477e5.jpg",
+   "w": 3024,
+   "h": 4032,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/112",
+   "description": "John 1:23",
+   "sold": false
+  },
+  {
+   "title": "G E N E S I S",
+   "series": "Digital works",
+   "year": 2026,
+   "src": "/img/art/sr/5a531ce03c4c809b.jpg",
+   "w": 1112,
+   "h": 1112,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/110",
+   "description": "In the beginning God created the heaven and the earth.\n\nAnd the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.",
+   "sold": false
+  },
+  {
+   "title": "message me",
+   "series": "Digital works",
+   "year": 2026,
+   "src": "/img/art/sr/85124ca62c3a38bb.jpg",
+   "w": 800,
+   "h": 800,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/108",
+   "description": "anonymous messenger\nfaraday.cam (built by lovebeing)",
+   "sold": false
+  },
+  {
+   "title": "Saint Aquatic",
+   "series": "Illustration",
+   "year": 2026,
+   "src": "/img/art/sr/ec912af5049a01da.jpg",
+   "w": 2048,
+   "h": 2048,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/104",
+   "description": "Where two or more are gathered, we find the water of life, and the joy of living - is truly in the giving.  \n\nDedicated to Love, \nEternal Gratitude ",
+   "sold": false
+  },
+  {
+   "title": "mustard s33d heartbeat",
+   "series": "Digital works",
+   "year": 2026,
+   "src": "/img/art/sr/43a1b10e15e5414a.jpg",
+   "w": 2048,
+   "h": 2048,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/103",
+   "description": "Isaiah 54:7\nDigital Illustration | 2026",
+   "sold": true
+  },
+  {
+   "title": "REMOTE VIEWING AND THE INTERNET OF THINGS",
+   "series": "DARPA",
+   "year": 2025,
+   "src": "/img/art/sr/77eae0c047fecdac.jpg",
+   "w": 2000,
+   "h": 2300,
+   "url": "https://superrare.com/artwork/eth/0xd0BfC28b1F3C470A3068cE27e84F393CD69DAC69/11",
+   "description": "Read into the work,\nWrite, Ars Est Celare Artem\nTENET VERITAS RADAR\nWANDBREAKER ACO",
+   "sold": false
+  },
+  {
+   "title": "TENET, RETURNING FROM PROJECT SERPO",
+   "series": "DARPA",
+   "year": 2025,
+   "src": "/img/art/sr/c98a033d99d1454f.jpg",
+   "w": 5555,
+   "h": 5555,
+   "url": "https://superrare.com/artwork/eth/0xd0BfC28b1F3C470A3068cE27e84F393CD69DAC69/8",
+   "description": "The perception of time travel is at a moments notice",
+   "sold": true
+  },
+  {
+   "title": "DIVINE PROTECTION WHILE MOVING THROUGH THE SUPERFORMS",
+   "series": "DARPA",
+   "year": 2025,
+   "src": "/img/art/sr/4dbb96f9bd1abd59.jpg",
+   "w": 5555,
+   "h": 5555,
+   "url": "https://superrare.com/artwork/eth/0xd0BfC28b1F3C470A3068cE27e84F393CD69DAC69/5",
+   "description": "DARPA black ops asset, Adaptive Capabilities Office Test Subject\nF-104 Starfighter Interceptor Variant Class Live Round Training\nCIA Special Activities Division Covert Communications Group\nG0DSP33D\nPr",
+   "sold": true
+  },
+  {
+   "title": "DARPA: ACO | smowl simulator ",
+   "series": "DARPA",
+   "year": 2025,
+   "src": "/img/art/sr/9f047499c77369b4.jpg",
+   "w": 2048,
+   "h": 2048,
+   "url": "https://superrare.com/artwork/eth/0xd0BfC28b1F3C470A3068cE27e84F393CD69DAC69/2",
+   "description": "About the Adaptive Capabilities Office\nWorking closely with our nation’s military services, the Adaptive Capabilities Office (ACO) helps program managers turn ideas into impact and transition new tech",
+   "sold": true
+  },
+  {
+   "title": "CRUST STATION",
+   "series": "Digital works",
+   "year": 2025,
+   "src": "/img/art/sr/22fcde1a445f0333.jpg",
+   "w": 500,
+   "h": 662,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/97",
+   "description": "Iteration of Inner Workings, The Muse Abides",
+   "sold": false
+  },
+  {
+   "title": "Quantum Coherence",
+   "series": "Digital works",
+   "year": 2023,
+   "src": "/img/art/sr/abd3cfa8409d19f4.jpg",
+   "w": 4444,
+   "h": 4444,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/89",
+   "description": "Illustration after Degas.\n\n▀██▀─▄███▄─▀██─██▀██▀▀█\n─██─███─███─██─██─██▄█\n─██─▀██▄██▀─▀█▄█▀─██▀█\n▄██▄▄█▀▀▀─────▀──▄██▄▄█",
+   "sold": false
+  },
+  {
+   "title": "SHE DREAMS IN DIGITAL",
+   "series": "Digital works",
+   "year": 2023,
+   "src": "/img/art/sr/5b9fc4ad2b2d2488.jpg",
+   "w": 900,
+   "h": 1120,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/88",
+   "description": "Mixed Media 2023",
+   "sold": true
+  },
+  {
+   "title": "SOUL TECHNIQUES",
+   "series": "Digital works",
+   "year": 2023,
+   "src": "/img/art/sr/77116f81452d879d.jpg",
+   "w": 1455,
+   "h": 1080,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/81",
+   "description": "Illustration 2023\n\n▀██▀─▄███▄─▀██─██▀██▀▀█\n─██─███─███─██─██─██▄█\n─██─▀██▄██▀─▀█▄█▀─██▀█\n▄██▄▄█▀▀▀─────▀──▄██▄▄█\n",
+   "sold": false
+  },
+  {
+   "title": "The Audience Remains Curious",
+   "series": "Digital works",
+   "year": 2023,
+   "src": "/img/art/sr/80e9f2cce1dc67e7.jpg",
+   "w": 1274,
+   "h": 1570,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/80",
+   "description": "Illustration, collage, pixelsorting\n2023\n\n\"we see the dots light up\"\n\n\n\n\n▀██▀─▄███▄─▀██─██▀██▀▀█\n─██─███─███─██─██─██▄█\n─██─▀██▄██▀─▀█▄█▀─██▀█\n▄██▄▄█▀▀▀─────▀──▄██▄▄█\n",
+   "sold": true
+  },
+  {
+   "title": "\"OMG DESK!  AGAIN?!\"",
+   "series": "Digital works",
+   "year": 2023,
+   "src": "/img/art/sr/40ab3e0e513202c4.jpg",
+   "w": 1000,
+   "h": 562,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/74",
+   "description": "Shot footage | Digital \n2023\n.gif\n\n▀██▀─▄███▄─▀██─██▀██▀▀█\n─██─███─███─██─██─██▄█\n─██─▀██▄██▀─▀█▄█▀─██▀█\n▄██▄▄█▀▀▀─────▀──▄██▄▄█\n",
+   "sold": true
+  },
+  {
+   "title": "The Subtle Ways of Being Fierce",
+   "series": "Digital works",
+   "year": 2023,
+   "src": "/img/art/sr/d8420fd49c07da98.jpg",
+   "w": 2873,
+   "h": 4032,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/65",
+   "description": "\"The Subtle Ways of Being Fierce\"\nModel:  Karen Y.\nPolaroid, Mixed Media, Digital | 2023\n",
+   "sold": true
+  },
+  {
+   "title": "HERE ARE THE RULES",
+   "series": "Digital works",
+   "year": 2023,
+   "src": "/img/art/sr/1fa0557f8b5eda46.jpg",
+   "w": 1500,
+   "h": 1920,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/60",
+   "description": "Mixed Media\nOil Paint, Fabric, Digital 2023\n\n▀██▀─▄███▄─▀██─██▀██▀▀█\n─██─███─███─██─██─██▄█\n─██─▀██▄██▀─▀█▄█▀─██▀█\n▄██▄▄█▀▀▀─────▀──▄██▄▄█\n",
+   "sold": true
+  },
+  {
+   "title": "The Scream",
+   "series": "Digital works",
+   "year": 2023,
+   "src": "/img/art/sr/4a1313bfcec8a842.jpg",
+   "w": 800,
+   "h": 800,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/52",
+   "description": "After Edvard Munch\nDigital Painting and illustration\nPixlsorting, fx \n2023\n\n",
+   "sold": true
+  },
+  {
+   "title": "Waiting In Line At Space Mountain",
+   "series": "Digital works",
+   "year": 2023,
+   "src": "/img/art/sr/d02c126db327287e.jpg",
+   "w": 2000,
+   "h": 2300,
+   "url": "https://superrare.com/artwork/eth/0x192b5Cb28023BcC750DAa21c9CF552bF1a8bDbe6/6",
+   "description": "▀██▀─▄███▄─▀██─██▀██▀▀█\n─██─███─███─██─██─██▄█\n─██─▀██▄██▀─▀█▄█▀─██▀█\n▄██▄▄█▀▀▀─────▀──▄██▄▄█\n",
+   "sold": false
+  },
+  {
+   "title": "JITTERBUGS",
+   "series": "Digital works",
+   "year": 2023,
+   "src": "/img/art/sr/a0208f4030776edb.jpg",
+   "w": 2000,
+   "h": 2300,
+   "url": "https://superrare.com/artwork/eth/0x192b5Cb28023BcC750DAa21c9CF552bF1a8bDbe6/5",
+   "description": "▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐\n▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐█████████▐▐▐▐▐▐▐▐▐▐▐▐▐ \n▐▐▐▐▐▐▐▐▐▐▐▐▐█████████████████▐▐▐▐▐▐▐▐▐▐ \n▐▐▐▐▐▐▐▐▐▐███████▐▐▐▐▐▐█████████▐▐▐▐▐▐▐▐ \n▐▐▐▐▐▐▐▐▐█████▐▐▐▐▐▐▐▐▐▐▐▐▐▐█████",
+   "sold": false
+  },
+  {
+   "title": "CONDO",
+   "series": "Digital works",
+   "year": 2023,
+   "src": "/img/art/sr/77189e871dfe0f13.jpg",
+   "w": 2048,
+   "h": 2048,
+   "url": "https://superrare.com/artwork/eth/0x192b5Cb28023BcC750DAa21c9CF552bF1a8bDbe6/4",
+   "description": "▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐\n▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐█████████▐▐▐▐▐▐▐▐▐▐▐▐▐ \n▐▐▐▐▐▐▐▐▐▐▐▐▐█████████████████▐▐▐▐▐▐▐▐▐▐ \n▐▐▐▐▐▐▐▐▐▐███████▐▐▐▐▐▐█████████▐▐▐▐▐▐▐▐ \n▐▐▐▐▐▐▐▐▐█████▐▐▐▐▐▐▐▐▐▐▐▐▐▐█████",
+   "sold": false
+  },
+  {
+   "title": "NATHANIEL MARY QUINN",
+   "series": "Digital works",
+   "year": 2023,
+   "src": "/img/art/sr/39b0dbbd85e426b0.jpg",
+   "w": 2048,
+   "h": 2048,
+   "url": "https://superrare.com/artwork/eth/0x192b5Cb28023BcC750DAa21c9CF552bF1a8bDbe6/3",
+   "description": "▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐\n▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐█████████▐▐▐▐▐▐▐▐▐▐▐▐▐ \n▐▐▐▐▐▐▐▐▐▐▐▐▐█████████████████▐▐▐▐▐▐▐▐▐▐ \n▐▐▐▐▐▐▐▐▐▐███████▐▐▐▐▐▐█████████▐▐▐▐▐▐▐▐ \n▐▐▐▐▐▐▐▐▐█████▐▐▐▐▐▐▐▐▐▐▐▐▐▐█████",
+   "sold": false
+  },
+  {
+   "title": "MUSEUM",
+   "series": "Digital works",
+   "year": 2023,
+   "src": "/img/art/sr/aba33588737f657e.jpg",
+   "w": 2000,
+   "h": 2300,
+   "url": "https://superrare.com/artwork/eth/0x192b5Cb28023BcC750DAa21c9CF552bF1a8bDbe6/2",
+   "description": "▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐\n▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐█████████▐▐▐▐▐▐▐▐▐▐▐▐▐ \n▐▐▐▐▐▐▐▐▐▐▐▐▐█████████████████▐▐▐▐▐▐▐▐▐▐ \n▐▐▐▐▐▐▐▐▐▐███████▐▐▐▐▐▐█████████▐▐▐▐▐▐▐▐ \n▐▐▐▐▐▐▐▐▐█████▐▐▐▐▐▐▐▐▐▐▐▐▐▐█████",
+   "sold": false
+  },
+  {
+   "title": "WILD BOIS",
+   "series": "Digital works",
+   "year": 2023,
+   "src": "/img/art/sr/8d519ccf0080063f.jpg",
+   "w": 2000,
+   "h": 2300,
+   "url": "https://superrare.com/artwork/eth/0x192b5Cb28023BcC750DAa21c9CF552bF1a8bDbe6/1",
+   "description": "▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐\n▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐█████████▐▐▐▐▐▐▐▐▐▐▐▐▐ \n▐▐▐▐▐▐▐▐▐▐▐▐▐█████████████████▐▐▐▐▐▐▐▐▐▐ \n▐▐▐▐▐▐▐▐▐▐███████▐▐▐▐▐▐█████████▐▐▐▐▐▐▐▐ \n▐▐▐▐▐▐▐▐▐█████▐▐▐▐▐▐▐▐▐▐▐▐▐▐█████",
+   "sold": true
+  },
+  {
+   "title": "H E X A G R A M",
+   "series": "Digital works",
+   "year": 2023,
+   "src": "/img/art/sr/868e47ad12a5c4c6.jpg",
+   "w": 2000,
+   "h": 2000,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/47",
+   "description": "░░░░░░░░░░░░░░░░▓██████▓▓▓░░░░░░░░░░░░░░░\n░░░░░░░░░░░░░█████▓▓█████████▓░░░░░░░░░░░\n░░░░░░░░░░█████▓░░▓█████████████░░░░░░░░░\n░░░░░░░░▓███▓░░░▓█████████████████░░░░░░░\n░░░░░░░███▓░░░░░████████████████",
+   "sold": false
+  },
+  {
+   "title": "M O N U M E N T S",
+   "series": "Digital works",
+   "year": 2022,
+   "src": "/img/art/sr/b2ab203932580c8a.jpg",
+   "w": 1000,
+   "h": 1150,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/45",
+   "description": "New Thought Nightrider\nHurling Through Like Bats From A Shotgun\nHomeruns Of Homecomings\nConnecting Cosmic Neural Pathways,\nOr How Happenstance Happens\nAnonamly Architechts\nand Sideways Soothsayers\nMin",
+   "sold": true
+  },
+  {
+   "title": "I Watched Him Walk Like  A King, While I Sat At The Portal",
+   "series": "Digital works",
+   "year": 2022,
+   "src": "/img/art/sr/3a65853878725264.jpg",
+   "w": 5760,
+   "h": 4160,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/42",
+   "description": "memory vessel",
+   "sold": true
+  },
+  {
+   "title": "India Gulf Niner Niner is Buddy Spiked!",
+   "series": "Digital works",
+   "year": 2022,
+   "src": "/img/art/sr/28da220d031180da.jpg",
+   "w": 2048,
+   "h": 2048,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/41",
+   "description": "Illustration | 2022",
+   "sold": false
+  },
+  {
+   "title": "Sherpas of Soul",
+   "series": "Digital works",
+   "year": 2022,
+   "src": "/img/art/sr/f85ef6fdc7d7dc87.jpg",
+   "w": 3024,
+   "h": 4032,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/40",
+   "description": "Wherever you go, there you are\n\nInk Illustration, Digital Post Process and Color | 2022",
+   "sold": true
+  },
+  {
+   "title": "levitation of density",
+   "series": "Digital works",
+   "year": 2022,
+   "src": "/img/art/sr/06a8621b80ae4434.jpg",
+   "w": 3000,
+   "h": 4000,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/39",
+   "description": "meditation in the loudest of rooms",
+   "sold": true
+  },
+  {
+   "title": "Fools Suffer In Vanity",
+   "series": "Digital works",
+   "year": 2022,
+   "src": "/img/art/sr/7b2a917eebead32b.jpg",
+   "w": 2048,
+   "h": 2048,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/37",
+   "description": "▀██▀─▄███▄─▀██─██▀██▀▀█\n─██─███─███─██─██─██▄█\n─██─▀██▄██▀─▀█▄█▀─██▀█\n▄██▄▄█▀▀▀─────▀──▄██▄▄█\n",
+   "sold": false
+  },
+  {
+   "title": "W A T C H I N G",
+   "series": "Digital works",
+   "year": 2022,
+   "src": "/img/art/sr/d54ed51b87a986c0.jpg",
+   "w": 666,
+   "h": 666,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/26",
+   "description": "Very Interesting Dreams Last Night:\n\nI was with my brother in DTLA or a similar large city, couldn't be exactly sure - but it felt like DTLA. We were walking and ended up in an alleyway, that turned t",
+   "sold": true
+  },
+  {
+   "title": "R E A L M S",
+   "series": "Digital works",
+   "year": 2022,
+   "src": "/img/art/sr/36bc36faed796898.jpg",
+   "w": 666,
+   "h": 666,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/25",
+   "description": "Insecure Hypocrite\nNail Biting Anxious\nFirst To Point Out\nRepetitive Dull\nSpin Cycle,\nYou Own Nothing.\nYour Flag Is Furniture.\nYour Timeless Bronze Sculpture in The Castle Courtyard is Dust In The Win",
+   "sold": true
+  },
+  {
+   "title": "C I T I Z E N   IX",
+   "series": "Digital works",
+   "year": 2022,
+   "src": "/img/art/sr/60c918dcaf7ab475.jpg",
+   "w": 500,
+   "h": 517,
+   "url": "https://superrare.com/artwork/eth/0x9494Fd882b3aF075e649310e607dE03c90c7D3Cb/9",
+   "description": "CITIZENS are works based off of oil paint drawings of the same name.\nWorking off scans of the drawings - which were composed of a stencil of a head and then filled with oil markings - CITIZENS further",
+   "sold": false
+  },
+  {
+   "title": "C I T I Z E N  III",
+   "series": "Digital works",
+   "year": 2022,
+   "src": "/img/art/sr/deae20e734720d6c.jpg",
+   "w": 500,
+   "h": 517,
+   "url": "https://superrare.com/artwork/eth/0x9494Fd882b3aF075e649310e607dE03c90c7D3Cb/3",
+   "description": "CITIZENS are works based off of oil paint drawings of the same name.\nWorking off scans of the drawings - which were composed of a stencil of a head and then filled with oil markings - CITIZENS further",
+   "sold": true
+  },
+  {
+   "title": "ACCOUNTABILITY",
+   "series": "Illustration",
+   "year": 2022,
+   "src": "/img/art/sr/50137b1826566702.jpg",
+   "w": 8192,
+   "h": 8192,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/15",
+   "description": "Illustration | 2022\n__________________\n8192x8192 px\n__________________\nGIANNI ARONE | LOVEBEING",
+   "sold": true
+  },
+  {
+   "title": "H",
+   "series": "Digital works",
+   "year": 2022,
+   "src": "/img/art/sr/457ab54f8de6d51e.jpg",
+   "w": 6000,
+   "h": 9000,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/12",
+   "description": "Sam says H.\nHowever I am also H.\nI am artist H.\nI am H.\nH is.\nH is transformed.\n__________\nC R Y P T 0 A R T L I V E S\n__________\nhttps://twitter.com/SBF_FTX/status/1592001631079497728",
+   "sold": true
+  },
+  {
+   "title": "G U A R D R A I L",
+   "series": "Illustration",
+   "year": 2022,
+   "src": "/img/art/sr/67423fc1f9b01981.jpg",
+   "w": 5000,
+   "h": 5000,
+   "url": "https://superrare.com/artwork/eth/0xe348d6adE651ef5BFCAe7EEfeA537BdBcd69cdfd/10",
+   "description": "Illustration | 2022\n3000x3000 px\n___________________\nOPERATING SATELLITE GALLERY OF: [ E R C 1 1 5 5 ] ONGOING INSTALLATION\n\nARTISTS: GIANNI ARONE | LOVEBEING\n\nT I T L E D: G U A R D R A I L\n\nNEXT:  h",
+   "sold": false
+  }
+ ],
+ "fakerares": [
+  {
+   "title": "FAKEPOTENT",
+   "set": "Fake Rares S5 · C46",
+   "type": "image",
+   "src": "/img/art/fakerares/FAKEPOTENT.webp",
+   "url": "https://pepe.wtf/artists/LOVEBEING"
+  },
+  {
+   "title": "FFFFFIVE",
+   "set": "Fake Rares S6 · C40",
+   "type": "loop",
+   "src": "/img/art/fakerares/FFFFFIVE.mp4",
+   "poster": "/img/art/fakerares/FFFFFIVE.jpg",
+   "url": "https://pepe.wtf/artists/LOVEBEING"
+  },
+  {
+   "title": "FAKEMASTERY",
+   "set": "Fake Rares S8 · C38",
+   "type": "loop",
+   "src": "/img/art/fakerares/FAKEMASTERY.mp4",
+   "poster": "/img/art/fakerares/FAKEMASTERY.jpg",
+   "url": "https://pepe.wtf/artists/LOVEBEING"
+  },
+  {
+   "title": "FAKETITLE",
+   "set": "Fake Rares S9 · C33",
+   "type": "loop",
+   "src": "/img/art/fakerares/FAKETITLE.mp4",
+   "poster": "/img/art/fakerares/FAKETITLE.jpg",
+   "url": "https://pepe.wtf/artists/LOVEBEING"
+  },
+  {
+   "title": "FAKEDREAM",
+   "set": "Fake Rares S11 · C8",
+   "type": "image",
+   "src": "/img/art/fakerares/FAKEDREAM.webp",
+   "url": "https://pepe.wtf/artists/LOVEBEING"
+  },
+  {
+   "title": "BLOODYHARD",
+   "set": "Fake Rares S14 · C27",
+   "type": "loop",
+   "src": "/img/art/fakerares/BLOODYHARD.mp4",
+   "poster": "/img/art/fakerares/BLOODYHARD.jpg",
+   "url": "https://pepe.wtf/artists/LOVEBEING"
+  }
+ ],
+ "giphy": [
+  {
+   "id": "3oJpy5y8WiBsY3AN8Y",
+   "title": "Design Love"
+  },
+  {
+   "id": "l4KhOtQKdwNkE7Xxe",
+   "title": "Beauty Blood"
+  },
+  {
+   "id": "xTiTne1nXXSSRcWP1C",
+   "title": "Vintage Star"
+  },
+  {
+   "id": "3oEduRkbq71vokZcWI",
+   "title": "Awesome Hip Hop"
+  },
+  {
+   "id": "3oEduFZQYSPjwIpLNK",
+   "title": "Awesome Fun"
+  },
+  {
+   "id": "l4xyvg7SDTwVsRVzG",
+   "title": "Black And White Woman"
+  },
+  {
+   "id": "l4KidxNDr9fELIWhG",
+   "title": "Pink Geometry"
+  },
+  {
+   "id": "l41m2Xl2KqSsfnNNC",
+   "title": "Awesome Hip Hop"
+  },
+  {
+   "id": "l41lKeGquDUGvvNcs",
+   "title": "Awesome Fun"
+  },
+  {
+   "id": "l2JJwNgJkSOAN4lrO",
+   "title": "Weather Taurus"
+  },
+  {
+   "id": "l4Ki26QTzUOc832iQ",
+   "title": "Neo Tokyo New Aesthetic"
+  },
+  {
+   "id": "26FPskYll09NDo2li",
+   "title": "Bad Kids Club"
+  },
+  {
+   "id": "l41lPHqtisliLin5e",
+   "title": "Awesome Fun"
+  },
+  {
+   "id": "qDRBkT2DIMjFV6uoUb",
+   "title": ""
+  },
+  {
+   "id": "HEpfkUbUAV6Ioi8EQC",
+   "title": ""
+  },
+  {
+   "id": "scmxLAzMXbr2Z5tqXt",
+   "title": ""
+  },
+  {
+   "id": "gzECgWyfSYGcOYYZq4",
+   "title": ""
+  },
+  {
+   "id": "r7k7e3zhLQq0k53IUm",
+   "title": ""
+  },
+  {
+   "id": "gbgoU3v9UzwqxcWzBg",
+   "title": ""
+  },
+  {
+   "id": "ef3dEwM3QJ1eiYS2t3",
+   "title": ""
+  },
+  {
+   "id": "cZa0tXVjnrsbGWSudS",
+   "title": ""
+  },
+  {
+   "id": "KiFKIWjwDlA5RpMVXk",
+   "title": ""
+  },
+  {
+   "id": "Y9ZLmNGD9SUwqxnm90",
+   "title": ""
+  },
+  {
+   "id": "Cfs4oYgUCVYac6dVL9",
+   "title": ""
+  },
+  {
+   "id": "AhUNVI2vHJ4X9GdSoc",
+   "title": ""
+  },
+  {
+   "id": "AexGGzBM65T8AB1mSy",
+   "title": ""
+  },
+  {
+   "id": "vmx9xJMUgcrptxgQRS",
+   "title": ""
+  },
+  {
+   "id": "N0IzvohnYrkfADDzWb",
+   "title": ""
+  },
+  {
+   "id": "YszwhxXQF2GZmNnVYn",
+   "title": ""
+  },
+  {
+   "id": "tAWc2jiQEmGZsgFaGh",
+   "title": ""
+  },
+  {
+   "id": "f1kOattlfKKui4E0aH",
+   "title": ""
+  },
+  {
+   "id": "4jcRA1myEVKNBpKoe9",
+   "title": ""
+  },
+  {
+   "id": "JMuTcCsJDLFl6KQH8p",
+   "title": ""
+  },
+  {
+   "id": "ssZhPz3cbU7qgPmvKb",
+   "title": ""
+  },
+  {
+   "id": "HKEzUVo7AubYhafcg0",
+   "title": ""
+  },
+  {
+   "id": "8gRR0tBvKa7k2id05W",
+   "title": ""
+  },
+  {
+   "id": "I0JDLkfpRfWCoz4laD",
+   "title": ""
+  },
+  {
+   "id": "Xp5fIYsydREO3WGyab",
+   "title": ""
+  },
+  {
+   "id": "EgL2PJfOGJPnWfQHyf",
+   "title": ""
+  },
+  {
+   "id": "sRqU34Gsxbfvo2IKMi",
+   "title": ""
+  },
+  {
+   "id": "9t2cppVSZjyaukyQ7w",
+   "title": ""
+  },
+  {
+   "id": "8fgI2EwsQg2oupUXTA",
+   "title": ""
+  },
+  {
+   "id": "XMjnhsbtH0t5m63fE7",
+   "title": ""
+  },
+  {
+   "id": "C9cGbY1bfN4dwG1DCe",
+   "title": ""
+  },
+  {
+   "id": "V4PTLgMbdGF1e15wWT",
+   "title": ""
+  },
+  {
+   "id": "aaLc2eBusNCzyCY31Y",
+   "title": ""
+  },
+  {
+   "id": "4gwrGjgj8xLYRZolV2",
+   "title": ""
+  },
+  {
+   "id": "7bR2f6mwPYyhf2m8H9",
+   "title": ""
+  },
+  {
+   "id": "SslcecANB65q54js1F",
+   "title": ""
+  },
+  {
+   "id": "JTtcv3vcvUrmc18ioL",
+   "title": ""
+  },
+  {
+   "id": "J4UcxED60R73X3fp4e",
+   "title": ""
+  },
+  {
+   "id": "S8rJSaeXPZUiFoemNY",
+   "title": ""
+  },
+  {
+   "id": "ZCB6PLbniRsJMrf0ei",
+   "title": ""
+  },
+  {
+   "id": "Kcb4e31o7Ye5ysxMcr",
+   "title": ""
+  },
+  {
+   "id": "l0dKSv9gWYhZNsOmEz",
+   "title": ""
+  },
+  {
+   "id": "kIL872sTNxp8WxAnOs",
+   "title": ""
+  },
+  {
+   "id": "H34HjLvBkovIMDrMfw",
+   "title": ""
+  },
+  {
+   "id": "THyVvVHQLQNaYmh96R",
+   "title": ""
+  },
+  {
+   "id": "f5jg3bItjhQROcqtBE",
+   "title": ""
+  },
+  {
+   "id": "gj6d6x83NwH1pR904b",
+   "title": ""
+  },
+  {
+   "id": "fvfRGHw6qz6S6lmFyB",
+   "title": ""
+  },
+  {
+   "id": "3D1eQbiqgZffcam8aX",
+   "title": ""
+  },
+  {
+   "id": "ygzrYYl1SvWqanUE4J",
+   "title": ""
+  },
+  {
+   "id": "8BkaZkknQnDQjQhDUK",
+   "title": ""
+  },
+  {
+   "id": "4WFFjmueFMZvlHv4U9",
+   "title": ""
+  },
+  {
+   "id": "cXHyaVDp90IWrnFrcE",
+   "title": ""
+  },
+  {
+   "id": "2gYa4hN4RAvGXunWUf",
+   "title": ""
+  },
+  {
+   "id": "3ohc0ZJB9s5fhqyZyw",
+   "title": ""
+  },
+  {
+   "id": "jIw2Jl4bvzQR1WI65h",
+   "title": ""
+  },
+  {
+   "id": "241W2c72KXS6PjcM0Y",
+   "title": ""
+  },
+  {
+   "id": "2A8U8Chsj8oR0ta199",
+   "title": ""
+  },
+  {
+   "id": "YWIZ32iTcTrXu3iM9b",
+   "title": ""
+  },
+  {
+   "id": "igF7sy2RluGprGJJaX",
+   "title": ""
+  },
+  {
+   "id": "l4FGlqppxpyuIlYIg",
+   "title": ""
+  },
+  {
+   "id": "l0IyduSlTo3MiBkB2",
+   "title": ""
+  },
+  {
+   "id": "3oFzm5VvyoIatEbMKk",
+   "title": ""
+  },
+  {
+   "id": "l0Iyl2ziKP6t5iKSk",
+   "title": ""
+  },
+  {
+   "id": "l0HU7MjAiEuUixTPO",
+   "title": ""
+  },
+  {
+   "id": "l0Iyghj2K4u9pliuI",
+   "title": ""
+  },
+  {
+   "id": "l0MYNRy90Ipb8KNX2",
+   "title": ""
+  },
+  {
+   "id": "xThuW4AlW1ynEH4UfK",
+   "title": ""
+  },
+  {
+   "id": "3o7TKAG5rifHNFNYVq",
+   "title": ""
+  },
+  {
+   "id": "xT8qBqNynWHvz5chZC",
+   "title": ""
+  },
+  {
+   "id": "3o7TKSLqdmY2VAWVX2",
+   "title": ""
+  },
+  {
+   "id": "3o7WTGm3VnYMV4ywXC",
+   "title": ""
+  },
+  {
+   "id": "3o6EhCCmrzRb3tzdG8",
+   "title": ""
+  }
+ ],
+ "links": {
+  "behance": "https://www.behance.net/gallery/186190901/Illustration-and-Gif-Art",
+  "superrare": "https://superrare.com/lovebeing",
+  "fakerares": "https://pepe.wtf/artists/LOVEBEING",
+  "giphy": "https://giphy.com/gianniarone",
+  "gallery": "/art/gallery/"
+ }
+}

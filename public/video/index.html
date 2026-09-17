@@ -6,52 +6,77 @@
   <title>Video — Gianni Arone</title>
   <meta name="description" content="Motion design, editing, spec spots, lyric videos and social creative by Gianni Arone. Work for Disney, Marvel, Sony, Universal, Hulu, Nike, Kalshi and more.">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/portfolio.css">
 </head>
 <body>
-
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="/">Gianni Arone <span>Studio</span></a>
+    <a class="brand" href="/"><span class="dot"></span>Gianni Arone</a>
     <button class="nav-toggle" aria-label="Menu">Menu</button>
     <ul>
       <li><a href="/video/" class="active">Video</a></li>
-      <li><a href="/web/">Web</a></li>
-      <li><a href="/resume/">Resume</a></li>
       <li><a href="/art/">Art</a></li>
-      <li><a href="/v1s1t0r/mixes/">Mixes</a></li>
+      <li><a href="/web/">Web</a></li>
+      <li><a href="/music/">Music</a></li>
+      <li><a href="/resume/">Resume</a></li>
       <li><a href="mailto:gianniaronestudio@gmail.com">Contact</a></li>
     </ul>
   </div>
 </header>
 
 <main>
-  <section class="hero" style="padding-bottom:32px">
-    <div class="wrap">
-      <div class="eyebrow">Motion · Edit · Sound · Direction</div>
-      <h1>Video</h1>
-      <p class="lede" style="margin-top:14px">Spec spots, studio social content, lyric videos, reels and personal work. Most of it animated, edited and sound-designed by me; credits are in each description. Full archive at <a href="https://vimeo.com/uaawtf" target="_blank" rel="noopener" style="color:#fff;border-bottom:1px solid #333">vimeo.com/uaawtf</a>.</p>
+  <section class="hero" style="min-height:0;padding-bottom:40px">
+    <div class="blob b1"></div><div class="blob b3"></div>
+    <div class="wrap" style="grid-template-columns:1fr">
+      <div>
+        <span class="eyebrow blue">Video · vimeo.com/uaawtf</span>
+        <h1>Things that <span class="grad-text">move.</span></h1>
+        <p class="lede" style="margin-top:18px">Spec spots, studio social content, lyric videos, reels and personal work. Most of it animated, edited and sound-designed by me. Pick a filter, click a card, it plays right here.</p>
+      </div>
     </div>
   </section>
 
-  <section style="padding-top:24px">
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="player reveal" data-vimeo="1071685172" role="button" tabindex="0" aria-label="Play the 2025 reel">
+        <img src="/img/video/1071685172.jpg" alt="UAA 2025 reel poster">
+        <div class="play"><div class="playbtn">&#9654;</div><div class="lbl">Play the 2025 reel · 2:33</div></div>
+        <div class="meta"><span>UAA 2025 · Unheard</span><span>Social creative reel</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tint-blue bordered" style="padding-top:56px">
     <div class="wrap">
       <div class="filters" id="filters" role="tablist"></div>
-      <div class="grid" id="grid"></div>
-      <p class="small muted" id="empty" style="display:none;padding:40px 0;text-align:center">No videos in this set.</p>
+      <div class="vgrid" id="grid"></div>
+      <p class="muted" id="empty" style="display:none;padding:40px 0;text-align:center">No videos in this set.</p>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <div class="links">
-      <a href="mailto:gianniaronestudio@gmail.com">gianniaronestudio@gmail.com</a>
-      <a href="https://vimeo.com/uaawtf" target="_blank" rel="noopener">Vimeo</a>
-      <a href="https://www.instagram.com/gianniarone/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://linktr.ee/gianniarone" target="_blank" rel="noopener">Linktree</a>
+    <div>
+      <div class="big">Let's make <a href="mailto:gianniaronestudio@gmail.com">something loud.</a></div>
+      <div class="links">
+        <a href="mailto:gianniaronestudio@gmail.com">gianniaronestudio@gmail.com</a>
+        <a href="https://vimeo.com/uaawtf" target="_blank" rel="noopener">Vimeo</a>
+        <a href="https://soundcloud.com/v-i-s-i-t-o-r" target="_blank" rel="noopener">SoundCloud</a>
+        <a href="https://www.instagram.com/gianniarone/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://giphy.com/gianniarone" target="_blank" rel="noopener">GIPHY</a>
+        <a href="https://www.behance.net/gianniarone" target="_blank" rel="noopener">Behance</a>
+        <a href="https://superrare.com/lovebeing" target="_blank" rel="noopener">SuperRare</a>
+        <a href="https://linktr.ee/gianniarone" target="_blank" rel="noopener">Linktree</a>
+      </div>
     </div>
-    <div class="copy">&copy; 2026 Gianni Arone · Rochester, NY</div>
+    <div class="links" style="margin-top:0">
+      <a href="/video/">Video</a><a href="/art/">Art</a><a href="/web/">Web</a><a href="/music/">Music</a><a href="/resume/">Resume</a><a href="/art/gallery/">Gallery</a>
+    </div>
+    <div class="copy">&copy; 2026 Gianni Arone · Rochester, NY · Director of Digital Operations, Evolution24 Properties</div>
   </div>
 </footer>
 
@@ -60,49 +85,36 @@
 (function () {
   var ORDER = ['all', 'reels', 'spots', 'entertainment', 'music', 'art'];
   var LABEL = { all: 'All', reels: 'Reels', spots: 'Spots', entertainment: 'Entertainment', music: 'Music videos', art: 'Art' };
-  var grid = document.getElementById('grid');
-  var filters = document.getElementById('filters');
-  var empty = document.getElementById('empty');
-  var videos = [];
-  var active = (location.hash || '#all').slice(1);
+  var grid = document.getElementById('grid'), filters = document.getElementById('filters'), empty = document.getElementById('empty');
+  var videos = [], active = (location.hash || '#all').slice(1);
   if (ORDER.indexOf(active) < 0) active = 'all';
-
   function render() {
     grid.innerHTML = '';
     var list = videos.filter(function (v) { return active === 'all' || v.category === active; });
-    list.forEach(function (v) { grid.appendChild(GA.card(v)); });
+    GA.setPlaylist(list);
+    list.forEach(function (v, i) { grid.appendChild(GA.vcard(v, 'd' + (i % 4))); });
+    GA.observeReveals(grid);
     empty.style.display = list.length ? 'none' : 'block';
     filters.querySelectorAll('button').forEach(function (b) { b.classList.toggle('active', b.dataset.cat === active); });
   }
-
   GA.loadVideos().then(function (d) {
     videos = d.videos.slice().sort(function (a, b) {
-      // reels first, then newest first
-      var ra = a.category === 'reels' ? 0 : 1, rb = b.category === 'reels' ? 0 : 1;
-      if (ra !== rb) return ra - rb;
+      var ea = a.embeddable ? 0 : 1, eb = b.embeddable ? 0 : 1; if (ea !== eb) return ea - eb; // playable first
+      var ra = a.category === 'reels' ? 0 : 1, rb = b.category === 'reels' ? 0 : 1; if (ra !== rb) return ra - rb;
       return a.date < b.date ? 1 : -1;
     });
-    var counts = {};
-    videos.forEach(function (v) { counts[v.category] = (counts[v.category] || 0) + 1; });
+    var counts = {}; videos.forEach(function (v) { counts[v.category] = (counts[v.category] || 0) + 1; });
     ORDER.forEach(function (c) {
       if (c !== 'all' && !counts[c]) return;
-      var b = document.createElement('button');
-      b.dataset.cat = c;
-      b.setAttribute('role', 'tab');
+      var b = document.createElement('button'); b.dataset.cat = c; b.setAttribute('role', 'tab');
       b.innerHTML = LABEL[c] + '<small>' + (c === 'all' ? videos.length : counts[c]) + '</small>';
-      b.addEventListener('click', function () {
-        active = c;
-        history.replaceState(null, '', c === 'all' ? location.pathname : '#' + c);
-        render();
-      });
+      b.addEventListener('click', function () { active = c; history.replaceState(null, '', c === 'all' ? location.pathname : '#' + c); render(); });
       filters.appendChild(b);
     });
     render();
-  }).catch(function (e) {
-    grid.innerHTML = '<p class="muted small">Could not load the video list. <a href="https://vimeo.com/uaawtf" style="color:#fff">Watch on Vimeo ↗</a></p>';
-    console.error(e);
-  });
+  }).catch(function (e) { grid.innerHTML = '<p>Could not load the video list. <a href="https://vimeo.com/uaawtf">Watch on Vimeo ↗</a></p>'; console.error(e); });
 })();
 </script>
+
 </body>
 </html>

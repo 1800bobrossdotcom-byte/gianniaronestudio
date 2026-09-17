@@ -9,6 +9,7 @@
   },
   "scripts": {
     "sync-vimeo": "node scripts/sync-vimeo.mjs",
-    "dev": "npx http-server public -p 3000 -c-1"
+    "dev": "npx http-server public -p 3000 -c-1",
+    "upload-art": "node scripts/upload-art-to-blob.mjs"
   }
 }
