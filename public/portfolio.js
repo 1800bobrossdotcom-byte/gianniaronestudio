@@ -242,12 +242,28 @@
   function giphyMp4(id) { return 'https://media.giphy.com/media/' + id + '/giphy.mp4'; }
   function giphyStill(id) { return 'https://media.giphy.com/media/' + id + '/480w_s.jpg'; }
   function giphyWebp(id) { return 'https://media.giphy.com/media/' + id + '/200w.webp'; }
-  // GIPHY clips render as animated WebP images: dozens of animated images are cheap for the
-  // browser, dozens of <video> decoders are not, and there is no play/pause state to manage.
-  function giphyImg(id, title) { return '<img loading="lazy" decoding="async" src="' + esc(giphyWebp(id)) + '" alt="' + esc(title || '') + '">'; }
+  function giphyStillGif(id) { return 'https://media.giphy.com/media/' + id + '/200_s.gif'; }
+  // A wall tile is a ~15KB still until you point at it, then it swaps to the animated file
+  // (~300KB, some over 1MB). Loading all 86 animated up front cost ~25MB.
+  function giphyImg(id, title) {
+    return '<img class="gifstill" loading="lazy" decoding="async" src="' + esc(giphyStillGif(id)) + '" data-anim="' + esc(giphyWebp(id)) + '" alt="' + esc(title || '') + '">';
+  }
+  // Always-animated version, for the marquee (fed the lightest clips).
+  function giphyAnim(id, title) { return '<img loading="lazy" decoding="async" src="' + esc(giphyWebp(id)) + '" alt="' + esc(title || '') + '">'; }
+  function bindGifHover(root) {
+    (root || document).querySelectorAll('img.gifstill[data-anim]').forEach(function (img) {
+      if (img.dataset.bound) return; img.dataset.bound = '1';
+      var play = function () { if (img.dataset.anim && img.src !== img.dataset.anim) img.src = img.dataset.anim; };
+      var host = img.closest('a') || img;
+      host.addEventListener('mouseenter', play);
+      host.addEventListener('focus', play);
+      host.addEventListener('touchstart', play, { passive: true });
+    });
+  }
+  // The marquee animates continuously, so it is fed the lightest clips (art.json is sorted by size).
   function marqueeFill(track, gifs, count) {
     var picks = gifs.slice(0, count);
-    track.innerHTML = picks.map(function (g) { return '<div class="item">' + giphyImg(g.id, g.title) + '</div>'; }).join('');
+    track.innerHTML = picks.map(function (g) { return '<div class="item">' + giphyAnim(g.id, g.title) + '</div>'; }).join('');
     startMarquee(track, 70);
   }
 
@@ -261,8 +277,10 @@
     if (!track) return;
     var base = track.innerHTML;
     // Repeat the base until it covers two viewport widths, then double it for the seamless wrap.
+    // Only enough copies to exceed one viewport; doubling below makes the wrap seamless.
+    // Each copy is another animated image the browser decodes, so keep the count low.
     var guard = 0;
-    while (track.scrollWidth < window.innerWidth * 2 && guard++ < 8) track.innerHTML += base;
+    while (track.scrollWidth < window.innerWidth * 1.1 && guard++ < 8) track.innerHTML += base;
     track.innerHTML += track.innerHTML;
     var half = 0, x = 0, last = null, paused = false, raf = 0;
     var gap = parseFloat(getComputedStyle(track).gap) || 0;
@@ -292,7 +310,7 @@
   window.GA = {
     loadVideos: loadVideos, vcard: vcard, openVideo: openVideo, setPlaylist: setPlaylist, fmtDur: fmtDur, esc: esc, CAT_LABEL: CAT_LABEL,
     loadSites: loadSites, scard: scard, openSite: openSite,
-    loadArt: loadArt, openLb: openLb, loopHTML: loopHTML, giphyMp4: giphyMp4, giphyStill: giphyStill, giphyWebp: giphyWebp, giphyImg: giphyImg, marqueeFill: marqueeFill, startMarquee: startMarquee,
+    loadArt: loadArt, openLb: openLb, loopHTML: loopHTML, giphyMp4: giphyMp4, giphyStill: giphyStill, giphyWebp: giphyWebp, giphyImg: giphyImg, giphyAnim: giphyAnim, bindGifHover: bindGifHover, marqueeFill: marqueeFill, startMarquee: startMarquee,
     observeReveals: observeReveals, observeLazy: observeLazy, bindPlayers: bindPlayers, el: el
   };
 
