@@ -123,13 +123,13 @@
 <script>
 (function () {
   GA.loadArt().then(function (a) {
-    GA.marqueeFill(document.getElementById('gifmarquee'), a.giphy.slice(24, 48), 24);
+    GA.marqueeFill(document.getElementById('gifmarquee'), a.giphy, 14);
 
     // Behance masonry
     var bEl = document.getElementById('behance');
     var bItems = a.behance.map(function (b) { return { type: b.type, src: b.src, poster: b.poster, title: '', sub: 'Illustration & GIF art', url: a.links.behance, linkLabel: 'Behance ↗' }; });
     a.behance.forEach(function (b, i) {
-      var t = GA.el('<a class="tile reveal d' + (i % 4) + '" href="' + a.links.behance + '"><div class="media">' + (b.type === 'loop' ? GA.loopHTML(b.src, b.poster) : '<img loading="lazy" decoding="async" src="' + b.src + '" alt="" width="' + b.w + '" height="' + b.h + '">') + '</div></a>');
+      var t = GA.el('<a class="tile reveal d' + (i % 4) + '" href="' + a.links.behance + '"><div class="media">' + (b.type === 'loop' ? GA.loopHTML(b.src, b.thumbPoster || b.poster) : '<img loading="lazy" decoding="async" src="' + (b.thumb || b.src) + '" alt="" width="' + b.w + '" height="' + b.h + '">') + '</div></a>');
       t.addEventListener('click', function (e) { e.preventDefault(); GA.openLb(bItems, i); });
       bEl.appendChild(t);
     });
@@ -144,7 +144,7 @@
       var list = a.superrare.filter(function (w) { return active === 'all' || w.series === active; });
       var items = list.map(function (w) { return { type: 'image', src: w.src, title: w.title, sub: w.series + (w.year ? ' · ' + w.year : ''), url: w.url, linkLabel: 'View on SuperRare ↗' }; });
       list.forEach(function (w, i) {
-        var t = GA.el('<a class="tile reveal d' + (i % 4) + '" href="' + w.url + '" target="_blank" rel="noopener"><div class="media"><img loading="lazy" decoding="async" src="' + w.src + '" alt="' + GA.esc(w.title) + '"></div><div class="cap"><span>' + GA.esc(w.title) + '</span><small>' + (w.year || '') + '</small></div></a>');
+        var t = GA.el('<a class="tile reveal d' + (i % 4) + '" href="' + w.url + '" target="_blank" rel="noopener"><div class="media"><img loading="lazy" decoding="async" src="' + (w.thumb || w.src) + '" alt="' + GA.esc(w.title) + '"></div><div class="cap"><span>' + GA.esc(w.title) + '</span><small>' + (w.year || '') + '</small></div></a>');
         t.addEventListener('click', function (e) { e.preventDefault(); GA.openLb(items, i); });
         sEl.appendChild(t);
       });
@@ -163,7 +163,7 @@
     var frEl = document.getElementById('fakerares');
     var frItems = a.fakerares.map(function (c) { return { type: c.type, src: c.src, poster: c.poster, title: c.title, sub: c.set, url: c.url, linkLabel: 'pepe.wtf ↗' }; });
     a.fakerares.forEach(function (c, i) {
-      var t = GA.el('<a class="tile reveal d' + (i % 4) + '" href="' + c.url + '"><div class="media">' + (c.type === 'loop' ? GA.loopHTML(c.src, c.poster) : '<img loading="lazy" src="' + c.src + '" alt="' + c.title + '">') + '</div><div class="cap">' + c.title + '<small>' + c.set + '</small></div></a>');
+      var t = GA.el('<a class="tile reveal d' + (i % 4) + '" href="' + c.url + '"><div class="media">' + (c.type === 'loop' ? GA.loopHTML(c.src, c.thumbPoster || c.poster) : '<img loading="lazy" src="' + (c.thumb || c.src) + '" alt="' + c.title + '">') + '</div><div class="cap">' + c.title + '<small>' + c.set + '</small></div></a>');
       t.addEventListener('click', function (e) { e.preventDefault(); GA.openLb(frItems, i); });
       frEl.appendChild(t);
     });
@@ -174,16 +174,18 @@
       gEl.appendChild(GA.el('<a href="https://giphy.com/gifs/' + g.id + '" target="_blank" rel="noopener" title="' + GA.esc(g.title || 'GIF') + '">' + GA.giphyImg(g.id, g.title) + '</a>'));
     });
 
+    GA.bindGifHover(gEl);
     GA.observeLazy(); GA.observeReveals(); GA.bindTilt();
   });
 
-  // Physical work from the gallery's blob storage
-  fetch('/api/images').then(function (r) { return r.ok ? r.json() : []; }).then(function (imgs) {
+  // Physical work: local thumbnails in the strip, the full blob image in the lightbox.
+  GA.loadArt().then(function (a) {
     var el = document.getElementById('physicalstrip');
-    if (!imgs.length) { el.innerHTML = '<p class="muted">Open the gallery to browse the physical work.</p>'; return; }
-    var items = imgs.map(function (im) { return { type: 'image', src: im.url, title: '', sub: 'Physical work', url: '/art/gallery/', linkLabel: 'Open gallery →' }; });
-    imgs.slice(0, 14).forEach(function (im, i) {
-      var t = GA.el('<a class="tile" href="/art/gallery/"><div class="media"><img loading="lazy" src="' + im.url + '" alt=""></div></a>');
+    var list = a.physical || [];
+    if (!list.length) { el.innerHTML = '<p class="muted">Open the gallery to browse the physical work.</p>'; return; }
+    var items = list.map(function (im) { return { type: 'image', src: im.full, title: '', sub: 'Physical work', url: '/art/gallery/', linkLabel: 'Open gallery →' }; });
+    list.forEach(function (im, i) {
+      var t = GA.el('<a class="tile" href="/art/gallery/"><div class="media"><img loading="lazy" decoding="async" src="' + im.thumb + '" alt=""></div></a>');
       t.addEventListener('click', function (e) { e.preventDefault(); GA.openLb(items, i); });
       el.appendChild(t);
     });

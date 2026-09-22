@@ -47,10 +47,10 @@
         </div>
       </div>
       <div class="collage" aria-hidden="true">
-        <div class="piece p1"><img src="/img/art/behance/14.webp" alt=""></div>
-        <div class="piece p2"><img src="/img/art/behance/16.webp" alt=""></div>
-        <div class="piece p3"><video src="/img/art/behance/02.mp4" poster="/img/art/behance/02.jpg" autoplay muted loop playsinline></video></div>
-        <div class="piece p4"><img src="/img/art/behance/19.webp" alt=""></div>
+        <div class="piece p1"><img src="/img/art/thumb/beh-14.webp" alt=""></div>
+        <div class="piece p2"><img src="/img/art/thumb/beh-16.webp" alt=""></div>
+        <div class="piece p3"><video src="/img/art/behance/02.mp4" poster="/img/art/thumb/02-p.webp" autoplay muted loop playsinline></video></div>
+        <div class="piece p4"><img src="/img/art/thumb/beh-19.webp" alt=""></div>
         <div class="sticker">Est. 2006<br>20 yrs<br>motion · web · art</div>
       </div>
     </div>
@@ -179,7 +179,7 @@
   });
 
   GA.loadArt().then(function (a) {
-    GA.marqueeFill(document.getElementById('gifmarquee'), a.giphy.slice(0, 24), 24);
+    GA.marqueeFill(document.getElementById('gifmarquee'), a.giphy, 14);
     var el = document.getElementById('artpick');
     var beh = a.behance, sr = a.superrare, fr = a.fakerares;
     var pick = [
@@ -187,9 +187,9 @@
       beh.find(function (b) { return b.id === '40'; }), fr[3], beh.find(function (b) { return b.id === '15'; }),
       sr[39] || sr[1], beh.find(function (b) { return b.id === '33'; }), beh.find(function (b) { return b.id === '20'; })
     ].filter(Boolean);
-    var items = pick.map(function (p) { return { type: p.type || 'image', src: p.src, poster: p.poster, title: p.title || '', sub: p.series ? p.series + (p.year ? ' · ' + p.year : '') : (p.set || 'Illustration & GIF art'), url: p.url || a.links.behance, linkLabel: p.series ? 'SuperRare ↗' : (p.set ? 'Fake Rares ↗' : 'Behance ↗') }; });
+    var items = pick.map(function (p) { return { type: p.type || 'image', src: p.src, poster: p.poster, thumb: p.thumb || p.thumbPoster, title: p.title || '', sub: p.series ? p.series + (p.year ? ' · ' + p.year : '') : (p.set || 'Illustration & GIF art'), url: p.url || a.links.behance, linkLabel: p.series ? 'SuperRare ↗' : (p.set ? 'Fake Rares ↗' : 'Behance ↗') }; });
     items.forEach(function (it, i) {
-      var t = GA.el('<a class="tile reveal d' + (i % 4) + '" href="' + GA.esc(it.url) + '"><div class="media">' + (it.type === 'loop' ? GA.loopHTML(it.src, it.poster) : '<img loading="lazy" src="' + GA.esc(it.src) + '" alt="">') + '</div></a>');
+      var t = GA.el('<a class="tile reveal d' + (i % 4) + '" href="' + GA.esc(it.url) + '"><div class="media">' + (it.type === 'loop' ? GA.loopHTML(it.src, it.thumb || it.poster) : '<img loading="lazy" src="' + GA.esc(it.thumb || it.src) + '" alt="">') + '</div></a>');
       t.addEventListener('click', function (e) { e.preventDefault(); GA.openLb(items, i); });
       el.appendChild(t);
     });
