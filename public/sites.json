@@ -24,6 +24,30 @@
    "mobile": "/img/sites/full/charlotte-square-mobile.jpg"
   },
   {
+   "id": "evolution24",
+   "name": "Evolution24 Properties",
+   "tagline": "An evolution in home.",
+   "url": "https://evolution24-net.vercel.app/",
+   "domain": "evolution24.net",
+   "pendingDomain": true,
+   "role": "Design · Build · SEO",
+   "client": "Evolution24 Properties",
+   "year": "2026",
+   "accent": "#5b4a3a",
+   "description": "Corporate site for a family-owned property company: eleven buildings across Rochester, Syracuse, Manlius and Geneva, with live availability and rents from the same source the leasing team uses. Property pages for every building, an availability view, resident portal hand-off, FAQs and contact, plus the technical SEO, structured data and lead routing underneath. Moving to evolution24.net shortly.",
+   "tags": [
+    "Marketing site",
+    "Property pages",
+    "Live availability",
+    "Technical SEO",
+    "Lead capture",
+    "Vercel"
+   ],
+   "shot": "/img/sites/evolution24.jpg",
+   "full": "/img/sites/full/evolution24.jpg",
+   "mobile": "/img/sites/full/evolution24-mobile.jpg"
+  },
+  {
    "id": "caliper",
    "name": "Caliper",
    "tagline": "Labor, measured true.",
@@ -150,26 +174,6 @@
    "shot": "/img/sites/b0b.jpg",
    "full": "/img/sites/b0b.jpg",
    "mobile": null
-  },
-  {
-   "id": "dottrader",
-   "name": "dottrader",
-   "tagline": "More $DOT. Counted in public.",
-   "url": "https://dottrader.app",
-   "domain": "dottrader.app",
-   "role": "Personal · Live dashboard",
-   "year": "2026",
-   "accent": "#a83a26",
-   "description": "A swarm of small trading agents with one instruction: end every cycle holding more $DOT than it started with. Every fill, win and loss is posted in public, measured against the day it began. Live on Base, with an open journal and a source link.",
-   "tags": [
-    "Trading agents",
-    "Base",
-    "Live data",
-    "Open journal"
-   ],
-   "shot": "/img/sites/dottrader.jpg",
-   "full": "/img/sites/full/dottrader.jpg",
-   "mobile": "/img/sites/full/dottrader-mobile.jpg"
   },
   {
    "id": "irl",
