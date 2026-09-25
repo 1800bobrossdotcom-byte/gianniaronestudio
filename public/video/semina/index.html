@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semina — Gianni Arone</title>
+  <meta name="description" content="Semina: a lyric music video by Gianni Arone. Audio-reactive, datamoshed and cut from public-domain government and silent-era film, with every image chosen to answer the words.">
+  <link rel="canonical" href="https://www.gianniarone.com/video/semina/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/portfolio.css">
+  <meta property="og:title" content="Semina — Gianni Arone">
+  <meta property="og:description" content="Lyric music video: every image answers the words.">
+  <meta property="og:image" content="https://www.gianniarone.com/video/semina/poster.jpg">
+  <meta property="og:video" content="https://www.gianniarone.com/video/semina/semina-1080p.mp4">
+  <style>
+    .bm { --lvl: 0; --hot: #ff2a4d; --cold: #19e3ff; background: #0b0b0c; color: #ece8df; }
+    .bm .wrap { max-width: var(--max); margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px); }
+    .bm-hero { padding: clamp(40px, 7vw, 88px) 0 28px; position: relative; overflow: hidden; }
+    .bm-kicker { font: 500 12px/1.4 var(--mono); letter-spacing: .18em; text-transform: uppercase; color: #9d988f; display: flex; flex-wrap: wrap; gap: 8px 18px; margin-bottom: 18px; }
+    .bm-kicker b { color: var(--hot); font-weight: 600; }
+    .bm h1 { font: 900 clamp(64px, 13vw, 184px)/.84 var(--display); letter-spacing: -.01em; text-transform: uppercase; margin: 0;
+      text-shadow: calc(var(--lvl) * 14px) 0 0 rgba(255, 42, 77, .85), calc(var(--lvl) * -14px) 0 0 rgba(25, 227, 255, .85); }
+    .bm h1 .redact { background: #ece8df; color: #0b0b0c; padding: 0 .06em; }
+    .bm .lede { color: #cfcac0; margin-top: 22px; max-width: 760px; }
+    .bm-stage { padding-bottom: 30px; }
+    .bm-frame { position: relative; border: 2px solid #ece8df; background: #000; aspect-ratio: 16 / 9;
+      box-shadow: 0 0 calc(10px + var(--lvl) * 70px) rgba(255, 42, 77, calc(.15 + var(--lvl) * .55)), 8px 8px 0 #ece8df; }
+    .bm-frame video { display: block; width: 100%; height: 100%; background: #000; }
+    .bm-frame .tag { position: absolute; top: -13px; left: 18px; background: var(--hot); color: #fff; font: 600 11px/1 var(--mono); letter-spacing: .16em; padding: 7px 10px; text-transform: uppercase; }
+    .bm-meter { display: block; width: 100%; height: 56px; margin-top: 18px; }
+    .bm-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 22px; }
+    .bm .btn { background: #ece8df; color: #0b0b0c; border-color: #ece8df; box-shadow: 4px 4px 0 var(--hot); }
+    .bm .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--hot); }
+    .bm .btn.ghost { background: transparent; color: #ece8df; box-shadow: 4px 4px 0 #3b3b3b; }
+    .bm-actions small { font: 500 12px/1.5 var(--mono); color: #8f8a81; letter-spacing: .06em; }
+    .bm-warn { margin-top: 26px; border: 1px dashed #5c5852; padding: 14px 16px; font: 500 13px/1.55 var(--mono); color: #cfcac0; }
+    .bm-warn b { color: var(--hot); }
+    .bm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 40px; padding: 56px 0 80px; border-top: 1px solid #2a2a2a; margin-top: 50px; }
+    .bm h2 { font: 800 34px/1 var(--display); text-transform: uppercase; letter-spacing: .01em; margin: 0 0 16px; }
+    .bm h2 span { color: var(--hot); font: 600 12px/1 var(--mono); letter-spacing: .16em; vertical-align: middle; margin-left: 8px; }
+    .bm p.small, .bm li { font-size: 15px; line-height: 1.55; color: #cfcac0; }
+    .bm ul.src { list-style: none; padding: 0; margin: 0; }
+    .bm ul.src li { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid #222; }
+    .bm ul.src a { color: #ece8df; text-decoration: underline; text-decoration-color: #555; text-underline-offset: 3px; }
+    .bm ul.src a:hover { text-decoration-color: var(--hot); }
+    .bm ul.src span { font: 500 12px/1.6 var(--mono); color: #8f8a81; white-space: nowrap; text-align: right; }
+    .bm ol.how { padding-left: 20px; margin: 0; }
+    .bm ol.how li { margin-bottom: 10px; }
+    .bm ol.how b { color: #ece8df; }
+    @media (max-width: 560px) { .bm ul.src li { flex-direction: column; gap: 2px; } .bm ul.src span { text-align: left; white-space: normal; } }
+    @media (prefers-reduced-motion: reduce) { .bm h1, .bm-frame { text-shadow: none !important; box-shadow: 8px 8px 0 #ece8df !important; } }
+      .bm-lyrics { columns: 2 300px; column-gap: 40px; }
+    .bm-lyrics p { break-inside: avoid; margin: 0 0 18px; font: 400 15px/1.6 var(--mono); color: #cfcac0; }
+    .bm details summary { cursor: pointer; font: 600 13px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: #ece8df; padding: 14px 0; }
+    .bm details summary::marker { color: var(--hot); }
+  </style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="dot"></span>Gianni Arone</a>
+    <button class="nav-toggle" aria-label="Menu">Menu</button>
+    <ul>
+      <li><a href="/video/" class="active">Video</a></li>
+      <li><a href="/art/">Art</a></li>
+      <li><a href="/web/">Web</a></li>
+      <li><a href="/music/">Music</a></li>
+      <li><a href="/resume/">Resume</a></li>
+      <li><a href="mailto:gianniaronestudio@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="bm" id="bm">
+  <section class="bm-hero">
+    <div class="wrap">
+      <div class="bm-kicker"><span><b>&#9679;</b> Lyric video</span><span>Gianni Arone</span><span>4:46</span><span>1080p</span></div>
+      <h1><span class="redact">Semina</span></h1>
+      <p class="lede">A spoken-word track about the time zoo: rooms, tides, moons, a cat named Midnight. The words set the picture. Every line calls up footage of what it names: the moon from Méliès and Apollo, the Morse key from an Army Signal Corps reel, the trapeze from a 1901 circus, the ghost from a 1901 Scrooge. The beat does the cutting, the glitching and the color: fast runs of cuts resolve into held images that pulse on the beat.</p>
+    </div>
+  </section>
+
+  <section class="bm-stage">
+    <div class="wrap">
+      <div class="bm-frame">
+        <span class="tag">Time Zoo</span>
+        <video id="bmv" controls playsinline preload="metadata" poster="poster.jpg">
+          <source src="semina-1080p.mp4" type="video/mp4">
+        </video>
+      </div>
+      <canvas class="bm-meter" id="bmm" aria-hidden="true"></canvas>
+      <div class="bm-actions">
+        <a class="btn" href="semina-1080p.mp4" download="Gianni Arone - Semina (1080p).mp4">&darr; Download video (MP4, 1080p)</a>
+        <a class="btn ghost" href="#lyrics">Lyrics</a>
+        <a class="btn ghost" href="#sources">Sources</a>
+        <small>H.264 + AAC · 1920&times;1080 · 30fps</small>
+      </div>
+      <p class="bm-warn"><b>Photosensitivity warning:</b> this video contains strobing, full-frame flashes and flickering color. Please skip it if you are sensitive to flashing lights.</p>
+      <p class="small" style="margin-top:22px">Also: <a href="/video/beyond-measure/" style="color:#ece8df">Beyond Measure</a>, the instrumental cut from declassified files.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap bm-grid">
+      <div>
+        <h2>How it was made <span>Process</span></h2>
+        <ol class="how">
+          <li><b>Words first.</b> The lyrics were timed word by word against the vocal, so each word lands on screen as it's spoken, with the newest word glowing.</li>
+          <li><b>Images answer the words.</b> Each line has themes (moon, ocean, circus, Morse, ghost, cat, grave, stars) and draws its footage from films that show them. Every clip was checked by eye; intertitles and captions were thrown out.</li>
+          <li><b>Chop and hold.</b> The edit is planned bar by bar. Runs of fast cuts on the drums (footage stuttered, reversed, retriggered on hits) resolve into held images that loop a single beat and punch in on every beat, then break back into cuts. Holds land where a line names something you can see, so the image has time to sit with the word, and hard snares stab them with flash-cuts of related footage.</li>
+          <li><b>Glitch &amp; color.</b> Real codec datamoshing (deleted I-frames, repeated P-frames), stale-block moshing, gradient-map color bursts on kicks, macroblock corruption on snares, and strobes on hi-hats. The words glitch and strobe along with the picture.</li>
+        </ol>
+      </div>
+      <div id="sources">
+        <h2>Sources <span>Public domain</span></h2>
+        <p class="small">All footage is in the U.S. public domain: works of the federal government, films published before 1930, and NASA imagery.</p>
+        <h3 class="bm-kicker" style="margin:22px 0 6px">Early cinema</h3>
+        <ul class="src">
+          <li><a href="https://archive.org/details/MareyFilmsVBVariousAnimals" target="_blank" rel="noopener">Marey Films ( V B) Various Animals</a><span>Public domain, pre-1930 · 1891</span></li>
+          <li><a href="https://archive.org/details/the-boxing-cats-prof.-weltons-1894" target="_blank" rel="noopener">The Boxing Cats (Prof. Welton&#x27;s)</a><span>Public domain, pre-1930 · 1894</span></li>
+          <li><a href="https://archive.org/details/serpentine-dance-1895-yt" target="_blank" rel="noopener">Annabelle Serpentine Dance</a><span>Public domain, pre-1930 · 1895</span></li>
+          <li><a href="https://archive.org/details/solar-eclipse-1900-documentary-short-1900" target="_blank" rel="noopener">Solar Eclipse</a><span>Public domain, pre-1930 · 1900</span></li>
+          <li><a href="https://archive.org/details/silent-uncle-joshs-nightmare" target="_blank" rel="noopener">Uncle Josh&#x27;s Nightmare</a><span>Public domain, pre-1930 · 1900</span></li>
+          <li><a href="https://archive.org/details/migration-osinoff" target="_blank" rel="noopener">A day at the circus</a><span>Public domain, pre-1930 · 1901</span></li>
+          <li><a href="https://archive.org/details/silent-captain-nissen-going-through-whirlpool-rapids-niagara-falls" target="_blank" rel="noopener">Captain Nissen Going Through Whirlpool Rapids, Niagara Falls</a><span>Public domain, pre-1930 · 1901</span></li>
+          <li><a href="https://archive.org/details/silent-scrooge-or-marleys-ghost" target="_blank" rel="noopener">Scrooge, or Marley&#x27;s Ghost</a><span>Public domain, pre-1930 · 1901</span></li>
+          <li><a href="https://archive.org/details/silent-un-drame-au-fond-de-la-mer-aka-drama-at-the-bottom-of-the-sea" target="_blank" rel="noopener">Un drame au fond de la mer (Drama at the Bottom of the Sea)</a><span>Public domain, pre-1930 · 1901</span></li>
+          <li><a href="https://archive.org/details/a-trip-to-the-moon-le-voyage-dans-la-lune-1902" target="_blank" rel="noopener">A Trip To The Moon (Le Voyage Dans La Lune)</a><span>Public domain, pre-1930 · 1902</span></li>
+          <li><a href="https://archive.org/details/silent-ballet-des-sylphides-aka-dance-of-the-sylphs" target="_blank" rel="noopener">Ballet des sylphides (Dance of the Sylphs)</a><span>Public domain, pre-1930 · 1902</span></li>
+          <li><a href="https://archive.org/details/silent-la-clownesse-fantme-aka-the-magician-and-the-imp" target="_blank" rel="noopener">La Clownesse fantôme (The Magician and the Imp)</a><span>Public domain, pre-1930 · 1902</span></li>
+          <li><a href="https://archive.org/details/silent-the-sick-kitten" target="_blank" rel="noopener">The Sick Kitten</a><span>Public domain, pre-1930 · 1903</span></li>
+          <li><a href="https://archive.org/details/BobsElectricTheater" target="_blank" rel="noopener">Bob&#x27;s Electric Theater</a><span>Public domain, pre-1930 · 1906</span></li>
+          <li><a href="https://archive.org/details/silent-le-piano-irrsistible-aka-the-irresistible-piano" target="_blank" rel="noopener">Le Piano irrésistible (The Irresistible Piano)</a><span>Public domain, pre-1930 · 1907</span></li>
+          <li><a href="https://archive.org/details/TheEclipse1907" target="_blank" rel="noopener">The Eclipse: Courtship of the Sun and Moon</a><span>Public domain, pre-1930 · 1907</span></li>
+          <li><a href="https://archive.org/details/PreviewTheTiredTailorsDream" target="_blank" rel="noopener">The Tired Tailor&#x27;s Dream</a><span>Public domain, pre-1930 · 1907</span></li>
+          <li><a href="https://archive.org/details/LegendOfAGhost1908" target="_blank" rel="noopener">Legend Of A Ghost</a><span>Public domain, pre-1930 · 1908</span></li>
+          <li><a href="https://archive.org/details/silent-the-stenographers-friend-or-what-was-accomplished-by-an-edison-business-phonograph" target="_blank" rel="noopener">The Stenographer&#x27;s Friend; Or, What Was Accomplished by an Edison Business Phonograph</a><span>Public domain, pre-1930 · 1910</span></li>
+          <li><a href="https://archive.org/details/denishawn-dance-film" target="_blank" rel="noopener">Denishawn Dance Film</a><span>Public domain, pre-1930 · 1915</span></li>
+          <li><a href="https://archive.org/details/silent-clash-of-the-wolves" target="_blank" rel="noopener">Clash of the Wolves</a><span>Public domain, pre-1930 · 1925</span></li>
+          <li><a href="https://archive.org/details/the-devils-circus-1926-by-benjamin-christensen" target="_blank" rel="noopener">The Devil&#x27;s Circus</a><span>Public domain, pre-1930 · 1926</span></li>
+        </ul>
+        <h3 class="bm-kicker" style="margin:22px 0 6px">Government film</h3>
+        <ul class="src">
+          <li><a href="https://archive.org/details/111-m-121" target="_blank" rel="noopener">Company E, First Telegraph Battalion, Signal Corps</a><span>National Archives · 1917</span></li>
+          <li><a href="https://archive.org/details/fc-fc-474a-c" target="_blank" rel="noopener">Hawaiian Surf Riding / Glimpses of Atlantic City / World War I Patriotic Cartoons</a><span>Ford Film Collection, National Archives · 1917</span></li>
+          <li><a href="https://archive.org/details/fc-fc-216" target="_blank" rel="noopener">Having a Circus / Bears and a Porcupine / Cattle Ranching / The Way of the West</a><span>Ford Film Collection, National Archives · 1919</span></li>
+          <li><a href="https://archive.org/details/fc-fc-327" target="_blank" rel="noopener">Tick Tock [Clock And Watch Making]</a><span>Ford Film Collection, National Archives · 1919</span></li>
+          <li><a href="https://archive.org/details/33-152" target="_blank" rel="noopener">Meadows And Mountains--Gallatin National Forest, Montana</a><span>National Archives · 1920</span></li>
+          <li><a href="https://archive.org/details/fc-fc-4104" target="_blank" rel="noopener">Southwest Mountains and Desert / Jamaica and the Bahamas</a><span>Ford Film Collection, National Archives · 1920</span></li>
+          <li><a href="https://archive.org/details/fc-fc-2493" target="_blank" rel="noopener">Water As Power</a><span>Ford Film Collection, National Archives · 1920</span></li>
+          <li><a href="https://archive.org/details/fc-fc-2587" target="_blank" rel="noopener">Automobile-Train Wreck / Parkway Traffic / Automobile Accident / City Traffic / Highland Park Plant / One Millionth Ford V-8 / Ford V-8s</a><span>Ford Film Collection, National Archives · 1921</span></li>
+          <li><a href="https://archive.org/details/fc-fc-2427" target="_blank" rel="noopener">Niagara Falls</a><span>Ford Film Collection, National Archives · 1921</span></li>
+          <li><a href="https://archive.org/details/fc-fc-214" target="_blank" rel="noopener">Wild Animals and Birds / Ford Coal Mine</a><span>Ford Film Collection, National Archives · 1921</span></li>
+          <li><a href="https://archive.org/details/70-85" target="_blank" rel="noopener">The Story Of A Watch</a><span>National Archives · 1922</span></li>
+          <li><a href="https://archive.org/details/fc-fc-473" target="_blank" rel="noopener">Babies Of Wild Animals</a><span>Ford Film Collection, National Archives · 1923</span></li>
+          <li><a href="https://archive.org/details/33-203" target="_blank" rel="noopener">Birds Of A Feather</a><span>National Archives · 1923</span></li>
+          <li><a href="https://archive.org/details/33-189" target="_blank" rel="noopener">The Horse In Motion</a><span>National Archives · 1923</span></li>
+          <li><a href="https://archive.org/details/fc-fc-4869" target="_blank" rel="noopener">[Our Common Birds]</a><span>Ford Film Collection, National Archives · 1925</span></li>
+          <li><a href="https://archive.org/details/fc-fc-1685" target="_blank" rel="noopener">Wool Processing, Shearing Sheep</a><span>Ford Film Collection, National Archives · 1926</span></li>
+          <li><a href="https://archive.org/details/fc-fc-904" target="_blank" rel="noopener">Day At The Merrill-Palmer School,A</a><span>Ford Film Collection, National Archives · 1928</span></li>
+          <li><a href="https://archive.org/details/33-337-r2" target="_blank" rel="noopener">Wild Flowers</a><span>National Archives · 1928</span></li>
+          <li><a href="https://archive.org/details/33-420-r1" target="_blank" rel="noopener">Approved Sheep Management On National Forest</a><span>National Archives · 1932</span></li>
+          <li><a href="https://archive.org/details/gov.dod.dimoc.23735" target="_blank" rel="noopener">Technique Of Hand Sending</a><span>Dept. of Defense · 1944</span></li>
+          <li><a href="https://archive.org/details/111-adc-7174" target="_blank" rel="noopener">Operations Crossroads, Atom Bomb Tests, Bikini Atoll</a><span>National Archives · 1946</span></li>
+          <li><a href="https://archive.org/details/gov.doe.0800008" target="_blank" rel="noopener">Nuclear Test Film - Operation Sandstone - Navy</a><span>Dept. of Energy · 1948</span></li>
+          <li><a href="https://archive.org/details/gov.ntis.ava11109vnb1" target="_blank" rel="noopener">Duck and Cover</a><span>NTIS · 1951</span></li>
+          <li><a href="https://archive.org/details/gov.dod.dimoc.23284" target="_blank" rel="noopener">Medical Aspects Of Nuclear Radiation</a><span>Dept. of Defense · 1951</span></li>
+          <li><a href="https://archive.org/details/gov.doe.0800010" target="_blank" rel="noopener">Nuclear Test Film - Operation Ranger, Operation Buster/Jangle</a><span>Dept. of Energy · 1951</span></li>
+          <li><a href="https://archive.org/details/gov.doe.0800011" target="_blank" rel="noopener">Nuclear Test Film - Operation Tumbler-Snapper</a><span>Dept. of Energy · 1952</span></li>
+          <li><a href="https://archive.org/details/gov.doe.0800016" target="_blank" rel="noopener">Nuclear Test Film - Operation Upshot-Knothole, 5.2</a><span>Dept. of Energy · 1953</span></li>
+          <li><a href="https://archive.org/details/gov.doe.0800017" target="_blank" rel="noopener">Nuclear Test Film - Operation Teapot</a><span>Dept. of Energy · 1954</span></li>
+          <li><a href="https://archive.org/details/330-dvic-24159-r1" target="_blank" rel="noopener">Origins of the Motion Picture</a><span>National Archives · 1956</span></li>
+          <li><a href="https://archive.org/details/gov.dod.dimoc.28336" target="_blank" rel="noopener">Pole Line Construction - Part Iii - Erecting Poles And Attaching Crossarms</a><span>Dept. of Defense · 1958</span></li>
+          <li><a href="https://archive.org/details/111-LC-44557" target="_blank" rel="noopener">New High Altitude Test Chamber, Ft. Monmouth, New Jersey; Rattlesnake Round-Up, Ft. Sam Houston, Texas, 12/09/1959</a><span>National Archives · 1959</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.1634176" target="_blank" rel="noopener">Listening Post</a><span>National Archives · 1960</span></li>
+          <li><a href="https://archive.org/details/gov.dod.dimoc.28384" target="_blank" rel="noopener">Radio Teletypewriter An/Grc-46</a><span>Dept. of Defense · 1963</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.37826" target="_blank" rel="noopener">Scatter radar: Space research from the ground</a><span>National Archives · 1963</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.651948" target="_blank" rel="noopener">Military Police Photography</a><span>National Archives · 1965</span></li>
+          <li><a href="https://archive.org/details/gov.dod.dimoc.25183" target="_blank" rel="noopener">Footprints In The Sea</a><span>Dept. of Defense · 1966</span></li>
+          <li><a href="https://archive.org/details/342-usaf-42990" target="_blank" rel="noopener">UFO Interview</a><span>National Archives · 1966</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.45017" target="_blank" rel="noopener">The Eagle Has Landed: The Flight of Apollo 11</a><span>National Archives · 1969</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.1257667" target="_blank" rel="noopener">Earth Resources Technology Satellite (ERTS)</a><span>National Archives · 1973</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.2569661" target="_blank" rel="noopener">Big Picture: Individual Protection Against Atomic Attack</a><span>National Archives</span></li>
+          <li><a href="https://archive.org/details/gov.dod.dimoc.39951" target="_blank" rel="noopener">Electricity - Introduction To Lc Oscillators</a><span>Dept. of Defense</span></li>
+          <li><a href="https://archive.org/details/gov.dod.dimoc.39864" target="_blank" rel="noopener">Electricity - Voltage</a><span>Dept. of Defense</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.36813" target="_blank" rel="noopener">International Morse Code, Hand Sending</a><span>National Archives</span></li>
+          <li><a href="https://archive.org/details/gov.doe.0800014" target="_blank" rel="noopener">Nuclear Test Film - Damage and Destruction</a><span>Dept. of Energy</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.36909" target="_blank" rel="noopener">The Chaplain And The Military Funeral - Sergeant Foley Comes Home</a><span>National Archives</span></li>
+          <li><a href="https://archive.org/details/111-adc-2342" target="_blank" rel="noopener">Congressional Invasion Of France, Paris, France ; Soldiers Graves Of World War I, St. Mihiel American Cemetery, Thiacourt, France ; Airborne Landing (Probably Holland World War Ii) ; &quot;The City Falls To Yanks&quot;, Stolberg, Germany ; St. Mihiel American Cemetery, Thiacourt, France</a><span>National Archives</span></li>
+        </ul>
+        <h3 class="bm-kicker" style="margin:22px 0 6px">Space & sky (NASA)</h3>
+        <ul class="src">
+          <li><a href="https://images.nasa.gov/details/GSFC_20110617_LRO_m10794_Eclipse_Librating_Moon" target="_blank" rel="noopener">LRO&#x27;s Diviner Takes the Moon&#x27;s Temperature During Eclipse: Librating Moon</a><span>NASA · 2011</span></li>
+          <li><a href="https://images.nasa.gov/details/GSFC_20160426_SDO_m12224_SolarFlare" target="_blank" rel="noopener">NASA’s SDO Captures Stunning View of April 17 Solar Flare</a><span>NASA · 2016</span></li>
+          <li><a href="https://images.nasa.gov/details/GSFC_20161212_Tidal_m12450_Magnetic" target="_blank" rel="noopener">Ocean Tides and Magnetic Fields</a><span>NASA · 2016</span></li>
+          <li><a href="https://images.nasa.gov/details/GSFC_20170403_Trio_m12563_SolarFlares" target="_blank" rel="noopener">April 2017 Solar Flare Trio</a><span>NASA · 2017</span></li>
+          <li><a href="https://images.nasa.gov/details/GSFC_20170412_Lights_m12573_EarthAtNight" target="_blank" rel="noopener">Lights of Human Activity Shine in NASA&#x27;s Image of Earth at Night</a><span>NASA · 2017</span></li>
+          <li><a href="https://images.nasa.gov/details/Evolution_of_Galaxies_H264" target="_blank" rel="noopener">Evolution of Galaxies</a><span>NASA · 2019</span></li>
+          <li><a href="https://images.nasa.gov/details/GSFC_20190513_m4714_Lee_Lincoln_Scarp_Moon_Flyover" target="_blank" rel="noopener">Lee Lincoln Scarp at the Apollo 17 Landing Site</a><span>NASA · 2019</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="lyrics">
+    <div class="wrap" style="padding-bottom:80px">
+      <details open>
+        <summary>Lyrics</summary>
+        <div class="bm-lyrics">
+          <p>in any room,<br>
+there has been a soundtrack,<br>
+there have been scenes,<br>
+even when the building is destroyed,<br>
+or before it has been built,<br>
+the stage is set for<br>
+these rooms to exist,<br>
+the time zoo,<br>
+has every variety of possible potential,<br>
+of anima,<br>
+of light</p>
+          <p>Swim Inside Me<br>
+Narrate My Tides<br>
+Pulse The Reins<br>
+Hide and Seek<br>
+In The Time Zoo<br>
+Touch Tao Speak In Morse Code<br>
+Vibrate Understanding<br>
+Become Equanimity<br>
+We Are Electrical Beings<br>
+Submerged In Impossible Oceans<br>
+Hydrating Our Senses<br>
+Thirsting For More<br>
+Numbers Haunt Us<br>
+Words Taunt Us<br>
+The Idea of Us<br>
+Is A Burden<br>
+Is A Mirror Howling Moon Eyes<br>
+Raven Filled Water<br>
+Tattooing Moments<br>
+With Their Steep Sleep<br>
+Wake My Forehead<br>
+With Your Memory</p>
+          <p>the fabric of the moon<br>
+silk fibers like piano fingers<br>
+placing light in key areas<br>
+there upon glancing<br>
+in the stillness of a room<br>
+you would think that<br>
+a chord of light on the picture frame<br>
+or an accenting note<br>
+across the desk would<br>
+be rolls of cosmic dice<br>
+but there are no mistakes<br>
+only specific spotlights<br>
+on the dark stages<br>
+each sound light makes<br>
+is met harmoniously with the shadows<br>
+they orchestrate the time zoo<br>
+and play the melody of the circus<br>
+The Ringmaster created the painting<br>
+of still life in movement<br>
+abstraction does not exist<br>
+only perfect placement of<br>
+mundane majestic moments<br>
+the animalia of moonshadow<br>
+dancing across in increments<br>
+making small pirouettes<br>
+across the trapeze of time<br>
+and space<br>
+winking to you from the morse code of stars</p>
+          <p>there&#x27;s a scent of a figure,<br>
+makes an 8 shape in my eyes,<br>
+small water,<br>
+hourglasses clinking together by all the forms of death,<br>
+infinity circling,<br>
+snake weavers,<br>
+it is like riding up to the horizon to trace the vanishing point,<br>
+here come the ghost wolves,<br>
+howling for a sunflower,<br>
+they say consciousness bought a time zoo,<br>
+to keep in the sock drawer of gods,<br>
+around the ages of 4 to 7 and specifically somewhere in between,</p>
+          <p>i remember finding a switchblade and a playboy in my father&#x27;s sock drawer,<br>
+trying on my mother&#x27;s underwear,<br>
+erotic death programs,<br>
+disassociating at Robert Louis Stevenson Elementary School,<br>
+For Hours before bed my mind would flash with superluminal strobing of horror<br>
+and pain,<br>
+the tortures displayed in technicolor were uncanny,<br>
+feel till apathy and fear were nonlinear totems used as grave markers to go<br>
+beyond intuition in crises zones,<br>
+trained for specialized permanence,<br>
+I would lay eyes wide shut in silence like the crossed hands.<br>
+No child should go through that.<br>
+My Cat Midnight,<br>
+she died,<br>
+car ran through her<br>
+we buried her around 9 o&#x27;clock in the backyard,<br>
+and then in sometime of time - past the time of 9 and certainly a bit later,<br>
+Midnight Walked Through the door,<br>
+the warm plastic bag that held her new blood and her frozen fur,<br>
+was not Midnight&#x27;s,<br>
+but my tears were true,<br>
+I remember the power in petting that bag.</p>
+          <p>Suppose You&#x27;d Like That,<br>
+Timeless Moment,<br>
+You Crafted A Place To Have It,<br>
+A Mind To Know It,<br>
+Body To Feel It,<br>
+A Consciousness To Share It With,<br>
+Little Languages Of Light,<br>
+Dancing In The Dark Space,<br>
+So It Vibrates Memory,<br>
+Perhaps You Are Tired Now,<br>
+Awakenings Exhausted,<br>
+The Skipping Record,<br>
+with no needle to thread,<br>
+the silence,<br>
+The Time Zoo we,<br>
+Kept our Creation Creatures in,</p>
+          <p>Of All The Poems and The Films,<br>
+The Happy Endings,<br>
+The Sad Scenes,<br>
+The Black and White Development of Your Color Schemes,<br>
+The Missing Links,<br>
+Those Chain Letters Of Intuition,<br>
+The Fear of Letting Go,<br>
+Fear Of Holding On,<br>
+All The Love That You Never Could Place In This World,<br>
+The Disappointment of Desiring What Could Never Be Held,<br>
+The Ecstasy Of The Unspoken and Uncaused,<br>
+The Spiral Of Revelation of Sea Shores and Star Paths, Of Mountain Tops And<br>
+Canyons, Of Rivers And Of Wind,<br>
+Suppose You Were To Create A Little Light Language,<br>
+Written By A Forgetful Friend So You Might Remember</p>
+          <p>Shepherded Into All These Time Zoo&#x27;s.<br>
+Systems of Organizing the Wildlife of Consciousness</p>
+        </div>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="big">Let's make <a href="mailto:gianniaronestudio@gmail.com">something loud.</a></div>
+      <div class="links">
+        <a href="mailto:gianniaronestudio@gmail.com">gianniaronestudio@gmail.com</a>
+        <a href="https://vimeo.com/uaawtf" target="_blank" rel="noopener">Vimeo</a>
+        <a href="https://soundcloud.com/v-i-s-i-t-o-r" target="_blank" rel="noopener">SoundCloud</a>
+        <a href="https://www.instagram.com/gianniarone/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="links" style="margin-top:0">
+      <a href="/video/">Video</a><a href="/art/">Art</a><a href="/web/">Web</a><a href="/music/">Music</a><a href="/resume/">Resume</a><a href="/art/gallery/">Gallery</a>
+    </div>
+    <div class="copy">&copy; 2026 Gianni Arone · Rochester, NY</div>
+  </div>
+</footer>
+
+<script src="/portfolio.js"></script>
+<script>
+// The page listens to the video too: its audio drives the title's RGB split, the frame glow and the spectrum strip.
+(function () {
+  var v = document.getElementById('bmv'), cv = document.getElementById('bmm'), root = document.getElementById('bm');
+  var ctx2d = cv.getContext('2d'), ac, an, data, raf;
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size() { var r = window.devicePixelRatio || 1; cv.width = cv.clientWidth * r; cv.height = cv.clientHeight * r; idle(); }
+  function idle() {
+    ctx2d.clearRect(0, 0, cv.width, cv.height); ctx2d.fillStyle = '#2a2a2a';
+    for (var x = 0; x < cv.width; x += 6 * (window.devicePixelRatio || 1)) ctx2d.fillRect(x, cv.height - 2, 3, 2);
+  }
+  function setup() {
+    if (ac) return;
+    try {
+      ac = new (window.AudioContext || window.webkitAudioContext)();
+      var src = ac.createMediaElementSource(v); an = ac.createAnalyser(); an.fftSize = 256; an.smoothingTimeConstant = .6;
+      src.connect(an); an.connect(ac.destination); data = new Uint8Array(an.frequencyBinCount);
+    } catch (e) { ac = null; }
+  }
+  function tick() {
+    an.getByteFrequencyData(data);
+    var n = 72, w = cv.width / n, lvl = 0;
+    ctx2d.clearRect(0, 0, cv.width, cv.height);
+    for (var i = 0; i < n; i++) {
+      var val = data[Math.floor(Math.pow(i / n, 1.6) * (data.length - 8))] / 255; if (i < 8) lvl += val / 8;
+      var h = Math.max(2, val * cv.height);
+      ctx2d.fillStyle = val > .82 ? '#ff2a4d' : val > .6 ? '#19e3ff' : '#ece8df';
+      ctx2d.fillRect(i * w, cv.height - h, w * .55, h);
+    }
+    if (!still) root.style.setProperty('--lvl', Math.pow(lvl, 3).toFixed(3));
+    raf = requestAnimationFrame(tick);
+  }
+  v.addEventListener('play', function () { setup(); if (!ac) return; ac.resume(); cancelAnimationFrame(raf); tick(); });
+  v.addEventListener('pause', function () { cancelAnimationFrame(raf); root.style.setProperty('--lvl', 0); });
+  v.addEventListener('ended', function () { cancelAnimationFrame(raf); root.style.setProperty('--lvl', 0); idle(); });
+  window.addEventListener('resize', size); size();
+})();
+</script>
+</body>
+</html>
