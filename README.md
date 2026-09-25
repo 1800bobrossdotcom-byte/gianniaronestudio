@@ -10,6 +10,7 @@ Static HTML in `public/`, served by Vercel, with serverless functions in `api/` 
 | --- | --- |
 | `/` | Home: hero collage, reel, featured video, art picks, featured sites, album, about |
 | `/video/` | Every video from vimeo.com/uaawtf with filters; playable ones open in an on-page player |
+| `/video/beyond-measure/` | *Beyond Measure* music video: player, 1080p download, sources. Built by `scripts/beyond-measure/` |
 | `/art/` | Illustration & GIF art, SuperRare works by series, Fake Rares, GIPHY wall, physical strip |
 | `/art/gallery/` | The original Blob-backed gallery (admin panel behind the gear icon), now also showing the static art as "digital" |
 | `/web/` | Website cards; each opens a micro-page lightbox with a scrolling full-page capture, phone view and live link |
