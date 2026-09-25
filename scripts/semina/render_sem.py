@@ -102,37 +102,70 @@ def pick(tags, allow_mosh):
         p = rnd.choice(pool)
         if ident(p) not in recent[-4:] and p not in recent: break
     return 'clip', p
-i = 0
-while i < N:
-    e = inten[i]; ln = int(theme_line[i])
-    held = hold[i] or (i > 12 * FPS and rnd.random() < 0.02)
-    if held:
-        # one or two bars on a single image, cut on the beat grid
-        nb = rnd.choice([4, 8, 8]) if hold[i] else 4
-        end = i
-        for _ in range(nb): end = next_beat(end + 1)
-        end = min(end, N)
-        # don't let a hold swallow the start of a fast section by more than a beat
-        sect_end = next((int(b_ * FPS) for a_, b_ in HOLD_SECT if a_ * FPS <= i < b_ * FPS), None)
-        if sect_end and end > sect_end: end = max(i + 6, sect_end)
-    else:
-        mn = int(12 - 7 * e); mx = int(60 - 32 * e)
-        length = mx
-        for j in range(i + mn, min(N, i + mx)):
-            if hold[j]: length = j - i; break
-            if (snare_hit[j] or kick_hit[j]) and rnd.random() < 0.5 + 0.4 * e: length = j - i; break
-            if line_at[j] != line_at[j - 1] and line_at[j] >= 0: length = j - i; break   # new lyric line = new image
-        end = min(N, i + length)
-    tags = LY[ln]['tags'] if ln >= 0 else []
-    kind, path = pick(tags, allow_mosh=(not held) and (line_at[i] < 0 or rnd.random() < 0.5))
-    if held and rnd.random() < 0.15: kind, path = 'mosh', rnd.choice(MOSH)
+VISUAL = {'moon', 'cat', 'circus', 'ghost', 'ocean', 'wolf', 'stars', 'piano', 'horse', 'morse', 'grave', 'dance', 'birds', 'sun', 'clock', 'school', 'sheep', 'mountain'}
+def add_scene(a, b, tags, held):
+    kind, path = pick(tags, allow_mosh=(not held) and (line_at[a] < 0 or rnd.random() < 0.5))
+    if held and rnd.random() < 0.12: kind, path = 'mosh', rnd.choice(MOSH)
+    global recent
     recent = (recent + [ident(path), path])[-10:]
-    scenes.append(dict(start=i, end=end, kind=kind, path=path, held=held,
+    scenes.append(dict(start=a, end=b, kind=kind, path=path, held=held, tags=tags,
                        mode=rnd.choices(['beatloop', 'beatloop', 'slow', 'halfbeat'])[0] if held else
                             rnd.choices(['normal', 'retrig', 'stutter', 'fast', 'slow', 'rev'], [3, 3, 2, 1, 2, 1])[0],
                        duo=rnd.randrange(len(DUO)), burst=rnd.randrange(len(BURST)), color=rnd.random() < 0.3,
                        seed=rnd.randrange(1 << 30)))
-    i = end
+def bar_tags(a, b):
+    """The strongest image in this bar: the line whose tags are most visual, weighted by screen time."""
+    score = {}
+    for f in range(a, b):
+        ln = int(theme_line[f])
+        if ln >= 0: score[ln] = score.get(ln, 0) + 1 + 2 * len(VISUAL & set(LY[ln]['tags']))
+    if not score: return [], 0
+    ln = max(score, key=score.get); return LY[ln]['tags'], len(VISUAL & set(LY[ln]['tags']))
+# bars of 4 beats from the beat grid
+BARS = [int(x) for x in BEATS[::4]] + [N]
+if BARS[0] > 0: BARS = [0] + BARS
+prev_held = False; run = 0
+for bi in range(len(BARS) - 1):
+    a, b = BARS[bi], BARS[bi + 1]
+    tags, vis = bar_tags(a, b)
+    slow = hold[a]
+    # call and response: chop runs resolve into holds; holds break back into chop
+    p = (0.62 if slow else 0.18) + 0.14 * min(vis, 2) + (0.25 if run >= (3 if not slow else 99) and not prev_held else 0) - (0.35 if prev_held and run >= 2 else 0)
+    if a < 3 * FPS: p = 0.0
+    held = rnd.random() < p
+    run = run + 1 if held == prev_held else 1; prev_held = held
+    if held:
+        # a held bar can split in half so the image changes with a new strong line
+        mid = int(BEATS[min(len(BEATS) - 1, bi * 4 + 2)]) if bi * 4 + 2 < len(BEATS) else b
+        t2, v2 = bar_tags(mid, b)
+        if a < mid < b and v2 and t2 != tags and rnd.random() < 0.5:
+            add_scene(a, mid, tags, True); add_scene(mid, b, t2, True)
+        else:
+            add_scene(a, b, tags, True)
+        continue
+    i = a
+    while i < b:
+        e = inten[i]; ln = int(theme_line[i])
+        mn = int(12 - 7 * e); mx = int(60 - 32 * e)
+        if slow: mn, mx = mn + 6, mx + 20   # chop inside slow passages is looser
+        length = min(mx, b - i)
+        for j in range(i + mn, min(b, i + mx)):
+            if (snare_hit[j] or kick_hit[j]) and rnd.random() < 0.5 + 0.4 * e: length = j - i; break
+            if line_at[j] != line_at[j - 1] and line_at[j] >= 0: length = j - i; break
+        if b - (i + length) < 5: length = b - i
+        add_scene(i, i + length, LY[ln]['tags'] if ln >= 0 else [], False)
+        i += length
+# stabs: short flash-cuts of related footage punched into held images on hard snares
+stab = {}
+for k, sc in enumerate(scenes):
+    if not sc['held']: continue
+    f = sc['start'] + 4
+    while f < sc['end'] - 3:
+        if snare_hit[f] and snare[f] > 0.6 and rnd.random() < 0.55:
+            L = rnd.randint(2, 4); kind, path = pick(sc['tags'], allow_mosh=True)
+            for g in range(f, min(sc['end'] - 1, f + L)): stab[g] = (path, rnd.randrange(1 << 30), f)
+            f += L + 6
+        else: f += 1
 scene_at = np.zeros(N, int)
 for k, s in enumerate(scenes): scene_at[s['start']:s['end']] = k
 strobe = np.zeros(N, np.int8); stale = np.zeros(N, bool)
@@ -313,12 +346,22 @@ def render(a, b, outp):
     ff = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'bgr24', '-s', f'{W}x{H}', '-r', str(FPS),
                            '-i', '-', '-vf', 'scale=1920:1080:flags=lanczos', '-c:v', 'libx264', '-crf', '15', '-preset', 'fast',
                            '-pix_fmt', 'yuv420p', outp], stdin=subprocess.PIPE)
-    warm = max(0, a - 12); prev = None; cur_k = -1; S = None
+    warm = max(0, a - 12); prev = None; cur_k = -1; S = None; STABS = {}
     for i in range(warm, b):
         k = int(scene_at[i]); sc = scenes[k]
         if k != cur_k: S = Scene(k); cur_k = k
         r = random.Random(i * 7919 + 13); e = inten[i]
         img = S.frame(i)
+        if i in stab:   # flash-cut of related footage punched into a held image
+            path, sd, f0 = stab[i]; key = (path, f0)
+            if key not in STABS:
+                STABS.clear(); rr = random.Random(sd); cap = cv2.VideoCapture(path); tot = count(path)
+                cap.set(cv2.CAP_PROP_POS_FRAMES, rr.randint(0, max(0, tot - 6))); fr = []
+                for _ in range(5):
+                    ok, f = cap.read()
+                    if ok: fr.append(cv2.resize(f, (W, H)))
+                cap.release(); STABS[key] = fr or [img]
+            fr = STABS[key]; img = fr[min(len(fr) - 1, i - f0)]
         held = sc.get('held')
         if held:
             u = (i - sc['start']) / max(1, sc['end'] - sc['start'])
@@ -326,7 +369,7 @@ def render(a, b, outp):
         else:
             z = 1.0 + 0.09 * kick[i] * (0.3 + e); sh = 20 * kick[i] * e
         img = zoom(img, z, r.uniform(-sh, sh), r.uniform(-sh, sh), r.uniform(-2, 2) * snare[i] * e)
-        img = grade(img, sc, i)
+        img = grade(img, dict(sc, color=False, duo=(sc['duo'] + 3) % len(DUO)) if i in stab else sc, i)
         if stale[i] and prev is not None and not held: img = stale_blocks(img, prev, 10 + 25 * e, r)
         if held:
             if snare_hit[i] and r.random() < 0.35: img = blocks(img, prev, 0.3, r)
