@@ -6,6 +6,7 @@ from scipy.ndimage import uniform_filter1d
 from PIL import Image, ImageDraw, ImageFont
 
 W, H, FPS = 1280, 720, 30
+TEXT = False  # title cards, stamps and HUD
 F = json.load(open('feat.json')); N = F['n']
 A = lambda k: np.array(F[k], np.float32)
 rms, flux, sub, low, mid, high = map(A, ['rms', 'flux', 'sub', 'low', 'mid', 'high'])
@@ -331,7 +332,7 @@ def render(a, b, outp):
             img = slices(img, 0.2, r)
         img = rgb_split(img, 1 + 22 * kick[i] * (0.3 + e) + 5 * sub[i])
         # stamps
-        if i in stamp_at:
+        if TEXT and i in stamp_at:
             txt, dur, ang, px, py, sd = stamp_at[i]; st = make_stamp(txt, sd)
             hh, ww = st.shape; M = cv2.getRotationMatrix2D((ww / 2, hh / 2), ang, 1.0)
             cos, sin = abs(M[0, 0]), abs(M[0, 1]); nw, nh = int(hh * sin + ww * cos), int(hh * cos + ww * sin)
@@ -364,7 +365,7 @@ def render(a, b, outp):
         fl = 1.0 + (r.random() - 0.5) * (0.10 if i < INTRO_END else 0.05)
         out = img.astype(np.float32) * (MASK * fl) + (NOISE[i % 6][..., None] * (7 + 6 * hat[i]))
         # titles
-        if 6 * FPS <= i < INTRO_END:
+        if TEXT and 6 * FPS <= i < INTRO_END:
             u = (i - 6 * FPS) / (INTRO_END - 6 * FPS)
             alpha = min(1, u * 6) * min(1, (1 - u) * 5)
             out *= 1 - 0.45 * alpha
@@ -374,13 +375,13 @@ def render(a, b, outp):
             u = (i - (N - 7 * FPS)) / (7 * FPS)
             out *= max(0.0, 1 - u * 1.6)
             alpha = min(1, u * 5) * min(1, (1 - u) * 6)
-            out = title_card(np.clip(out, 0, 255), i, [('BEYOND MEASURE', 150), ('GIANNI ARONE', 42),
+            if TEXT: out = title_card(np.clip(out, 0, 255), i, [('BEYOND MEASURE', 150), ('GIANNI ARONE', 42),
                              ('ARCHIVAL FOOTAGE & DOCUMENTS: NATIONAL ARCHIVES · DOE · DOD · CIA · NSA · FBI — PUBLIC DOMAIN', 22)],
                              alpha, 0.4 if r.random() < 0.1 else 0.0, r).astype(np.float32)
         img = np.clip(out, 0, 255).astype(np.uint8)
         # HUD
         pim = Image.fromarray(img); d = ImageDraw.Draw(pim); hc = (230, 230, 230)
-        if 0.6 * FPS < i < N - 7 * FPS:
+        if TEXT and 0.6 * FPS < i < N - 7 * FPS:
             text(d, (28, 22), 'FOIA // CASE 0925-BM // BEYOND MEASURE', f_mono, hc)
             if (i // 15) % 2 == 0: d.ellipse([W - 118, 27, W - 104, 41], fill=(40, 40, 230))
             text(d, (W - 96, 22), 'REC', f_mono, hc)
