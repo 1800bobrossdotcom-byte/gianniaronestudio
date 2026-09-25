@@ -6,6 +6,7 @@ from scipy.ndimage import uniform_filter1d
 from PIL import Image, ImageDraw, ImageFont
 
 W, H, FPS = 1280, 720, 30
+TEXT = False  # title cards, stamps and HUD
 F = json.load(open('feat.json')); N = F['n']
 A = lambda k: np.array(F[k], np.float32)
 rms, flux, sub, low, mid, high = map(A, ['rms', 'flux', 'sub', 'low', 'mid', 'high'])
@@ -198,7 +199,6 @@ class Scene:
             if kick_hit[i] or snare_hit[i]:  # redaction bars land on the beat
                 y = self.r.randint(40, H - 60); x = self.r.randint(0, W // 2)
                 self.bars.append((x, y, self.r.randint(160, W - x), self.r.randint(14, 34)))
-            for (x, y, bw, bh) in self.bars: g[y:y + bh, x:x + bw] = 8
             return cv2.cvtColor(g, cv2.COLOR_GRAY2BGR)
         fr = self.frames; m = s['mode']; L = len(fr)
         if m == 'retrig':
@@ -256,7 +256,7 @@ def blocks(img, prev, amt, r):
     for _ in range(int(2 + 14 * amt)):
         bw = r.choice([32, 64, 96, 128, 192]); bh = r.choice([16, 32, 64, 96])
         x = r.randrange(0, W - bw); y = r.randrange(0, H - bh)
-        c = r.random()
+        c = r.random() * 0.75  # no edge smears
         if c < 0.4 and prev is not None:
             sx = min(W - bw, max(0, x + r.randint(-80, 80))); sy = min(H - bh, max(0, y + r.randint(-40, 40)))
             out[y:y + bh, x:x + bw] = prev[sy:sy + bh, sx:sx + bw]
@@ -324,14 +324,11 @@ def render(a, b, outp):
         img = grade(img, sc, i, r)
         if stale[i] and prev is not None: img = stale_blocks(img, prev, 10 + 25 * e, r)
         if i >= INTRO_END:
-            if snare[i] > 0.3: img = slices(img, snare[i] * (0.3 + 0.8 * e), r)
-            if (snare_hit[i] or any_hit[i]) and r.random() < 0.25 + 0.5 * e: img = blocks(img, prev, e, r)
-            if e > 0.55 and r.random() < 0.08: img = pixel_smear(img, r)
-        elif r.random() < 0.04:  # intro: sparse flicker
-            img = slices(img, 0.2, r)
+            if snare_hit[i]: img = blocks(img, prev, min(1, 0.4 + e), r)
+            elif any_hit[i] and r.random() < 0.25 + 0.5 * e: img = blocks(img, prev, e, r)
         img = rgb_split(img, 1 + 22 * kick[i] * (0.3 + e) + 5 * sub[i])
         # stamps
-        if i in stamp_at:
+        if TEXT and i in stamp_at:
             txt, dur, ang, px, py, sd = stamp_at[i]; st = make_stamp(txt, sd)
             hh, ww = st.shape; M = cv2.getRotationMatrix2D((ww / 2, hh / 2), ang, 1.0)
             cos, sin = abs(M[0, 0]), abs(M[0, 1]); nw, nh = int(hh * sin + ww * cos), int(hh * cos + ww * sin)
@@ -364,7 +361,7 @@ def render(a, b, outp):
         fl = 1.0 + (r.random() - 0.5) * (0.10 if i < INTRO_END else 0.05)
         out = img.astype(np.float32) * (MASK * fl) + (NOISE[i % 6][..., None] * (7 + 6 * hat[i]))
         # titles
-        if 6 * FPS <= i < INTRO_END:
+        if TEXT and 6 * FPS <= i < INTRO_END:
             u = (i - 6 * FPS) / (INTRO_END - 6 * FPS)
             alpha = min(1, u * 6) * min(1, (1 - u) * 5)
             out *= 1 - 0.45 * alpha
@@ -374,13 +371,13 @@ def render(a, b, outp):
             u = (i - (N - 7 * FPS)) / (7 * FPS)
             out *= max(0.0, 1 - u * 1.6)
             alpha = min(1, u * 5) * min(1, (1 - u) * 6)
-            out = title_card(np.clip(out, 0, 255), i, [('BEYOND MEASURE', 150), ('GIANNI ARONE', 42),
+            if TEXT: out = title_card(np.clip(out, 0, 255), i, [('BEYOND MEASURE', 150), ('GIANNI ARONE', 42),
                              ('ARCHIVAL FOOTAGE & DOCUMENTS: NATIONAL ARCHIVES · DOE · DOD · CIA · NSA · FBI — PUBLIC DOMAIN', 22)],
                              alpha, 0.4 if r.random() < 0.1 else 0.0, r).astype(np.float32)
         img = np.clip(out, 0, 255).astype(np.uint8)
         # HUD
         pim = Image.fromarray(img); d = ImageDraw.Draw(pim); hc = (230, 230, 230)
-        if 0.6 * FPS < i < N - 7 * FPS:
+        if TEXT and 0.6 * FPS < i < N - 7 * FPS:
             text(d, (28, 22), 'FOIA // CASE 0925-BM // BEYOND MEASURE', f_mono, hc)
             if (i // 15) % 2 == 0: d.ellipse([W - 118, 27, W - 104, 41], fill=(40, 40, 230))
             text(d, (W - 96, 22), 'REC', f_mono, hc)
