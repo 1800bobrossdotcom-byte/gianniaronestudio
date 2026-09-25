@@ -199,7 +199,6 @@ class Scene:
             if kick_hit[i] or snare_hit[i]:  # redaction bars land on the beat
                 y = self.r.randint(40, H - 60); x = self.r.randint(0, W // 2)
                 self.bars.append((x, y, self.r.randint(160, W - x), self.r.randint(14, 34)))
-            for (x, y, bw, bh) in self.bars: g[y:y + bh, x:x + bw] = 8
             return cv2.cvtColor(g, cv2.COLOR_GRAY2BGR)
         fr = self.frames; m = s['mode']; L = len(fr)
         if m == 'retrig':
@@ -257,7 +256,7 @@ def blocks(img, prev, amt, r):
     for _ in range(int(2 + 14 * amt)):
         bw = r.choice([32, 64, 96, 128, 192]); bh = r.choice([16, 32, 64, 96])
         x = r.randrange(0, W - bw); y = r.randrange(0, H - bh)
-        c = r.random()
+        c = r.random() * 0.75  # no edge smears
         if c < 0.4 and prev is not None:
             sx = min(W - bw, max(0, x + r.randint(-80, 80))); sy = min(H - bh, max(0, y + r.randint(-40, 40)))
             out[y:y + bh, x:x + bw] = prev[sy:sy + bh, sx:sx + bw]
@@ -325,11 +324,8 @@ def render(a, b, outp):
         img = grade(img, sc, i, r)
         if stale[i] and prev is not None: img = stale_blocks(img, prev, 10 + 25 * e, r)
         if i >= INTRO_END:
-            if snare[i] > 0.3: img = slices(img, snare[i] * (0.3 + 0.8 * e), r)
-            if (snare_hit[i] or any_hit[i]) and r.random() < 0.25 + 0.5 * e: img = blocks(img, prev, e, r)
-            if e > 0.55 and r.random() < 0.08: img = pixel_smear(img, r)
-        elif r.random() < 0.04:  # intro: sparse flicker
-            img = slices(img, 0.2, r)
+            if snare_hit[i]: img = blocks(img, prev, min(1, 0.4 + e), r)
+            elif any_hit[i] and r.random() < 0.25 + 0.5 * e: img = blocks(img, prev, e, r)
         img = rgb_split(img, 1 + 22 * kick[i] * (0.3 + e) + 5 * sub[i])
         # stamps
         if TEXT and i in stamp_at:
