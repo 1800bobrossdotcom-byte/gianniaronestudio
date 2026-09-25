@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beyond Measure — Gianni Arone</title>
+  <meta name="description" content="Beyond Measure: an audio-reactive music video by Gianni Arone, cut from declassified CIA, NSA and FBI files and public-domain government film, with datamoshing, strobe glitches and color bursts.">
+  <link rel="canonical" href="https://www.gianniarone.com/video/beyond-measure/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/portfolio.css">
+  <meta property="og:title" content="Beyond Measure — Gianni Arone">
+  <meta property="og:description" content="Audio-reactive music video built from declassified government footage and documents.">
+  <meta property="og:image" content="https://www.gianniarone.com/video/beyond-measure/poster.jpg">
+  <meta property="og:video" content="https://www.gianniarone.com/video/beyond-measure/beyond-measure-1080p.mp4">
+  <style>
+    .bm { --lvl: 0; --hot: #ff2a4d; --cold: #19e3ff; background: #0b0b0c; color: #ece8df; }
+    .bm .wrap { max-width: var(--max); margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px); }
+    .bm-hero { padding: clamp(40px, 7vw, 88px) 0 28px; position: relative; overflow: hidden; }
+    .bm-kicker { font: 500 12px/1.4 var(--mono); letter-spacing: .18em; text-transform: uppercase; color: #9d988f; display: flex; flex-wrap: wrap; gap: 8px 18px; margin-bottom: 18px; }
+    .bm-kicker b { color: var(--hot); font-weight: 600; }
+    .bm h1 { font: 900 clamp(64px, 13vw, 184px)/.84 var(--display); letter-spacing: -.01em; text-transform: uppercase; margin: 0;
+      text-shadow: calc(var(--lvl) * 14px) 0 0 rgba(255, 42, 77, .85), calc(var(--lvl) * -14px) 0 0 rgba(25, 227, 255, .85); }
+    .bm h1 .redact { background: #ece8df; color: #0b0b0c; padding: 0 .06em; }
+    .bm .lede { color: #cfcac0; margin-top: 22px; max-width: 760px; }
+    .bm-stage { padding-bottom: 30px; }
+    .bm-frame { position: relative; border: 2px solid #ece8df; background: #000; aspect-ratio: 16 / 9;
+      box-shadow: 0 0 calc(10px + var(--lvl) * 70px) rgba(255, 42, 77, calc(.15 + var(--lvl) * .55)), 8px 8px 0 #ece8df; }
+    .bm-frame video { display: block; width: 100%; height: 100%; background: #000; }
+    .bm-frame .tag { position: absolute; top: -13px; left: 18px; background: var(--hot); color: #fff; font: 600 11px/1 var(--mono); letter-spacing: .16em; padding: 7px 10px; text-transform: uppercase; }
+    .bm-meter { display: block; width: 100%; height: 56px; margin-top: 18px; }
+    .bm-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 22px; }
+    .bm .btn { background: #ece8df; color: #0b0b0c; border-color: #ece8df; box-shadow: 4px 4px 0 var(--hot); }
+    .bm .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--hot); }
+    .bm .btn.ghost { background: transparent; color: #ece8df; box-shadow: 4px 4px 0 #3b3b3b; }
+    .bm-actions small { font: 500 12px/1.5 var(--mono); color: #8f8a81; letter-spacing: .06em; }
+    .bm-warn { margin-top: 26px; border: 1px dashed #5c5852; padding: 14px 16px; font: 500 13px/1.55 var(--mono); color: #cfcac0; }
+    .bm-warn b { color: var(--hot); }
+    .bm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 40px; padding: 56px 0 80px; border-top: 1px solid #2a2a2a; margin-top: 50px; }
+    .bm h2 { font: 800 34px/1 var(--display); text-transform: uppercase; letter-spacing: .01em; margin: 0 0 16px; }
+    .bm h2 span { color: var(--hot); font: 600 12px/1 var(--mono); letter-spacing: .16em; vertical-align: middle; margin-left: 8px; }
+    .bm p.small, .bm li { font-size: 15px; line-height: 1.55; color: #cfcac0; }
+    .bm ul.src { list-style: none; padding: 0; margin: 0; }
+    .bm ul.src li { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid #222; }
+    .bm ul.src a { color: #ece8df; text-decoration: underline; text-decoration-color: #555; text-underline-offset: 3px; }
+    .bm ul.src a:hover { text-decoration-color: var(--hot); }
+    .bm ul.src span { font: 500 12px/1.6 var(--mono); color: #8f8a81; white-space: nowrap; text-align: right; }
+    .bm ol.how { padding-left: 20px; margin: 0; }
+    .bm ol.how li { margin-bottom: 10px; }
+    .bm ol.how b { color: #ece8df; }
+    @media (max-width: 560px) { .bm ul.src li { flex-direction: column; gap: 2px; } .bm ul.src span { text-align: left; white-space: normal; } }
+    @media (prefers-reduced-motion: reduce) { .bm h1, .bm-frame { text-shadow: none !important; box-shadow: 8px 8px 0 #ece8df !important; } }
+  </style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="dot"></span>Gianni Arone</a>
+    <button class="nav-toggle" aria-label="Menu">Menu</button>
+    <ul>
+      <li><a href="/video/" class="active">Video</a></li>
+      <li><a href="/art/">Art</a></li>
+      <li><a href="/web/">Web</a></li>
+      <li><a href="/music/">Music</a></li>
+      <li><a href="/resume/">Resume</a></li>
+      <li><a href="mailto:gianniaronestudio@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="bm" id="bm">
+  <section class="bm-hero">
+    <div class="wrap">
+      <div class="bm-kicker"><span><b>&#9679;</b> Music video</span><span>Gianni Arone</span><span>3:04</span><span>1080p</span><span>File 0925-BM</span></div>
+      <h1>Beyond <span class="redact">Measure</span></h1>
+      <p class="lede">A choppy, beat-driven instrumental I composed, cut to itself. Every cut, color burst, datamosh and strobe comes from the audio: kicks punch the frame and flood it with thermal color, snares tear it into slices, hi-hats strobe and retrigger the footage. The picture is all public record: declassified CIA, NSA and FBI files, and Cold War films from the National Archives, the Department of Energy and the Department of Defense.</p>
+    </div>
+  </section>
+
+  <section class="bm-stage">
+    <div class="wrap">
+      <div class="bm-frame">
+        <span class="tag">Declassified</span>
+        <video id="bmv" controls playsinline preload="metadata" poster="poster.jpg">
+          <source src="beyond-measure-1080p.mp4" type="video/mp4">
+        </video>
+      </div>
+      <canvas class="bm-meter" id="bmm" aria-hidden="true"></canvas>
+      <div class="bm-actions">
+        <a class="btn" href="beyond-measure-1080p.mp4" download="Gianni Arone - Beyond Measure (1080p).mp4">&darr; Download video (MP4, 1080p)</a>
+        <a class="btn ghost" href="#sources">Sources</a>
+        <small>H.264 + AAC · 1920&times;1080 · 30fps</small>
+      </div>
+      <p class="bm-warn"><b>Photosensitivity warning:</b> this video contains rapid strobing, full-frame flashes and flickering color. Please skip it if you are sensitive to flashing lights.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap bm-grid">
+      <div>
+        <h2>How it was made <span>Process</span></h2>
+        <ol class="how">
+          <li><b>Listening.</b> The track was analyzed frame by frame at 30fps: loudness plus separate onset detection for sub/kick, snare/mid and hi-hat bands (about 650 hits over 3 minutes).</li>
+          <li><b>Cutting.</b> A director script cuts on strong hits, faster as the track gets louder, and picks each shot's playback: straight, stuttered, reversed, half-speed, or retriggered on every transient.</li>
+          <li><b>Datamosh.</b> Real codec datamoshing. Shots were re-encoded as MPEG-4 Part 2, the I-frames of the incoming shot were deleted so its motion vectors push the previous shot's pixels around, and single P-frames were repeated so the image "blooms" and melts. A second, stale-block mosh keeps parts of the last frame alive until the motion in them changes enough.</li>
+          <li><b>Glitch &amp; color.</b> Kicks drive zoom punches, shake, RGB channel splits and gradient-map color bursts. Snares drive slice displacement, macroblock corruption and pixel smears. Hi-hats drive strobe bursts, inversions and flash frames.</li>
+          <li><b>Paper.</b> Document pages pan across the frame or get multiplied over the footage, redaction bars drop in on the beat, and classification stamps hit on accents. The HUD at the bottom names the source of every shot.</li>
+        </ol>
+      </div>
+      <div id="sources">
+        <h2>Sources <span>Public domain</span></h2>
+        <p class="small">All footage and documents are works of the U.S. federal government, retrieved from the Internet Archive's copies of National Archives, DOE, DoD and agency FOIA releases.</p>
+        <h3 class="bm-kicker" style="margin:22px 0 6px">Film</h3>
+        <ul class="src">
+          <li><a href="https://archive.org/details/111-adc-7174" target="_blank" rel="noopener">Operation Crossroads, Atom Bomb Tests, Bikini Atoll</a><span>National Archives · 1946</span></li>
+          <li><a href="https://archive.org/details/gov.doe.0800008" target="_blank" rel="noopener">Nuclear Test Film - Operation Sandstone - Navy</a><span>Dept. of Energy · 1948</span></li>
+          <li><a href="https://archive.org/details/gov.ntis.ava11109vnb1" target="_blank" rel="noopener">Duck and Cover</a><span>NTIS / FCDA · 1951</span></li>
+          <li><a href="https://archive.org/details/gov.dod.dimoc.23284" target="_blank" rel="noopener">Medical Aspects of Nuclear Radiation</a><span>Dept. of Defense · 1951</span></li>
+          <li><a href="https://archive.org/details/gov.doe.0800010" target="_blank" rel="noopener">Nuclear Test Film - Operation Ranger, Operation Buster/Jangle</a><span>Dept. of Energy · 1951</span></li>
+          <li><a href="https://archive.org/details/gov.doe.0800011" target="_blank" rel="noopener">Nuclear Test Film - Operation Tumbler-Snapper</a><span>Dept. of Energy · 1952</span></li>
+          <li><a href="https://archive.org/details/gov.doe.0800016" target="_blank" rel="noopener">Nuclear Test Film - Operation Upshot-Knothole, 5.2</a><span>Dept. of Energy · 1953</span></li>
+          <li><a href="https://archive.org/details/gov.doe.0800017" target="_blank" rel="noopener">Nuclear Test Film - Operation Teapot</a><span>Dept. of Energy · 1954</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.642009" target="_blank" rel="noopener">The Story of Captain Serge Sosnowski</a><span>National Archives · 1957</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.653944" target="_blank" rel="noopener">The Hollow Coin</a><span>National Archives · 1958</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.1956144" target="_blank" rel="noopener">Radio Free Europe</a><span>National Archives · 1960</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.1634176" target="_blank" rel="noopener">Listening Post</a><span>National Archives · 1960</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.896138" target="_blank" rel="noopener">Small Town Espionage</a><span>National Archives · 1960</span></li>
+          <li><a href="https://archive.org/details/gov.dod.dimoc.28384" target="_blank" rel="noopener">Radio Teletypewriter AN/GRC-46</a><span>Dept. of Defense · 1963</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.37826" target="_blank" rel="noopener">Scatter radar: Space research from the ground</a><span>National Archives · 1963</span></li>
+          <li><a href="https://archive.org/details/gov.dod.dimoc.26415" target="_blank" rel="noopener">From Kitty Hawk to Aerospace</a><span>Dept. of Defense · 1965</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.651948" target="_blank" rel="noopener">Military Police Photography</a><span>National Archives · 1965</span></li>
+          <li><a href="https://archive.org/details/342-usaf-42990" target="_blank" rel="noopener">UFO Interview</a><span>National Archives · 1966</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.649321" target="_blank" rel="noopener">Defense Against the Spy</a><span>National Archives · 1967</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.1257667" target="_blank" rel="noopener">Earth Resources Technology Satellite (ERTS)</a><span>National Archives · 1973</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.12175" target="_blank" rel="noopener">FBI Hostage Rescue Team</a><span>National Archives · 1985</span></li>
+          <li><a href="https://archive.org/details/gov.archives.arc.2569661" target="_blank" rel="noopener">Big Picture: Individual Protection Against Atomic Attack</a><span>National Archives</span></li>
+          <li><a href="https://archive.org/details/gov.doe.0800014" target="_blank" rel="noopener">Nuclear Test Film - Damage and Destruction</a><span>Dept. of Energy</span></li>
+        </ul>
+        <h3 class="bm-kicker" style="margin:26px 0 6px">Documents</h3>
+        <ul class="src">
+          <li><a href="https://archive.org/details/cia-readingroom-document-cia-rdp66b00664r000500160015-3" target="_blank" rel="noopener">Control and Cover Sheet for Top Secret Document (1964)</a><span>CIA Reading Room</span></li>
+          <li><a href="https://archive.org/details/cia-readingroom-document-cia-rdp96-00788r001100400016-0" target="_blank" rel="noopener">Hypnosis as Possible GRILL FLAME Collection Technique (1981)</a><span>CIA Reading Room</span></li>
+          <li><a href="https://archive.org/details/cia-readingroom-document-0005516119" target="_blank" rel="noopener">Intelligence Advisory Committee: Unidentified Flying Objects (1953)</a><span>CIA Reading Room</span></li>
+          <li><a href="https://archive.org/details/cia-readingroom-document-00146165" target="_blank" rel="noopener">MKULTRA Program (1963)</a><span>CIA Reading Room</span></li>
+          <li><a href="https://archive.org/details/cia-readingroom-document-cia-rdp78-04913a000100030103-8" target="_blank" rel="noopener">Project MKULTRA, Subproject 1 (1953)</a><span>CIA Reading Room</span></li>
+          <li><a href="https://archive.org/details/cia-readingroom-document-cia-rdp78-04913a000100030121-8" target="_blank" rel="noopener">Project MKULTRA, Subproject 13 (1953)</a><span>CIA Reading Room</span></li>
+          <li><a href="https://archive.org/details/cia-readingroom-document-0005516191" target="_blank" rel="noopener">Sightings of Unidentified Flying Objects, 10 June–15 July 1954</a><span>CIA Reading Room</span></li>
+          <li><a href="https://archive.org/details/cia-readingroom-document-cia-rdp96-00788r000300840001-7" target="_blank" rel="noopener">Summary Analysis, Remote Viewing Session D-30 (1980)</a><span>CIA Reading Room</span></li>
+          <li><a href="https://archive.org/details/cia-readingroom-document-0005968809" target="_blank" rel="noopener">The President&#x27;s Daily Brief, 1 March 1967</a><span>CIA Reading Room</span></li>
+          <li><a href="https://archive.org/details/cia-readingroom-document-cia-rdp70-00211r000300300002-2" target="_blank" rel="noopener">Top Secret Couriers (1949)</a><span>CIA Reading Room</span></li>
+          <li><a href="https://archive.org/details/FBICOINTELPRONewLeftHQ1" target="_blank" rel="noopener">COINTELPRO — New Left, HQ file</a><span>FBI</span></li>
+          <li><a href="https://archive.org/details/fbi-file-on-nicola-tesla" target="_blank" rel="noopener">Nikola Tesla file 100-2237</a><span>FBI</span></li>
+          <li><a href="https://archive.org/details/cryptolog_04-nsa" target="_blank" rel="noopener">Cryptolog, issue 4</a><span>NSA</span></li>
+          <li><a href="https://archive.org/details/cryptolog_50-nsa" target="_blank" rel="noopener">Cryptolog, issue 50</a><span>NSA</span></li>
+          <li><a href="https://archive.org/details/cryptolog_73-nsa" target="_blank" rel="noopener">Cryptolog, issue 73</a><span>NSA</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="big">Let's make <a href="mailto:gianniaronestudio@gmail.com">something loud.</a></div>
+      <div class="links">
+        <a href="mailto:gianniaronestudio@gmail.com">gianniaronestudio@gmail.com</a>
+        <a href="https://vimeo.com/uaawtf" target="_blank" rel="noopener">Vimeo</a>
+        <a href="https://soundcloud.com/v-i-s-i-t-o-r" target="_blank" rel="noopener">SoundCloud</a>
+        <a href="https://www.instagram.com/gianniarone/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="links" style="margin-top:0">
+      <a href="/video/">Video</a><a href="/art/">Art</a><a href="/web/">Web</a><a href="/music/">Music</a><a href="/resume/">Resume</a><a href="/art/gallery/">Gallery</a>
+    </div>
+    <div class="copy">&copy; 2026 Gianni Arone · Rochester, NY</div>
+  </div>
+</footer>
+
+<script src="/portfolio.js"></script>
+<script>
+// The page listens to the video too: its audio drives the title's RGB split, the frame glow and the spectrum strip.
+(function () {
+  var v = document.getElementById('bmv'), cv = document.getElementById('bmm'), root = document.getElementById('bm');
+  var ctx2d = cv.getContext('2d'), ac, an, data, raf;
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size() { var r = window.devicePixelRatio || 1; cv.width = cv.clientWidth * r; cv.height = cv.clientHeight * r; idle(); }
+  function idle() {
+    ctx2d.clearRect(0, 0, cv.width, cv.height); ctx2d.fillStyle = '#2a2a2a';
+    for (var x = 0; x < cv.width; x += 6 * (window.devicePixelRatio || 1)) ctx2d.fillRect(x, cv.height - 2, 3, 2);
+  }
+  function setup() {
+    if (ac) return;
+    try {
+      ac = new (window.AudioContext || window.webkitAudioContext)();
+      var src = ac.createMediaElementSource(v); an = ac.createAnalyser(); an.fftSize = 256; an.smoothingTimeConstant = .6;
+      src.connect(an); an.connect(ac.destination); data = new Uint8Array(an.frequencyBinCount);
+    } catch (e) { ac = null; }
+  }
+  function tick() {
+    an.getByteFrequencyData(data);
+    var n = 72, w = cv.width / n, lvl = 0;
+    ctx2d.clearRect(0, 0, cv.width, cv.height);
+    for (var i = 0; i < n; i++) {
+      var val = data[Math.floor(Math.pow(i / n, 1.6) * (data.length - 8))] / 255; if (i < 8) lvl += val / 8;
+      var h = Math.max(2, val * cv.height);
+      ctx2d.fillStyle = val > .82 ? '#ff2a4d' : val > .6 ? '#19e3ff' : '#ece8df';
+      ctx2d.fillRect(i * w, cv.height - h, w * .55, h);
+    }
+    if (!still) root.style.setProperty('--lvl', Math.pow(lvl, 3).toFixed(3));
+    raf = requestAnimationFrame(tick);
+  }
+  v.addEventListener('play', function () { setup(); if (!ac) return; ac.resume(); cancelAnimationFrame(raf); tick(); });
+  v.addEventListener('pause', function () { cancelAnimationFrame(raf); root.style.setProperty('--lvl', 0); });
+  v.addEventListener('ended', function () { cancelAnimationFrame(raf); root.style.setProperty('--lvl', 0); idle(); });
+  window.addEventListener('resize', size); size();
+})();
+</script>
+</body>
+</html>
