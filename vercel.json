@@ -67,7 +67,7 @@
       ]
     },
     {
-      "source": "/video/(beyond-measure|semina)/(.*).(mp4|jpg)",
+      "source": "/video/(beyond-measure|semina|tourn)/(.*).(mp4|jpg)",
       "headers": [
         {
           "key": "Cache-Control",

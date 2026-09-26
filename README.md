@@ -11,6 +11,7 @@ Static HTML in `public/`, served by Vercel, with serverless functions in `api/` 
 | `/` | Home: hero collage, reel, featured video, art picks, featured sites, album, about |
 | `/video/` | Every video from vimeo.com/uaawtf with filters; playable ones open in an on-page player |
 | `/video/beyond-measure/` | *Beyond Measure* music video: player, 1080p download, sources. Built by `scripts/beyond-measure/` |
+| `/video/tourn/` | *Tourn* music video from contemporary DVIDS and NASA footage. Built by `scripts/tourn/` |
 | `/video/semina/` | *Semina* lyric video: player, 1080p download, lyrics, sources. Built by `scripts/semina/` |
 | `/art/` | Illustration & GIF art, SuperRare works by series, Fake Rares, GIPHY wall, physical strip |
 | `/art/gallery/` | The original Blob-backed gallery (admin panel behind the gear icon), now also showing the static art as "digital" |

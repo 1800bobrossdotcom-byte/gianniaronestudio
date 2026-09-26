@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tourn — Gianni Arone</title>
+  <meta name="description" content="Tourn: an audio-reactive music video by Gianni Arone, cut from contemporary public-domain footage: thermal drones, night vision, jets, launches and orbit, datamoshed to the beat.">
+  <link rel="canonical" href="https://www.gianniarone.com/video/tourn/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/portfolio.css">
+  <meta property="og:title" content="Tourn — Gianni Arone">
+  <meta property="og:description" content="Contemporary public-domain footage, datamoshed to the beat.">
+  <meta property="og:image" content="https://www.gianniarone.com/video/tourn/poster.jpg">
+  <meta property="og:video" content="https://www.gianniarone.com/video/tourn/tourn-1080p.mp4">
+  <style>
+    .bm { --lvl: 0; --hot: #ff2a4d; --cold: #19e3ff; background: #0b0b0c; color: #ece8df; }
+    .bm .wrap { max-width: var(--max); margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px); }
+    .bm-hero { padding: clamp(40px, 7vw, 88px) 0 28px; position: relative; overflow: hidden; }
+    .bm-kicker { font: 500 12px/1.4 var(--mono); letter-spacing: .18em; text-transform: uppercase; color: #9d988f; display: flex; flex-wrap: wrap; gap: 8px 18px; margin-bottom: 18px; }
+    .bm-kicker b { color: var(--hot); font-weight: 600; }
+    .bm h1 { font: 900 clamp(64px, 13vw, 184px)/.84 var(--display); letter-spacing: -.01em; text-transform: uppercase; margin: 0;
+      text-shadow: calc(var(--lvl) * 14px) 0 0 rgba(255, 42, 77, .85), calc(var(--lvl) * -14px) 0 0 rgba(25, 227, 255, .85); }
+    .bm h1 .redact { background: #ece8df; color: #0b0b0c; padding: 0 .06em; }
+    .bm .lede { color: #cfcac0; margin-top: 22px; max-width: 760px; }
+    .bm-stage { padding-bottom: 30px; }
+    .bm-frame { position: relative; border: 2px solid #ece8df; background: #000; aspect-ratio: 16 / 9;
+      box-shadow: 0 0 calc(10px + var(--lvl) * 70px) rgba(255, 42, 77, calc(.15 + var(--lvl) * .55)), 8px 8px 0 #ece8df; }
+    .bm-frame video { display: block; width: 100%; height: 100%; background: #000; }
+    .bm-frame .tag { position: absolute; top: -13px; left: 18px; background: var(--hot); color: #fff; font: 600 11px/1 var(--mono); letter-spacing: .16em; padding: 7px 10px; text-transform: uppercase; }
+    .bm-meter { display: block; width: 100%; height: 56px; margin-top: 18px; }
+    .bm-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 22px; }
+    .bm .btn { background: #ece8df; color: #0b0b0c; border-color: #ece8df; box-shadow: 4px 4px 0 var(--hot); }
+    .bm .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--hot); }
+    .bm .btn.ghost { background: transparent; color: #ece8df; box-shadow: 4px 4px 0 #3b3b3b; }
+    .bm-actions small { font: 500 12px/1.5 var(--mono); color: #8f8a81; letter-spacing: .06em; }
+    .bm-warn { margin-top: 26px; border: 1px dashed #5c5852; padding: 14px 16px; font: 500 13px/1.55 var(--mono); color: #cfcac0; }
+    .bm-warn b { color: var(--hot); }
+    .bm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 40px; padding: 56px 0 80px; border-top: 1px solid #2a2a2a; margin-top: 50px; }
+    .bm h2 { font: 800 34px/1 var(--display); text-transform: uppercase; letter-spacing: .01em; margin: 0 0 16px; }
+    .bm h2 span { color: var(--hot); font: 600 12px/1 var(--mono); letter-spacing: .16em; vertical-align: middle; margin-left: 8px; }
+    .bm p.small, .bm li { font-size: 15px; line-height: 1.55; color: #cfcac0; }
+    .bm ul.src { list-style: none; padding: 0; margin: 0; }
+    .bm ul.src li { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid #222; }
+    .bm ul.src a { color: #ece8df; text-decoration: underline; text-decoration-color: #555; text-underline-offset: 3px; }
+    .bm ul.src a:hover { text-decoration-color: var(--hot); }
+    .bm ul.src span { font: 500 12px/1.6 var(--mono); color: #8f8a81; white-space: nowrap; text-align: right; }
+    .bm ol.how { padding-left: 20px; margin: 0; }
+    .bm ol.how li { margin-bottom: 10px; }
+    .bm ol.how b { color: #ece8df; }
+    @media (max-width: 560px) { .bm ul.src li { flex-direction: column; gap: 2px; } .bm ul.src span { text-align: left; white-space: normal; } }
+    @media (prefers-reduced-motion: reduce) { .bm h1, .bm-frame { text-shadow: none !important; box-shadow: 8px 8px 0 #ece8df !important; } }
+  </style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="dot"></span>Gianni Arone</a>
+    <button class="nav-toggle" aria-label="Menu">Menu</button>
+    <ul>
+      <li><a href="/video/" class="active">Video</a></li>
+      <li><a href="/art/">Art</a></li>
+      <li><a href="/web/">Web</a></li>
+      <li><a href="/music/">Music</a></li>
+      <li><a href="/resume/">Resume</a></li>
+      <li><a href="mailto:gianniaronestudio@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="bm" id="bm">
+  <section class="bm-hero">
+    <div class="wrap">
+      <div class="bm-kicker"><span><b>&#9679;</b> Music video</span><span>Gianni Arone</span><span>2:41</span><span>1080p</span></div>
+      <h1><span class="redact">Tourn</span></h1>
+      <p class="lede">A fast instrumental cut to contemporary public record: thermal drone feeds, night-vision flight decks, F-35s, rockets on the pad, spacewalks and the planet from orbit. It rises out of orbit, drops into machines and motion, sinks into thermal and night vision for the breakdown, rides storms and wildfire, and climbs back to space. Fast cuts settle into held images that pulse on the beat.</p>
+    </div>
+  </section>
+
+  <section class="bm-stage">
+    <div class="wrap">
+      <div class="bm-frame">
+        <span class="tag">Live feed</span>
+        <video id="bmv" controls playsinline preload="metadata" poster="poster.jpg">
+          <source src="tourn-1080p.mp4" type="video/mp4">
+        </video>
+      </div>
+      <canvas class="bm-meter" id="bmm" aria-hidden="true"></canvas>
+      <div class="bm-actions">
+        <a class="btn" href="tourn-1080p.mp4" download="Gianni Arone - Tourn (1080p).mp4">&darr; Download video (MP4, 1080p)</a>
+        <a class="btn ghost" href="#sources">Sources</a>
+        <small>H.264 + AAC · 1920&times;1080 · 30fps</small>
+      </div>
+      <p class="bm-warn"><b>Photosensitivity warning:</b> this video contains strobing, full-frame flashes and flickering color. Please skip it if you are sensitive to flashing lights.</p>
+      <p class="small" style="margin-top:22px">Also: <a href="/video/semina/" style="color:#ece8df">Semina</a> and <a href="/video/beyond-measure/" style="color:#ece8df">Beyond Measure</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap bm-grid">
+      <div>
+        <h2>How it was made <span>Process</span></h2>
+        <ol class="how">
+          <li><b>Listening.</b> The track was analyzed at 30fps for loudness and for kick, snare and hi-hat hits, and a beat grid was fitted to it (about 164 BPM).</li>
+          <li><b>Sections.</b> Each part of the song draws from its own footage: orbit for the intro, jets, carriers, rockets and drones for the drops, thermal and night vision for the breakdown, then storms, seas and wildfire, then launches and spacewalks.</li>
+          <li><b>Chop and hold.</b> The edit is planned in two-bar units. Runs of fast cuts on the drums settle into held images that loop a single beat and punch in on every beat, and hard snares stab them with flash-cuts of related footage.</li>
+          <li><b>Glitch &amp; color.</b> Real codec datamoshing (deleted I-frames, repeated P-frames), stale-block moshing, gradient-map color bursts on kicks, macroblock corruption on snares, strobes on hi-hats. Every clip was checked by eye so no titles, logos or captions made it in.</li>
+        </ol>
+      </div>
+      <div id="sources">
+        <h2>Sources <span>Public domain</span></h2>
+        <p class="small">All footage is the work of the U.S. government: Defense Visual Information Distribution Service (DVIDS) releases and NASA imagery. Source audio was not used.</p>
+        <h3 class="bm-kicker" style="margin:22px 0 6px">DVIDS</h3>
+        <ul class="src">
+          <li><a href="https://www.dvidshub.net/video/1017852/119th-cyber-operations-squadron-strengthens-global-cyber-security" target="_blank" rel="noopener">DVIDS - Video - 119th Cyber Operations Squadron Strengthens Global Cyber Security</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/740919/2nd-laad-tests-laser-weapon" target="_blank" rel="noopener">DVIDS - Video - 2nd LAAD Tests Laser Weapon</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/659340/31st-meu-marines-wasp-arg-sailors-rehearse-ship-defense-sea" target="_blank" rel="noopener">DVIDS - Video - 31st MEU Marines, Wasp ARG Sailors rehearse ship defense at sea</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/762828/68th-ctmc-freefall-and-static-parachute-jumps-29-july-2020" target="_blank" rel="noopener">DVIDS - Video - 68th CTMC Freefall and Static Parachute Jumps_29 July 2020</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/496411/aerial-footage" target="_blank" rel="noopener">DVIDS - Video - Aerial Footage</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/476157/aircraft-launch-ike-during-flight-operations" target="_blank" rel="noopener">DVIDS - Video - Aircraft Launch From Ike During Flight Operations</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/1010006/british-army-uses-new-drone-first-time-during-estonian-defence-exercise" target="_blank" rel="noopener">DVIDS - Video - British Army uses new drone for first time during Estonian defence exercis</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/847876/caraibes-22-us-marines-fly-ospreys-night" target="_blank" rel="noopener">DVIDS - Video - Caraibes 22: U.S. Marines fly Ospreys at night</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/148130/colorado-wildfires-aerial-firefighting" target="_blank" rel="noopener">DVIDS - Video - Colorado Wildfires Aerial Firefighting</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/148230/colorado-wildfires-aerial-firefighting-2" target="_blank" rel="noopener">DVIDS - Video - Colorado Wildfires Aerial Firefighting 2</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/1009886/dday-82-la-fiere-freefall-jumps" target="_blank" rel="noopener">DVIDS - Video - DDay 82: La Fière freefall jumps</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/579454/drone-b-roll" target="_blank" rel="noopener">DVIDS - Video - Drone B-Roll</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/554707/drone-b-roll" target="_blank" rel="noopener">DVIDS - Video - Drone B-Roll</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/955161/drone-reponse-b-roll" target="_blank" rel="noopener">DVIDS - Video - Drone Reponse B-Roll</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/579690/e-warriors-estonian-cyber-defence-unit-b-roll" target="_blank" rel="noopener">DVIDS - Video - E-Warriors: The Estonian Cyber Defence Unit (B-Roll)</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/950518/f-16c-and-f-35-lightning-ii-takeoff-and-landing" target="_blank" rel="noopener">DVIDS - Video - F-16C and F-35 Lightning II takeoff and landing</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/485201/f-35-broll" target="_blank" rel="noopener">DVIDS - Video - F-35 Broll</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/449727/f-35-takeoffs-with-afterburners" target="_blank" rel="noopener">DVIDS - Video - F-35 Takeoffs with Afterburners</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/938295/first-us-space-force-guardian-launches-into-space" target="_blank" rel="noopener">DVIDS - Video - First U.S. Space Force Guardian launches into space</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/9295/flight-deck-operations" target="_blank" rel="noopener">DVIDS - Video - Flight Deck Operations</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/627205/hurricane-florence-ang-aerial-refueling" target="_blank" rel="noopener">DVIDS - Video - Hurricane Florence - ANG Aerial Refueling</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/627201/hurricane-florence-ang-aerial-refueling" target="_blank" rel="noopener">DVIDS - Video - Hurricane Florence - ANG Aerial Refueling</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/421202/laser-weapon-system-laws" target="_blank" rel="noopener">DVIDS - Video - Laser Weapon System (LaWS)</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/403773/laser-weapon-system-music-video" target="_blank" rel="noopener">DVIDS - Video - Laser Weapon System music video</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/926312/lightning-safety" target="_blank" rel="noopener">DVIDS - Video - Lightning Safety</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/890070/maritime-raid-force-freefall-operations" target="_blank" rel="noopener">DVIDS - Video - Maritime Raid Force freefall operations</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/67418/mv-22b-osprey-night-fire" target="_blank" rel="noopener">DVIDS - Video - MV-22B Osprey Night Fire</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/630703/mv-22b-osprey-night-tail-gunnery-certification" target="_blank" rel="noopener">DVIDS - Video - MV-22B Osprey Night Tail Gunnery Certification</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/60004/night-vision" target="_blank" rel="noopener">DVIDS - Video - Night Vision</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/605136/night-vision" target="_blank" rel="noopener">DVIDS - Video - Night Vision</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/841291/night-vision-night-flying" target="_blank" rel="noopener">DVIDS - Video - Night Vision, Night Flying</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/850757/storms-during-red-flag-nellis" target="_blank" rel="noopener">DVIDS - Video - Storms during Red Flag-Nellis</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/1022439/thermal-drone-video-stanislaus-national-forest" target="_blank" rel="noopener">DVIDS - Video - Thermal Drone Video of Stanislaus National Forest</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/910071/ulas-vulcan-vc2s-rocket-launch" target="_blank" rel="noopener">DVIDS - Video - ULA&#x27;s Vulcan VC2S rocket launch</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/910031/ulas-vulcan-vc2s-rocket-launch" target="_blank" rel="noopener">DVIDS - Video - ULA&#x27;s Vulcan VC2S rocket launch</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/784113/us-and-canadian-forces-participate-arctic-warrior-21" target="_blank" rel="noopener">DVIDS - Video - US and Canadian forces participate in Arctic Warrior 21</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/300482/uss-nimitz-launches-aircraft" target="_blank" rel="noopener">DVIDS - Video - USS Nimitz Launches Aircraft</a><span>DVIDS</span></li>
+          <li><a href="https://www.dvidshub.net/video/863392/wolf-pack-surges-vigilant-storm-23" target="_blank" rel="noopener">DVIDS - Video - Wolf Pack Surges for Vigilant Storm 23</a><span>DVIDS</span></li>
+        </ul>
+        <h3 class="bm-kicker" style="margin:26px 0 6px">NASA</h3>
+        <ul class="src">
+          <li><a href="https://images.nasa.gov/details/GSFC_20170403_Trio_m12563_SolarFlares" target="_blank" rel="noopener">April 2017 Solar Flare Trio</a><span>NASA</span></li>
+          <li><a href="https://images.nasa.gov/details/Evolution_of_Galaxies_H264" target="_blank" rel="noopener">Evolution of Galaxies</a><span>NASA</span></li>
+          <li><a href="https://images.nasa.gov/details/NHQ_2019_1018_all%20woman%20spacewalk" target="_blank" rel="noopener">First All-Woman Spacewalk</a><span>NASA</span></li>
+          <li><a href="https://images.nasa.gov/details/KSC-20220301-MH-AJW01-0001-GOES_T_Isolated_Launch_Views_4K-3295642" target="_blank" rel="noopener">GOES-T Isolated Launch Views - 4K</a><span>NASA</span></li>
+          <li><a href="https://images.nasa.gov/details/KSC-20220301-MH-AJW01-0001-GOES_T_Isolated_Launch_Views_720p-3295642" target="_blank" rel="noopener">GOES-T Isolated Launch Views - 720p</a><span>NASA</span></li>
+          <li><a href="https://images.nasa.gov/details/JPL-20220405-M2020f-0001-How%20Perseverance%20Drives%20on%20Mars-1080cc" target="_blank" rel="noopener">How Perseverance Drives on Mars</a><span>NASA</span></li>
+          <li><a href="https://images.nasa.gov/details/ksc_081505_goesn_onguard" target="_blank" rel="noopener">KSC-05-S-00274</a><span>NASA</span></li>
+          <li><a href="https://images.nasa.gov/details/GSFC_20190513_m4714_Lee_Lincoln_Scarp_Moon_Flyover" target="_blank" rel="noopener">Lee Lincoln Scarp at the Apollo 17 Landing Site</a><span>NASA</span></li>
+          <li><a href="https://images.nasa.gov/details/GSFC_20170412_Lights_m12573_EarthAtNight" target="_blank" rel="noopener">Lights of Human Activity Shine in NASA&#x27;s Image of Earth at Night</a><span>NASA</span></li>
+          <li><a href="https://images.nasa.gov/details/GSFC_20110617_LRO_m10794_Eclipse_Librating_Moon" target="_blank" rel="noopener">LRO&#x27;s Diviner Takes the Moon&#x27;s Temperature During Eclipse: Librating Moon</a><span>NASA</span></li>
+          <li><a href="" target="_blank" rel="noopener">nasa-KSC-20260201-MH-JBS01-0001-Artemis_II_Full_Moon_Sunrise_Timelapse-M18703</a><span>NASA</span></li>
+          <li><a href="https://images.nasa.gov/details/GSFC_20160426_SDO_m12224_SolarFlare" target="_blank" rel="noopener">NASA’s SDO Captures Stunning View of April 17 Solar Flare</a><span>NASA</span></li>
+          <li><a href="https://images.nasa.gov/details/JPL-20201221-M2020f-0001-Perseverance%20Arrives%20at%20Mars%20-%20UHD%20Master" target="_blank" rel="noopener">Perseverance Arrives at Mars: Feb. 18, 2021</a><span>NASA</span></li>
+          <li><a href="https://images.nasa.gov/details/GSFC_20181022_ICON_m12902_Airglow" target="_blank" rel="noopener">The Secrets behind Earth’s Multi-colored Glow</a><span>NASA</span></li>
+          <li><a href="https://images.nasa.gov/details/jsc2022m000290_U.S._Spacewalk_83_Animation_221221" target="_blank" rel="noopener">U.S. Spacewalk 83 Animation - Dec. 21, 2022</a><span>NASA</span></li>
+          <li><a href="https://images.nasa.gov/details/GSFC_20171107_Ionosphere_m12532_ICON" target="_blank" rel="noopener">Welcome to the Ionosphere</a><span>NASA</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="big">Let's make <a href="mailto:gianniaronestudio@gmail.com">something loud.</a></div>
+      <div class="links">
+        <a href="mailto:gianniaronestudio@gmail.com">gianniaronestudio@gmail.com</a>
+        <a href="https://vimeo.com/uaawtf" target="_blank" rel="noopener">Vimeo</a>
+        <a href="https://soundcloud.com/v-i-s-i-t-o-r" target="_blank" rel="noopener">SoundCloud</a>
+        <a href="https://www.instagram.com/gianniarone/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="links" style="margin-top:0">
+      <a href="/video/">Video</a><a href="/art/">Art</a><a href="/web/">Web</a><a href="/music/">Music</a><a href="/resume/">Resume</a><a href="/art/gallery/">Gallery</a>
+    </div>
+    <div class="copy">&copy; 2026 Gianni Arone · Rochester, NY</div>
+  </div>
+</footer>
+
+<script src="/portfolio.js"></script>
+<script>
+// The page listens to the video too: its audio drives the title's RGB split, the frame glow and the spectrum strip.
+(function () {
+  var v = document.getElementById('bmv'), cv = document.getElementById('bmm'), root = document.getElementById('bm');
+  var ctx2d = cv.getContext('2d'), ac, an, data, raf;
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size() { var r = window.devicePixelRatio || 1; cv.width = cv.clientWidth * r; cv.height = cv.clientHeight * r; idle(); }
+  function idle() {
+    ctx2d.clearRect(0, 0, cv.width, cv.height); ctx2d.fillStyle = '#2a2a2a';
+    for (var x = 0; x < cv.width; x += 6 * (window.devicePixelRatio || 1)) ctx2d.fillRect(x, cv.height - 2, 3, 2);
+  }
+  function setup() {
+    if (ac) return;
+    try {
+      ac = new (window.AudioContext || window.webkitAudioContext)();
+      var src = ac.createMediaElementSource(v); an = ac.createAnalyser(); an.fftSize = 256; an.smoothingTimeConstant = .6;
+      src.connect(an); an.connect(ac.destination); data = new Uint8Array(an.frequencyBinCount);
+    } catch (e) { ac = null; }
+  }
+  function tick() {
+    an.getByteFrequencyData(data);
+    var n = 72, w = cv.width / n, lvl = 0;
+    ctx2d.clearRect(0, 0, cv.width, cv.height);
+    for (var i = 0; i < n; i++) {
+      var val = data[Math.floor(Math.pow(i / n, 1.6) * (data.length - 8))] / 255; if (i < 8) lvl += val / 8;
+      var h = Math.max(2, val * cv.height);
+      ctx2d.fillStyle = val > .82 ? '#ff2a4d' : val > .6 ? '#19e3ff' : '#ece8df';
+      ctx2d.fillRect(i * w, cv.height - h, w * .55, h);
+    }
+    if (!still) root.style.setProperty('--lvl', Math.pow(lvl, 3).toFixed(3));
+    raf = requestAnimationFrame(tick);
+  }
+  v.addEventListener('play', function () { setup(); if (!ac) return; ac.resume(); cancelAnimationFrame(raf); tick(); });
+  v.addEventListener('pause', function () { cancelAnimationFrame(raf); root.style.setProperty('--lvl', 0); });
+  v.addEventListener('ended', function () { cancelAnimationFrame(raf); root.style.setProperty('--lvl', 0); idle(); });
+  window.addEventListener('resize', size); size();
+})();
+</script>
+</body>
+</html>
