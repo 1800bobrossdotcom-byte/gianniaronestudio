@@ -131,7 +131,7 @@
         <div><h3>Now</h3><p>Maintenance crew at Evolution24 Properties, consulting on their digital operations: web, social, email, photo, video and brand across twelve properties.</p></div>
         <div><h3>Then</h3><p>Warner Music Group, CauseForce, seven years at Fullscreen, The Many, Project X, XX Artists. Senior motion designer and editor.</p></div>
         <div><h3>Awards</h3><p>Webby (Disney / Fox, Spies in Disguise), Bronze Clio (Venom), two Shorty Awards (Mixwell, AMC), APENFT Dream Fund. 1B+ GIPHY views.</p></div>
-        <div><h3>Built</h3><p>Caliper, cbuy, Faraday, Glitch Pixel Studio, This Is An Art Gallery, and the Charlotte Square leasing site. Blank page to live URL.</p></div>
+        <div><h3>Built</h3><p>Round24, cbuy, Faraday, Glitch Pixel Studio, This Is An Art Gallery, and the Evolution24 and Charlotte Square sites. Blank page to live URL.</p></div>
       </div>
     </div>
   </section>
@@ -198,7 +198,7 @@
 
   GA.loadSites().then(function (sites) {
     var el = document.getElementById('sitepick');
-    ['charlotte-square', 'caliper', 'cbuy'].forEach(function (id) { var s = sites.find(function (x) { return x.id === id; }); if (s) el.appendChild(GA.scard(s, true)); });
+    ['charlotte-square', 'round24', 'cbuy'].forEach(function (id) { var s = sites.find(function (x) { return x.id === id; }); if (s) el.appendChild(GA.scard(s, true)); });
     GA.observeReveals(el);
   });
 })();
