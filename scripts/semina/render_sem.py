@@ -166,6 +166,23 @@ for k, sc in enumerate(scenes):
             for g in range(f, min(sc['end'] - 1, f + L)): stab[g] = (path, rnd.randrange(1 << 30), f)
             f += L + 6
         else: f += 1
+# ---- swap clips flagged for on-screen text (intertitles, captions, timecodes) into the same slots; the cut stays identical
+FLAGS = set(json.load(open('text_flags.json'))) if os.path.exists('text_flags.json') else set()
+BAD_MOSH = {f'mosh/mosh_{n:02d}.mp4' for n in (4, 5, 6, 12, 21, 22, 27)}
+def flagged(p): return p in FLAGS or p in BAD_MOSH or not os.path.exists(p)
+def substitute(p, tags, seed):
+    rr = random.Random(seed)
+    if p.startswith('mosh/'): return rr.choice([m for m in MOSH if not flagged(m)])
+    pool = [c for t in tags for c in POOL.get(t, []) if not flagged(c)] or [c for c in CLIPS if not flagged(c)]
+    return rr.choice(pool)
+SWAPPED = []
+for k, sc in enumerate(scenes):
+    if flagged(sc['path']):
+        sc['path'] = substitute(sc['path'], sc.get('tags', []), sc['seed']); sc['kind'] = 'mosh' if sc['path'].startswith('mosh/') else 'clip'; SWAPPED.append(k)
+_starts = [x['start'] for x in scenes]
+for f in list(stab):
+    p, sd, f0 = stab[f]
+    if flagged(p): stab[f] = (substitute(p, scenes[int(np.searchsorted(_starts, f, 'right')) - 1].get('tags', []), sd), sd, f0); SWAPPED.append(-f)
 scene_at = np.zeros(N, int)
 for k, s in enumerate(scenes): scene_at[s['start']:s['end']] = k
 strobe = np.zeros(N, np.int8); stale = np.zeros(N, bool)
