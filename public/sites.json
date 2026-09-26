@@ -48,15 +48,15 @@
    "mobile": "/img/sites/full/evolution24-mobile.jpg"
   },
   {
-   "id": "caliper",
-   "name": "Caliper",
-   "tagline": "Labor, measured true.",
-   "url": "https://caliper.solutions",
-   "domain": "caliper.solutions",
+   "id": "round24",
+   "name": "Round24",
+   "tagline": "Property ops, around the clock.",
+   "url": "https://round24.app",
+   "domain": "round24.app",
    "role": "Founder · Product",
    "year": "2025 –",
-   "accent": "#ae5e1f",
-   "description": "Property maintenance and portfolio software, built out of my own time in the field. An owner-facing portfolio view plus a crew operations app, with true job costing, warranty catching, and offline photo and receipt capture for techs with no signal in a basement. Every hour, receipt and door reconciled into one encrypted ledger.",
+   "accent": "#1c1c1c",
+   "description": "The maintenance platform that measures the labor. Every hour, receipt and door reconciled automatically: Round24 turns the pay logs, rent rolls and P&L sheets a crew and office keep by hand into one connected, encrypted ledger, and gives residents a way in, so the whole building runs on one system. Built out of my own time in the field, with offline photo and receipt capture for techs with no signal in a basement. Live in beta.",
    "tags": [
     "React",
     "Vite PWA",
@@ -65,9 +65,9 @@
     "AES-256-GCM",
     "Vercel"
    ],
-   "shot": "/img/sites/caliper.jpg",
-   "full": "/img/sites/full/caliper.jpg",
-   "mobile": "/img/sites/full/caliper-mobile.jpg"
+   "shot": "/img/sites/round24.jpg",
+   "full": "/img/sites/full/round24.jpg",
+   "mobile": "/img/sites/full/round24-mobile.jpg"
   },
   {
    "id": "cbuy",
