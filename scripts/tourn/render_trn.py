@@ -48,7 +48,8 @@ TAGS = {k: v['tag'] for k, v in SRC.items()}
 def ident(p): return re.sub(r'__\d+\.mp4$', '', os.path.basename(p))
 CLIPS = sorted(glob.glob('clips/*.mp4'))
 REV = json.load(open('review.json')) if os.path.exists('review.json') else {'reject': [], 'retag': {}}
-BAD = set(REV['reject'])
+FLAGS = set(json.load(open('text_flags.json'))) | {'dvids-403773__2.mp4', 'dvids-403773__3.mp4'} if os.path.exists('text_flags.json') else set()
+BAD = set(REV['reject']) - {'dvids-403773__2.mp4', 'dvids-403773__3.mp4'}
 CLIPS = [c for c in CLIPS if ident(c) in TAGS and os.path.basename(c) not in BAD]
 MOSH = sorted(glob.glob('mosh/*.mp4'))
 POOL = {}
@@ -172,6 +173,23 @@ for k, sc in enumerate(scenes):
             for g in range(f, min(sc['end'] - 1, f + L)): stab[g] = (path, rnd.randrange(1 << 30), f)
             f += L + 6
         else: f += 1
+# ---- swap clips flagged for on-screen text into the same slots, keeping the cut identical
+MSRC = json.load(open('mosh_sources.json')) if os.path.exists('mosh_sources.json') else {}
+BAD_MOSH = {m for m, u in MSRC.items() if any(x in FLAGS or 'Tidal' in x for x in u)}
+def flagged(p): return os.path.basename(p) in FLAGS or p in BAD_MOSH or not os.path.exists(p)
+def substitute(p, tags, seed):
+    rr = random.Random(seed)
+    if p.startswith('mosh/'):
+        ok = [m for m in MOSH if not flagged(m)]; return rr.choice(ok)
+    pool = [c for t in tags for c in POOL.get(t, []) if not flagged(c)] or [c for c in CLIPS if not flagged(c)]
+    return rr.choice(pool)
+SWAPPED = []
+for k, sc in enumerate(scenes):
+    if flagged(sc['path']):
+        sc['path'] = substitute(sc['path'], sc.get('tags', []), sc['seed']); sc['kind'] = 'mosh' if sc['path'].startswith('mosh/') else 'clip'; SWAPPED.append(k)
+for f in list(stab):
+    p, sd, f0 = stab[f]
+    if flagged(p): stab[f] = (substitute(p, scenes[int(np.searchsorted([x['start'] for x in scenes], f, 'right')) - 1].get('tags', []), sd), sd, f0); SWAPPED.append(-f)
 scene_at = np.zeros(N, int)
 for k, s in enumerate(scenes): scene_at[s['start']:s['end']] = k
 strobe = np.zeros(N, np.int8); stale = np.zeros(N, bool)
