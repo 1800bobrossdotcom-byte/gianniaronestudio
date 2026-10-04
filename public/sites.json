@@ -71,6 +71,29 @@
    "mobile": "/img/sites/full/round24-mobile.jpg"
   },
   {
+   "id": "bastion",
+   "name": "Bastion",
+   "tagline": "A second wall beside Defender.",
+   "url": "https://bastion.quest",
+   "domain": "bastion.quest",
+   "pendingDomain": false,
+   "role": "Creator · Design · Build",
+   "year": "2026",
+   "accent": "#123d24",
+   "description": "An open-source security sensor for Windows that runs alongside Microsoft Defender instead of replacing it. Bastion watches the surfaces Defender leaves alone: camera and mic access, USB drift, kernel-driver provenance, persistence changes and Defender's own tamper state. Every event is written to a tamper-evident merkle chain with a plain-language receipt, and a local console on 127.0.0.1 lets you kill, quarantine or trust a process from one screen, with a calm everyday view and a terminal-style operator view for triage. Nothing is sent off the machine. Access is donation-based, starting at free.",
+   "tags": [
+    "Rust",
+    "Next.js",
+    "Windows",
+    "Local-first",
+    "Merkle audit chain",
+    "Open source"
+   ],
+   "shot": "/img/sites/bastion.jpg",
+   "full": "/img/sites/full/bastion.jpg",
+   "mobile": "/img/sites/full/bastion-mobile.jpg"
+  },
+  {
    "id": "cbuy",
    "name": "cbuy",
    "tagline": "Sell anything. Get paid in crypto.",
