@@ -115,6 +115,29 @@
    "mobile": "/img/sites/full/cbuy-mobile.jpg"
   },
   {
+   "id": "dottrader",
+   "name": "Dot Trading Post",
+   "tagline": "Trade anything for anything. No money.",
+   "url": "https://www.dottrader.app",
+   "domain": "dottrader.app",
+   "pendingDomain": false,
+   "role": "Founder · Product",
+   "year": "2026",
+   "accent": "#b83a28",
+   "description": "A barter board for trading cards, video games, retro consoles, collectibles and NFTs, where nothing is bought or sold. Post what you have and what you'd take, and Dot looks for the person holding the other half, matching both ways and knowing PS5 and PlayStation 5 are the same thing. Swaps run physical for physical, NFT for NFT across chains, or physical for NFT. Same-chain NFT swaps settle in one transaction so nobody sends first, and agreed trades get four days to ship, tracking and a public no-show record. Reputation is counted in dots, worked out from the trade record itself, so they can't be bought or self-awarded. Private trade threads, location rounded to about a kilometre, and four languages. From the makers of cbuy.",
+   "tags": [
+    "Barter matching",
+    "Cross-chain NFT swaps",
+    "On-chain checks",
+    "Reputation system",
+    "4 languages",
+    "Mobile web"
+   ],
+   "shot": "/img/sites/dottrader.jpg",
+   "full": "/img/sites/full/dottrader.jpg",
+   "mobile": "/img/sites/full/dottrader-mobile.jpg"
+  },
+  {
    "id": "faraday",
    "name": "Faraday",
    "tagline": "Signal for meetings.",
@@ -157,6 +180,29 @@
    "shot": "/img/sites/glitchpixelstudio.jpg",
    "full": "/img/sites/full/glitchpixelstudio.jpg",
    "mobile": "/img/sites/full/glitchpixelstudio-mobile.jpg"
+  },
+  {
+   "id": "scrawl",
+   "name": "Scrawl",
+   "tagline": "Art you can type with.",
+   "url": "https://scrawl.gallery",
+   "domain": "scrawl.gallery",
+   "pendingDomain": false,
+   "role": "Founder · Product",
+   "year": "2026",
+   "accent": "#4a2f8c",
+   "description": "A gallery for collectible fonts. Each minted release ties a 1/1 or fixed-edition collectible on Ethereum to working TTF, OTF and variable font files with a transferable licence, sold by zero-reserve ETH auction or buy-now. Artists get a public page and a studio: draw H, O and n with pixel, round, marker or texture brushes and Claude drafts the rest of the alphabet in that hand, or draw every glyph in the full editor. A reactive type lab animates variable fonts on width, slant and a custom Scrawl Pulse axis, and a foundry bot proposes three new alphabets every day for review. The founding gallery opened with 69 original designs.",
+   "tags": [
+    "Ethereum",
+    "Variable fonts",
+    "TTF · OTF export",
+    "Drawing studio",
+    "Claude",
+    "Auctions"
+   ],
+   "shot": "/img/sites/scrawl.jpg",
+   "full": "/img/sites/full/scrawl.jpg",
+   "mobile": "/img/sites/full/scrawl-mobile.jpg"
   },
   {
    "id": "thisisanartgallery",
