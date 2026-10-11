@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<!--
+  Source for public/resume/gianni-arone-resume.pdf. Build with:
+    python3 scripts/resume/build.py
+  The copy mirrors public/resume/index.html; change both together.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gianni Arone — Résumé</title>
+<style id="fonts">/* @font-face rules are injected by render.mjs */</style>
+<style>
+@page { size: 8.5in 11in; margin: 0 }
+:root {
+  --ink: #141414; --ink2: #2b2926; --muted: #6f6a61; --rule: #ddd6c8;
+  --paper: #f4f0e7; --brick: #a83a26; --brick-lt: #f0846a; --panel: #171615;
+  --sans: 'Plex Sans', sans-serif; --mono: 'Plex Mono', monospace; --display: 'Big Shoulders', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact }
+body { font: 400 8.6pt/1.42 var(--sans); color: var(--ink2); background: #fff; font-kerning: normal }
+a { color: inherit; text-decoration: none }
+b, strong { font-weight: 600; color: var(--ink) }
+
+.page { width: 8.5in; height: 11in; padding: 32pt 40pt 0; position: relative; overflow: hidden; break-after: page }
+.page:last-child { break-after: auto }
+.flow { height: calc(11in - 32pt - 40pt); overflow: hidden }
+.foot { position: absolute; left: 40pt; right: 40pt; bottom: 18pt; display: flex; justify-content: space-between;
+  padding-top: 6pt; border-top: .6pt solid var(--rule);
+  font: 500 6.4pt var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted) }
+.foot a { color: var(--brick) }
+
+.eyebrow { font: 600 6.8pt var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--brick) }
+
+/* ── header ── */
+.top { display: grid; grid-template-columns: 1fr auto; align-items: end; column-gap: 20pt;
+  padding-bottom: 14.4pt;
+  background: linear-gradient(to right, var(--brick) 70pt, var(--ink) 70pt) left bottom / 100% 2.4pt no-repeat }
+h1 { font: 900 62pt/.8 var(--display); text-transform: uppercase; color: var(--ink); letter-spacing: -.3pt; margin: 0 0 10pt }
+.role { font: 600 7.3pt var(--mono); letter-spacing: .06em; white-space: nowrap; text-transform: uppercase; color: var(--ink) }
+.role .s, .contact .s { color: var(--brick) }
+.contact { list-style: none; text-align: right; font: 500 7.6pt/1.66 var(--mono); color: var(--ink2) }
+.contact li { padding: 0; margin: 0 }
+.contact li::before { content: none }
+.contact .site { font: 700 11.5pt/1.3 var(--sans); color: var(--brick); letter-spacing: -.1pt; margin-bottom: 1pt }
+
+.summary { font-size: 9.5pt; line-height: 1.52; margin-top: 13pt; text-wrap: pretty }
+
+.stats { display: grid; grid-template-columns: .8fr .95fr .7fr 1.62fr; margin-top: 13pt;
+  border-top: .6pt solid var(--rule); border-bottom: .6pt solid var(--rule) }
+.stats > div { display: flex; align-items: center; gap: 7pt; padding: 6pt 0 6pt 12pt; border-left: .6pt solid var(--rule) }
+.stats > div:first-child { border-left: 0; padding-left: 0 }
+.stats .n { font: 900 23pt/1 var(--display); color: var(--brick); text-transform: uppercase; white-space: nowrap }
+.stats .n.words { font-size: 16pt }
+.stats .l { font: 500 6.3pt/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted) }
+
+/* ── AI panel ── */
+/* offset brick block behind the panel, drawn as the wrapper's background so nothing is positioned */
+.ai-wrap { margin-top: 15pt; padding: 0 6pt 6pt 0;
+  background: linear-gradient(var(--brick), var(--brick)) 6pt 6pt / calc(100% - 6pt) calc(100% - 6pt) no-repeat }
+.ai { background: var(--panel); color: #e8e2d5; padding: 16pt 18pt 6pt }
+.ai .eyebrow { color: var(--brick-lt) }
+.ai h2 { font: 900 20pt/1 var(--display); text-transform: uppercase; color: #f7f2e8; margin: 5pt 0 9pt; letter-spacing: .1pt }
+.ai-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; column-gap: 15pt }
+.ai-grid > div { padding: 8pt 0 9pt; border-top: .6pt solid #3d3a36 }
+.ai-grid h4 { font: 600 6.6pt var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--brick-lt); margin-bottom: 2.5pt }
+.ai-grid p { font-size: 8pt; line-height: 1.42; color: #e4ddcf; text-wrap: pretty }
+.ai-grid b { color: #fff }
+
+/* ── sections ── */
+.sec { display: flex; align-items: baseline; gap: 8pt; font: 900 15pt/1 var(--display); text-transform: uppercase;
+  color: var(--ink); letter-spacing: .2pt; margin: 13pt 0 2pt }
+.sec::after { content: ''; flex: 1; height: .6pt; background: var(--rule); transform: translateY(-4pt) }
+.sec .n { font: 600 6.8pt var(--mono); color: var(--brick); letter-spacing: .08em }
+.sec small { font: 500 6.4pt var(--mono); letter-spacing: .08em; color: var(--muted) }
+
+.job { display: grid; grid-template-columns: 84pt 1fr; column-gap: 12pt; padding: 6.5pt 0 6pt; break-inside: avoid }
+.job + .job { border-top: .6pt solid var(--rule) }
+.when b { display: block; font: 600 7.2pt/1.3 var(--mono); color: var(--ink) }
+.when span { display: block; font: 400 6.6pt/1.35 var(--mono); color: var(--muted); margin-top: 2pt }
+.job h3 { font: 900 13pt/1 var(--display); text-transform: uppercase; color: var(--ink); letter-spacing: .2pt }
+.job .r { font-weight: 600; font-size: 8.3pt; color: var(--brick); margin: 2.5pt 0 1pt }
+.now { display: inline-block; font: 600 5.6pt/1 var(--mono); letter-spacing: .08em; text-transform: uppercase;
+  background: var(--brick); color: #fff; padding: 2pt 4pt 1.6pt; margin-left: 6pt; vertical-align: 2.5pt }
+ul { list-style: none }
+li { padding-left: 10pt; margin-top: 1.6pt; text-wrap: pretty }
+li::before { content: ''; display: inline-block; width: 3.4pt; height: 3.4pt; margin: 0 6.6pt 0 -10pt; background: var(--brick); vertical-align: .14em }
+
+/* earlier career: one compact row per role */
+.job.c { padding: 4.8pt 0 4.4pt }
+.job.c h3 { font-size: 11.5pt; display: flex; align-items: baseline; gap: 7pt }
+.job.c h3 .r { font: 600 8pt var(--sans); text-transform: none; letter-spacing: 0; margin: 0 }
+.job.c p { margin-top: 2.5pt; text-wrap: pretty }
+
+.built { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8pt 10pt; margin-top: 6pt }
+.built article { background: var(--paper); padding: 7pt 9pt 7pt; border-top: 1.6pt solid var(--ink); break-inside: avoid }
+.built h3 { display: flex; align-items: baseline; gap: 6pt; font: 900 12pt/1 var(--display); text-transform: uppercase; color: var(--ink) }
+.built h3 a { margin-left: auto; font: 500 6.6pt var(--mono); text-transform: none; color: var(--brick); letter-spacing: .02em }
+.ai-tag { font: 600 5.4pt/1 var(--mono); letter-spacing: .08em; background: var(--ink); color: #fff; padding: 1.8pt 3.4pt 1.4pt; vertical-align: 2pt }
+.built p { font-size: 7.9pt; line-height: 1.4; margin-top: 3.5pt; text-wrap: pretty }
+.tags { font: 500 6.2pt/1.45 var(--mono); color: var(--muted); margin-top: 3pt }
+.tags a { color: var(--brick); font-weight: 600 }
+
+.kit { margin-top: 5pt }
+.kit > div { display: grid; grid-template-columns: 84pt 1fr; column-gap: 12pt; padding: 3.5pt 0; border-top: .6pt solid var(--rule) }
+.kit > div:first-child { border-top: 0 }
+.kit dt { font: 600 6.6pt var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--brick); padding-top: 1.6pt }
+.kit dd { font-size: 8pt; line-height: 1.42 }
+.kit .hot dd { color: var(--ink); font-weight: 500 }
+
+.awards { display: grid; grid-auto-flow: column; grid-template-rows: repeat(5, auto); grid-template-columns: 1fr 1fr; column-gap: 18pt; margin-top: 5pt }
+.awards li { display: grid; grid-template-columns: 24pt 1fr; padding: 2.5pt 0; margin: 0; border-top: .6pt solid var(--rule); font-size: 7.6pt; line-height: 1.38 }
+.awards li::before { content: none }
+.awards .yr { font: 600 6.8pt/1.6 var(--mono); color: var(--brick) }
+</style>
+</head>
+<body>
+
+<!-- ───────────────────────────── PAGE 1 ───────────────────────────── -->
+<section class="page">
+ <div class="flow">
+
+  <header class="top">
+    <div>
+      <h1>Gianni Arone</h1>
+      <div class="role">Director of Digital Operations <span class="s">·</span> AI Product Builder <span class="s">·</span> Sr. Motion Designer</div>
+    </div>
+    <ul class="contact">
+      <li class="site"><a href="https://www.gianniarone.com">www.gianniarone.com</a></li>
+      <li><a href="mailto:gianniaronestudio@gmail.com">gianniaronestudio@gmail.com</a></li>
+      <li><a href="tel:+15857595052">585.759.5052</a> <span class="s">·</span> Rochester, NY</li>
+      <li><a href="https://vimeo.com/uaawtf">vimeo.com/uaawtf</a></li>
+    </ul>
+  </header>
+
+  <p class="summary">Twenty years in digital media as a senior motion designer, editor and social lead: Warner Music Group, then seven years at Fullscreen animating and cutting daily social for Disney, Marvel, Sony and AMC. For the last two years I’ve built with AI every day, with <strong>Claude and ChatGPT as my engineering team</strong>, shipping <strong>twelve sites and products end to end</strong>: brand, prompts, code, APIs, database and deploy. Now <strong>Director of Digital Operations</strong> at Evolution24 Properties.</p>
+
+  <div class="stats">
+    <div><span class="n">20</span><span class="l">years in<br>digital media</span></div>
+    <div><span class="n">12</span><span class="l">sites &amp; products<br>shipped</span></div>
+    <div><span class="n">1B+</span><span class="l">GIPHY<br>views</span></div>
+    <div><span class="n words">Webby · Clio · Shorty</span><span class="l">award-winning<br>social video</span></div>
+  </div>
+
+  <div class="ai-wrap">
+   <section class="ai">
+    <div class="eyebrow">01 · AI Engineering</div>
+    <h2>Claude and ChatGPT are my engineering team.</h2>
+    <div class="ai-grid">
+      <div>
+        <h4>Build</h4>
+        <p>Sites, apps and APIs engineered with <b>Claude Code</b> and <b>ChatGPT</b>: architecture, code, review, debugging and deploy across React / Next.js, Node, Rust and Postgres.</p>
+      </div>
+      <div>
+        <h4>Prompt</h4>
+        <p>Prompt design for production features and agent workflows: system prompts, structured output, multi-step agents, and a human signing off before anything ships.</p>
+      </div>
+      <div>
+        <h4>LLM features in production</h4>
+        <p><b>Scrawl:</b> Claude drafts a full alphabet from three hand-drawn letters, and a bot designs three more every day. <b>Bastion:</b> LLM-written event explanations.</p>
+      </div>
+      <div>
+        <h4>On-device AI</h4>
+        <p>MediaPipe segmentation running live on the GPU in <b>Faraday</b> (browser) and <b>Glitch Pixel Studio</b> (Android): faces and bodies masked in real time, with zero cloud.</p>
+      </div>
+      <div>
+        <h4>APIs &amp; integrations</h4>
+        <p>Anthropic and OpenAI APIs; REST endpoints and webhooks for Shippo, Google Play Billing, Microsoft Sentinel and Vimeo; the cbuy partner API.</p>
+      </div>
+      <div>
+        <h4>Workflows &amp; automation</h4>
+        <p>Enquiries routed into Google Workspace and a live lead sheet; sync jobs for gianniarone.com; music videos cut by code to beat grids and timed lyrics.</p>
+      </div>
+    </div>
+   </section>
+  </div>
+
+  <h2 class="sec"><span class="n">02</span>Experience<small>most recent first</small></h2>
+
+  <article class="job">
+    <div class="when"><b>2026 – present</b><span>Rochester, NY<br>on-site</span></div>
+    <div>
+      <h3>Evolution24 Properties<span class="now">Now</span></h3>
+      <div class="r">Director of Digital Operations</div>
+      <ul>
+        <li>Web, social, email, photo, video and brand for Evolution24 and the twelve properties it manages across Rochester, Syracuse, Manlius and Geneva, with monthly lead-source and cost-per-lead reporting to ownership.</li>
+        <li>Designed and engineered <b>charlottesquareroc.com</b> with Claude and ChatGPT for a 72-residence LEED Gold building: technical SEO, structured data, lead capture, analytics, fair-housing compliance. Built and staged the evolution24.net corporate site.</li>
+        <li>Set up the company Google Workspace, routing tour requests and site enquiries to the right inbox and into a live lead sheet leasing works from.</li>
+        <li>Shoot units, amenities and drone; photo-document every job, the daily record that became Round24.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="job">
+    <div class="when"><b>2023 – present</b><span>Rochester, NY</span></div>
+    <div>
+      <h3>Gianni Arone Studio</h3>
+      <div class="r">Founder · Creative Director &amp; AI Product Builder</div>
+      <ul>
+        <li>Take products from blank page to live URL with Claude and ChatGPT: brand, copy, prompts, UI, front end, APIs, database, deploy and support. Shipped Round24, cbuy, Faraday, Bastion, Dot Trading Post, Scrawl, Glitch Pixel Studio, This Is An Art Gallery and gianniarone.com.</li>
+        <li>Client motion, video, photography, social and installations; three code-cut music videos in 2026.</li>
+      </ul>
+    </div>
+  </article>
+
+ </div>
+ <div class="foot"><span>Gianni Arone · <a href="https://www.gianniarone.com">www.gianniarone.com</a></span><span>1 / 2</span></div>
+</section>
+
+<!-- ───────────────────────────── PAGE 2 ───────────────────────────── -->
+<section class="page">
+ <div class="flow">
+
+  <h2 class="sec" style="margin-top:0"><span class="n">02</span>Experience<small>continued</small></h2>
+
+  <article class="job c">
+    <div class="when"><b>Oct 2022 – Jul 2023</b><span>hybrid</span></div>
+    <div><h3>XX Artists <span class="r">Senior Motion Designer / Editor</span></h3>
+      <p>Social-first motion for entertainment and technology clients, concept to final delivery.</p></div>
+  </article>
+  <article class="job c">
+    <div class="when"><b>Jun – Oct 2022</b><span>remote</span></div>
+    <div><h3>Project X / AV <span class="r">Designer</span></h3>
+      <p>AV and motion design for theatrical clients: film and television studio releases.</p></div>
+  </article>
+  <article class="job c">
+    <div class="when"><b>Apr 2021 – Jun 2022</b><span>hybrid</span></div>
+    <div><h3>The Many <span class="r">Motion Graphics Designer</span></h3>
+      <p>Campaign motion for national brands, cut to every placement, ratio and runtime.</p></div>
+  </article>
+  <article class="job c">
+    <div class="when"><b>Jan 2014 – Nov 2020</b><span>hybrid</span></div>
+    <div><h3>Fullscreen <span class="r">Senior Motion Designer / Editor</span></h3>
+      <p>Seven years animating and editing daily social for Disney, Marvel, Sony, AMC and streaming titles. GIF and sticker work past 1 billion GIPHY views; campaigns that earned a Webby, a Bronze Clio and two Shortys.</p></div>
+  </article>
+  <article class="job c">
+    <div class="when"><b>Jan 2011 – Nov 2013</b><span>hybrid</span></div>
+    <div><h3>CauseForce <span class="r">Social Media Manager</span></h3>
+      <p>Social for endurance fundraising events: calendar, community, recruitment, event-week coverage.</p></div>
+  </article>
+  <article class="job c">
+    <div class="when"><b>Jul 2006 – Apr 2010</b><span>on-site</span></div>
+    <div><h3>Warner Music Group <span class="r">Social Media Manager</span></h3>
+      <p>Artist channels and release campaigns for a major label in social media’s first era.</p></div>
+  </article>
+
+  <h2 class="sec"><span class="n">03</span>Built &amp; shipped<small>founded, designed and engineered by me</small></h2>
+  <div class="built">
+    <article>
+      <h3>Round24</h3>
+      <p>The maintenance platform that measures the labor: every hour, receipt and door reconciled. In beta.</p>
+      <div class="tags"><a href="https://round24.app">round24.app</a> · React · Vite PWA · Postgres · RLS · AES-256-GCM</div>
+    </article>
+    <article>
+      <h3>Scrawl <span class="ai-tag">AI</span></h3>
+      <p>Collectible fonts on Ethereum. Claude drafts a whole alphabet from three hand-drawn letters.</p>
+      <div class="tags"><a href="https://scrawl.gallery">scrawl.gallery</a> · Claude API · variable fonts · Ethereum · auctions</div>
+    </article>
+    <article>
+      <h3>Bastion <span class="ai-tag">AI</span></h3>
+      <p>Open-source Windows sensor beside Defender: camera, mic, USB and driver watch, LLM explanations.</p>
+      <div class="tags"><a href="https://bastion.quest">bastion.quest</a> · Rust · Next.js · REST API · Sentinel</div>
+    </article>
+    <article>
+      <h3>Faraday <span class="ai-tag">AI</span></h3>
+      <p>Anonymous encrypted video calls; on-device AI and DSP disguise face and voice. On Google Play.</p>
+      <div class="tags"><a href="https://faraday.cam">faraday.cam</a> · WebRTC · WebGL2 · MediaPipe · HMAC TURN</div>
+    </article>
+    <article>
+      <h3>Glitch Pixel Studio <span class="ai-tag">AI</span></h3>
+      <p>Real-time WebGL glitch and AI camera FX for Android: pixel sort, datamosh, MediaPipe face FX.</p>
+      <div class="tags"><a href="https://www.glitchpixelstudio.app">glitchpixelstudio.app</a> · WebGL · MediaPipe · Android</div>
+    </article>
+    <article>
+      <h3>cbuy</h3>
+      <p>Peer-to-peer marketplace settled in stablecoins; escrow releases on delivery. Partner API.</p>
+      <div class="tags"><a href="https://cbuy.ing">cbuy.ing</a> · Multisig escrow · EVM / Solana · Shippo</div>
+    </article>
+  </div>
+
+  <h2 class="sec"><span class="n">04</span>Toolkit</h2>
+  <dl class="kit">
+    <div class="hot"><dt>AI</dt><dd>Claude (Claude Code, API) · ChatGPT &amp; OpenAI API · Gemini · Grok · prompt engineering · agent workflows · MediaPipe · Runway · Higgsfield</dd></div>
+    <div><dt>Engineering</dt><dd>TypeScript / JavaScript · React, Next.js, Vite · Node · Rust · Postgres (Neon, Supabase) · REST APIs &amp; webhooks · Vercel, Cloudflare, GitHub · WebRTC, WebGL2, WebAudio · Base, Ethereum, Solana</dd></div>
+    <div><dt>Motion &amp; video</dt><dd>Cavalry · After Effects · Premiere · hand-drawn and stop-motion · Photoshop · Procreate · drone · photography</dd></div>
+    <div><dt>Content &amp; ops</dt><dd>Content strategy · copywriting · community · paid social (Meta) · SEO · analytics · A/B testing · budgets</dd></div>
+  </dl>
+
+  <h2 class="sec"><span class="n">05</span>Recognition</h2>
+  <ul class="awards">
+    <li><span class="yr">2022</span><span><b>APENFT Dream Fund</b> · Best Creativity Award</span></li>
+    <li><span class="yr">2021</span><span><b>Shorty Awards</b> · Mixwell: LGBTQ Best Use of Video</span></li>
+    <li><span class="yr">2020</span><span><b>Webby People’s Choice</b> · Disney / Fox, Spies in Disguise</span></li>
+    <li><span class="yr">2019</span><span><b>Clio Bronze</b> · Venom, Eddie’s Clubhouse</span></li>
+    <li><span class="yr">2017</span><span><b>Shorty Awards finalist</b> · AMC, The Walking Dead</span></li>
+    <li><span class="yr">2017</span><span><b>Webby Awards</b> · Captain America: Twitter Civil War</span></li>
+    <li><span class="yr"></span><span><b>GIPHY</b> · 1+ billion views on animated GIFs</span></li>
+    <li><span class="yr"></span><span><b>Crypto art</b> · Exhibited internationally; DYOR Kunsthalle, Zurich</span></li>
+    <li><span class="yr"></span><span><b>Volunteer</b> · St. Brians Clothiers &amp; Sir Dewitt Lee III</span></li>
+  </ul>
+
+ </div>
+ <div class="foot"><span>Gianni Arone · <a href="https://www.gianniarone.com">www.gianniarone.com</a></span><span>References on request · Attitude of gratitude</span><span>2 / 2</span></div>
+</section>
+
+</body>
+</html>
