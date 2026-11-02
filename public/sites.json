@@ -44,9 +44,9 @@
     "Technical SEO",
     "Vercel"
    ],
-   "shot": "/img/sites/evolution24.jpg",
-   "full": "/img/sites/full/evolution24.jpg",
-   "mobile": "/img/sites/full/evolution24-mobile.jpg"
+   "shot": "/img/sites/evolution24.jpg?v=48076516",
+   "full": "/img/sites/full/evolution24.jpg?v=7823cb25",
+   "mobile": "/img/sites/full/evolution24-mobile.jpg?v=20e21aa4"
   },
   {
    "id": "round24",
@@ -263,9 +263,9 @@
     "Android first",
     "Private by design"
    ],
-   "shot": "/img/sites/irl.jpg",
-   "full": "/img/sites/full/irl.jpg",
-   "mobile": "/img/sites/full/irl-mobile.jpg"
+   "shot": "/img/sites/irl.jpg?v=087e59d6",
+   "full": "/img/sites/full/irl.jpg?v=55e281ba",
+   "mobile": "/img/sites/full/irl-mobile.jpg?v=74a096d0"
   }
  ]
 }
