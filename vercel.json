@@ -58,7 +58,7 @@
       ]
     },
     {
-      "source": "/music/(.*)",
+      "source": "/music/(.*).(mp3|wav|m4a|ogg|flac)",
       "headers": [
         {
           "key": "Cache-Control",
