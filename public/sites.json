@@ -248,17 +248,20 @@
   {
    "id": "irl",
    "name": "irl.ing",
-   "tagline": "God Love merely is, and nothing else is at all.",
-   "url": "http://irl.ing",
+   "tagline": "Less scrolling. More irl’ing.",
+   "url": "https://irl.ing",
    "domain": "irl.ing",
-   "role": "Personal · One page",
+   "role": "Founder · Product",
    "year": "2026",
-   "accent": "#c79433",
-   "description": "A single page: two lines of text over a generative canvas of rain and light. Nothing to click, nothing to buy.",
+   "accent": "#d2552f",
+   "description": "Six raw seconds of your actual life: hold to record, let go to pause, no filters and no feed to fall into. Each loop is encoded to about 100 KB with AV1 on the phone, sent in two-second pieces that each carry a checksum, and signed with a key that never leaves the device, habits borrowed from the people who send pictures home from Mars. On the phone that plays it, the loop is rebuilt lifelike with game-engine upscaling and sharpening (AMD FSR 1), the camera’s own grain and “smart pixels” that fly home into place, all labeled as added. The loops lab is open in Chrome on Android.",
    "tags": [
-    "Canvas",
-    "Generative",
-    "Zero dependencies"
+    "WebCodecs · AV1",
+    "Ed25519 signing",
+    "Chunked checksums",
+    "WebGL2 · FSR 1",
+    "Android first",
+    "Private by design"
    ],
    "shot": "/img/sites/irl.jpg",
    "full": "/img/sites/full/irl.jpg",
