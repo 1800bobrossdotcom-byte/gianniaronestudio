@@ -1,0 +1,9 @@
+Gianni Arone - PGP signing key
+
+Fingerprint: 7D16 EC95 D2F8 B3BF 3D78  278E 7E11 6C68 9B73 987A
+Key:         https://www.b0b.dev/pgp-key.asc
+Type:        ed25519, signing only. Created 2026-11-06, expires 2028-11-05.
+
+This key signs the b0b.dev warrant canary (https://www.b0b.dev/canary.txt).
+The fingerprint is published here and on b0b.dev, so each site can be
+checked against the other. If the two ever disagree, trust neither.
