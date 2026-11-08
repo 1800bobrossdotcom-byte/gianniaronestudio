@@ -1,17 +1,20 @@
 /* ============================================================
    Gianni Arone — skins
-   The site has two skins. "studio" is portfolio.css as it stands.
-   "irl" dresses every page as irl.ing: Departure Mono, grey paper,
+   The site has two skins. "irl", the default, dresses every page as
+   irl.ing: Departure Mono, grey paper,
    charcoal ink, one red record dot, grey highlight boxes behind the
    big type, flat square geometry, and a feed that ends with
    "You're caught up." Like irl.ing, it follows the device's light or
    dark setting.
 
-   The head script on each page sets <html data-skin="irl"> before
-   first paint (from ?skin=irl or the visitor's last choice), and the
-   nav button built by portfolio.js switches skins in place. Nothing
-   below applies unless data-skin="irl" is set, except the switch and
-   the two elements the irl skin adds, which stay hidden in studio.
+   "studio" is portfolio.css on its own.
+
+   Every page ships with <html data-skin="irl">. The head script
+   removes it before first paint for visitors who chose studio (their
+   saved choice, or ?skin=studio), and the nav button built by
+   portfolio.js switches skins in place. Nothing below applies without
+   data-skin="irl", except the switch and the two elements the irl
+   skin adds, which stay hidden in studio.
 
    The music-video pages (.bm) keep their own art direction inside the
    piece; only their nav and footer take the skin.
