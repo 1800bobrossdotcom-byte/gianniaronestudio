@@ -10,9 +10,10 @@
     menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { menu.classList.remove('open'); }); });
   }
 
-  // ── Skins: "studio" (portfolio.css) and "irl" (skin-irl.css, the look of irl.ing) ──
-  // The head script on each page applies the saved or ?skin= choice before first paint;
-  // this adds the nav switch and the two touches the irl skin shows (hidden in studio).
+  // ── Skins: "irl" (skin-irl.css, the look of irl.ing; the default) and "studio" (portfolio.css) ──
+  // Pages ship with <html data-skin="irl">; the head script removes it before first paint for
+  // visitors who chose studio (saved, or ?skin=studio). This adds the nav switch and the two
+  // touches the irl skin shows (hidden in studio).
   var root = document.documentElement;
   function skinIsIrl() { return root.getAttribute('data-skin') === 'irl'; }
   var skinBtn = null;
@@ -24,7 +25,7 @@
   }
   function setSkin(irl) {
     if (irl) root.setAttribute('data-skin', 'irl'); else root.removeAttribute('data-skin');
-    try { localStorage.setItem('ga-skin', irl ? 'irl' : 'studio'); } catch (e) {}
+    try { localStorage.setItem('skin', irl ? 'irl' : 'studio'); } catch (e) {}
     if (/[?&]skin=/.test(location.search)) {
       try { var u = new URL(location.href); u.searchParams.delete('skin'); history.replaceState(history.state, '', u.pathname + u.search + u.hash); } catch (e) {}
     }
