@@ -49,6 +49,28 @@
    "mobile": "/img/sites/full/evolution24-mobile.jpg?v=20e21aa4"
   },
   {
+   "id": "irl",
+   "name": "irl.ing",
+   "tagline": "Less scrolling. More irl’ing.",
+   "url": "https://irl.ing",
+   "domain": "irl.ing",
+   "role": "Founder · Product",
+   "year": "2026",
+   "accent": "#ff3b2f",
+   "description": "A social network for real life with no algorithm, no likes and no followers: loops of up to 11.11 seconds from your friends, newest first, until the app says you’re caught up. Friends are mutual, added by invite link or exact @name, so nobody can build an audience by following; six wordless “feelings” replace the like button, and only the person who made a loop sees its play count. Every loop is shot in the irl.ing camera with no beauty filters, encoded on the phone to about 100 KB with AV1, cut into two-second checksummed pieces and sealed with an Ed25519 key that never leaves the device. The server decodes every frame to check the seal, and Claude reviews three frames against the community rules before anything is stored. Passkeys instead of passwords, real people without ID scans, video messages, comments, reposts, business pages and optional tips on Base, in any browser and seven languages.",
+   "tags": [
+    "Social network",
+    "No algorithm · no likes",
+    "Mutual friends only",
+    "AV1 · Ed25519 seal",
+    "Claude safety review",
+    "Passkeys · 7 languages"
+   ],
+   "shot": "/img/sites/irl.jpg?v=9a624150",
+   "full": "/img/sites/full/irl.jpg?v=bb3d03b7",
+   "mobile": "/img/sites/full/irl-mobile.jpg?v=24eab7a9"
+  },
+  {
    "id": "round24",
    "name": "Round24",
    "tagline": "Property ops, around the clock.",
@@ -244,28 +266,6 @@
    "shot": "/img/sites/b0b.jpg",
    "full": "/img/sites/b0b.jpg",
    "mobile": null
-  },
-  {
-   "id": "irl",
-   "name": "irl.ing",
-   "tagline": "Less scrolling. More irl’ing.",
-   "url": "https://irl.ing",
-   "domain": "irl.ing",
-   "role": "Founder · Product",
-   "year": "2026",
-   "accent": "#d2552f",
-   "description": "Six raw seconds of your actual life: hold to record, let go to pause, no filters and no feed to fall into. Each loop is encoded to about 100 KB with AV1 on the phone, sent in two-second pieces that each carry a checksum, and signed with a key that never leaves the device, habits borrowed from the people who send pictures home from Mars. On the phone that plays it, the loop is rebuilt lifelike with game-engine upscaling and sharpening (AMD FSR 1), the camera’s own grain and “smart pixels” that fly home into place, all labeled as added. The loops lab is open in Chrome on Android.",
-   "tags": [
-    "WebCodecs · AV1",
-    "Ed25519 signing",
-    "Chunked checksums",
-    "WebGL2 · FSR 1",
-    "Android first",
-    "Private by design"
-   ],
-   "shot": "/img/sites/irl.jpg?v=087e59d6",
-   "full": "/img/sites/full/irl.jpg?v=55e281ba",
-   "mobile": "/img/sites/full/irl-mobile.jpg?v=74a096d0"
   }
  ]
 }
