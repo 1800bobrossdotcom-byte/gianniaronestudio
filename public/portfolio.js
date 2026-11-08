@@ -10,6 +10,59 @@
     menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { menu.classList.remove('open'); }); });
   }
 
+  // ── Skins: "studio" (portfolio.css) and "irl" (skin-irl.css, the look of irl.ing) ──
+  // The head script on each page applies the saved or ?skin= choice before first paint;
+  // this adds the nav switch and the two touches the irl skin shows (hidden in studio).
+  var root = document.documentElement;
+  function skinIsIrl() { return root.getAttribute('data-skin') === 'irl'; }
+  var skinBtn = null;
+  function syncSkinBtn() {
+    if (!skinBtn) return;
+    var irl = skinIsIrl(), label = irl ? 'Switch to the studio skin' : 'Switch to the irl skin';
+    skinBtn.querySelector('span').innerHTML = irl ? 'studio<span class="w"> skin</span>' : 'irl<span class="w"> skin</span>';
+    skinBtn.setAttribute('aria-label', label); skinBtn.title = label;
+  }
+  function setSkin(irl) {
+    if (irl) root.setAttribute('data-skin', 'irl'); else root.removeAttribute('data-skin');
+    try { localStorage.setItem('ga-skin', irl ? 'irl' : 'studio'); } catch (e) {}
+    if (/[?&]skin=/.test(location.search)) {
+      try { var u = new URL(location.href); u.searchParams.delete('skin'); history.replaceState(history.state, '', u.pathname + u.search + u.hash); } catch (e) {}
+    }
+    syncSkinBtn();
+    // the type changes width: let marquees and anything else measured re-measure
+    var remeasure = function () { window.dispatchEvent(new Event('resize')); };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure); else remeasure();
+  }
+  var navWrap = document.querySelector('.nav .wrap');
+  if (navWrap) {
+    skinBtn = document.createElement('button');
+    skinBtn.type = 'button'; skinBtn.className = 'skin-toggle';
+    skinBtn.innerHTML = '<i aria-hidden="true"></i><span></span>';
+    skinBtn.addEventListener('click', function () { setSkin(!skinIsIrl()); });
+    navWrap.appendChild(skinBtn);
+    syncSkinBtn();
+  }
+  // irl.ing ends its big lines on a red record dot: mark the closing period of each page
+  // title, or add one (shown only in the irl skin) where the title has none.
+  document.querySelectorAll('main h1').forEach(function (h) {
+    if (h.closest('.bm')) return;
+    var walk = document.createTreeWalker(h, NodeFilter.SHOW_TEXT), last = null, n;
+    while ((n = walk.nextNode())) if (n.nodeValue.trim()) last = n;
+    if (!last) return;
+    var dot = document.createElement('span'); dot.className = 'end-dot'; dot.textContent = '.';
+    var m = /\.(\s*)$/.exec(last.nodeValue);
+    if (m) { last.nodeValue = last.nodeValue.slice(0, m.index); last.parentNode.insertBefore(dot, last.nextSibling); }
+    else { dot.className += ' added'; dot.setAttribute('aria-hidden', 'true'); h.appendChild(dot); }
+  });
+  // ...and its feed ends.
+  var mainEl = document.querySelector('main');
+  if (mainEl && !document.querySelector('.bm')) {
+    var end = document.createElement('div');
+    end.className = 'wrap caught-up-wrap'; end.setAttribute('aria-hidden', 'true');
+    end.innerHTML = '<p class="caught-up">You’re caught up<span class="end-dot">.</span></p>';
+    mainEl.appendChild(end);
+  }
+
   // ── Helpers ──
   function fmtDur(s) { s = Math.round(s || 0); var m = Math.floor(s / 60), r = s % 60; return m + ':' + (r < 10 ? '0' : '') + r; }
   function esc(str) { return String(str == null ? '' : str).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
