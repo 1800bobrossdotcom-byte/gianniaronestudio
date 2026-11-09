@@ -381,6 +381,20 @@ footer .links a:hover { background: var(--paper); color: var(--ink); border-colo
 footer .copy { font-size: 11px; letter-spacing: .06em; color: rgba(255,255,255,.55); grid-column: 1 / -1; margin-top: 10px; }
 @media (max-width: 700px) { footer .wrap { grid-template-columns: 1fr; } }
 
+/* ── Contact ── */
+.inline-link { border-bottom: 2px solid var(--pink); font-weight: 600; color: var(--ink); }
+.inline-link:hover { background: var(--pink-t); }
+.contact-main { padding-top: 56px; }
+.contact-email { display: block; width: fit-content; max-width: 100%; margin: 4px 0 28px; font: 900 clamp(40px, 7.4vw, 96px)/.95 var(--display); letter-spacing: -.005em; color: var(--ink); text-decoration: underline; text-decoration-color: var(--pink); text-decoration-thickness: .07em; text-underline-offset: .12em; transition: color .2s; }
+.contact-email:hover { color: var(--pink); }
+.copy-status { min-height: 1.6em; margin-top: 14px; }
+.elsewhere { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.elsewhere a { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 18px 20px; background: var(--paper-2); border: var(--bw) solid var(--ink); border-radius: var(--r); box-shadow: 4px 4px 0 var(--ink); transition: box-shadow .15s, transform .15s; }
+.elsewhere a:hover { box-shadow: 6px 6px 0 var(--pink); transform: translate(-1px, -1px); }
+.elsewhere b { font: 800 26px/1 var(--display); text-transform: uppercase; letter-spacing: .02em; }
+.elsewhere span { font: 500 12px/1.4 var(--mono); letter-spacing: .04em; color: var(--muted); text-align: right; }
+.pgp-note { margin-top: 30px; overflow-wrap: anywhere; }
+
 /* ── Print (resume) ── */
 @media print {
   @page { margin: 14mm; }
