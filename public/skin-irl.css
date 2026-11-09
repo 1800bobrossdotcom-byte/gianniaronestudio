@@ -265,6 +265,19 @@
 [data-skin="irl"] footer .links a:hover { background: none; color: var(--fg); text-decoration: underline; text-decoration-color: var(--rec); text-underline-offset: 5px; }
 [data-skin="irl"] footer .copy { font-size: 11px; letter-spacing: .06em; color: var(--fg-2); }
 
+/* ── Contact ── */
+[data-skin="irl"] .inline-link { font-weight: 400; color: var(--fg); border-bottom: 0; text-decoration: underline; text-decoration-color: var(--rec); text-decoration-thickness: 1px; text-underline-offset: 5px; }
+[data-skin="irl"] .inline-link:hover { background: var(--hl); }
+[data-skin="irl"] .contact-email { margin: 0 0 22px; background: var(--hl); padding: 2px 8px 0 6px; font: 400 22px/1.3 var(--irl); letter-spacing: -.02em; color: var(--fg); text-decoration-color: var(--rec); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+[data-skin="irl"] .contact-email:hover { color: var(--fg); text-decoration-thickness: 4px; }
+@media (min-width: 700px) { [data-skin="irl"] .contact-email { font-size: 44px; line-height: 1.15; letter-spacing: var(--track-display); text-decoration-thickness: 3px; text-underline-offset: 8px; } }
+[data-skin="irl"] .elsewhere { display: block; border-top: 1px solid var(--line); }
+[data-skin="irl"] .elsewhere a, [data-skin="irl"] .elsewhere a:hover { min-height: 55px; margin: 0 -8px; padding: 0 8px; align-items: center; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; box-shadow: none; transform: none; background: linear-gradient(var(--hl), var(--hl)) 0 0 / 0 100% no-repeat; transition: background-size .2s cubic-bezier(.2,.8,.2,1); }
+@media (hover: hover) { [data-skin="irl"] .elsewhere a:hover { background-size: 100% 100%; } }
+[data-skin="irl"] .elsewhere b { font: 400 22px/1.3 var(--irl); letter-spacing: -.02em; text-transform: none; color: var(--fg); }
+[data-skin="irl"] .elsewhere span { font: 400 11px/1.6 var(--irl); letter-spacing: .1em; text-transform: uppercase; color: var(--meta); }
+[data-skin="irl"] .pgp-note { font-size: 11px; letter-spacing: .06em; color: var(--fg-2); }
+
 /* ── The feed ends ── */
 [data-skin="irl"] .caught-up-wrap { display: block; padding-top: 22px; padding-bottom: clamp(66px, 9vw, 110px); }
 [data-skin="irl"] .wrap .caught-up-wrap { padding-left: 0; padding-right: 0; }
