@@ -28,7 +28,7 @@ META = {
     '/Subject': 'Director of Digital Operations · AI Product Builder · Senior Motion Designer · www.gianniarone.com',
     '/Keywords': 'Gianni Arone, director of digital operations, creative technologist, AI product builder, AI engineering, Claude, Claude Code, '
                  'ChatGPT, OpenAI, Anthropic API, prompt engineering, agent workflows, APIs, React, Next.js, Node, '
-                 'Rust, Postgres, senior motion designer, video editor, social content, Rochester NY',
+                 'Rust, Postgres, post-quantum TLS, cryptography, formal methods, TLA+, Lean, senior motion designer, video editor, social content, Rochester NY',
     '/Creator': 'www.gianniarone.com',
 }
 # words that must survive into the text layer, and words that must not

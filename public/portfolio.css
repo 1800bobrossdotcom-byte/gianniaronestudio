@@ -393,6 +393,8 @@ footer .copy { font-size: 11px; letter-spacing: .06em; color: rgba(255,255,255,.
 .elsewhere a:hover { box-shadow: 6px 6px 0 var(--pink); transform: translate(-1px, -1px); }
 .elsewhere b { font: 800 26px/1 var(--display); text-transform: uppercase; letter-spacing: .02em; }
 .elsewhere span { font: 500 12px/1.4 var(--mono); letter-spacing: .04em; color: var(--muted); text-align: right; }
+.irl-add { margin-top: 44px; padding-top: 28px; border-top: 1px solid rgba(21,21,21,.18); max-width: 720px; }
+.irl-add p { margin: 0 0 18px; font-size: 17px; }
 .pgp-note { margin-top: 30px; overflow-wrap: anywhere; }
 
 /* ── Print (resume) ── */
