@@ -50,25 +50,25 @@
   },
   {
    "id": "irl",
-   "name": "irl.ing",
-   "tagline": "Less scrolling. More irl’ing.",
+   "name": "IRL",
+   "tagline": "Everything happens irl.",
    "url": "https://irl.ing",
    "domain": "irl.ing",
    "role": "Founder · Product",
    "year": "2026",
    "accent": "#ff3b2f",
-   "description": "A social network for real life with no algorithm, no likes and no followers: loops of up to 11.11 seconds from your friends, newest first, until the app says you’re caught up. Friends are mutual, added by invite link or exact @name, so nobody can build an audience by following; six wordless “feelings” replace the like button, and only the person who made a loop sees its play count. Every loop is shot in the irl.ing camera with no beauty filters, encoded on the phone to about 100 KB with AV1, cut into two-second checksummed pieces and sealed with an Ed25519 key that never leaves the device. The server decodes every frame to check the seal, and Claude reviews three frames against the community rules before anything is stored. Passkeys instead of passwords, real people without ID scans, video messages, comments, reposts, business pages and optional tips on Base, in any browser and seven languages.",
+   "description": "The no-algorithm social network: videos up to 11.11 seconds, photos, words, voice posts and notes from friends and family, newest first, in feeds that end with “You’re caught up.” No ads, no tracking, no human data sold, no follower counts for people, and seven feelings instead of likes. The Circle is your friends; the Square is everyone’s latest public post from the last 48 hours. Around them: IRL Radio, a people-powered station where a person listens to every track first, an Arcade of small games, Notes, groups, verified pages for local businesses and ten languages. Underneath is heavy cryptography: TLS 1.3 with the post-quantum X25519MLKEM768 key exchange over HTTP/3, passkeys instead of passwords, an Ed25519 Real Seal on every loop, and messages sealed with formally verified ChaCha20-Poly1305 from HACL*. The rules that keep bots out are model-checked in TLA+ across hundreds of thousands of states, and the algebra behind its one-time MAC is proven in Lean. Every post is checked before anyone sees it, people decide the hard cases, and a Sentinel programme traps and studies bots. Adults only, in the browser on any phone or computer.",
    "tags": [
-    "Social network",
-    "No algorithm · no likes",
-    "Mutual friends only",
-    "AV1 · Ed25519 seal",
-    "Claude safety review",
-    "Passkeys · 7 languages"
+    "No-algorithm social network",
+    "Post-quantum TLS",
+    "HACL* · Ed25519",
+    "TLA+ · Lean proofs",
+    "Passkeys",
+    "10 languages"
    ],
-   "shot": "/img/sites/irl.jpg?v=9a624150",
-   "full": "/img/sites/full/irl.jpg?v=bb3d03b7",
-   "mobile": "/img/sites/full/irl-mobile.jpg?v=24eab7a9"
+   "shot": "/img/sites/irl.jpg?v=15e6fe81",
+   "full": "/img/sites/full/irl.jpg?v=e9613314",
+   "mobile": "/img/sites/full/irl-mobile.jpg?v=bb41957f"
   },
   {
    "id": "round24",
